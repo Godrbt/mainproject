@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-on-init',
@@ -9,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnInitComponent implements OnInit {
   ngOnInit() {
-    console.log('hello');
+    axios.get('http://localhost:5000/Test').then((responce)=>{
+      console.log(responce.data);
+      
+    })
     
   }
 

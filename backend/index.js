@@ -8,5 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
 app.listen(PORT, () => {
-    console.log("Server is Running yy");
+    console.log("Server is Running ");
+  });
+
+  app.get("/Test", (req, res) => {
+    res.send({
+      message: "Hai",
+    });
   });

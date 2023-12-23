@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {  FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
+import axios from 'axios';
 
-
+interface DistrictInterface {
+  districtName: any;
+}
 
 
 @Component({
@@ -15,14 +18,20 @@ import {  FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
 export class DistrictComponent  {
   profileForm = new FormGroup({
     district: new FormControl(''),
-    place: new FormControl(''),
+   
   });
     var: any=''
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.profileForm.value.district);
-    console.log(this.profileForm.value.place);
-    this.var=this.profileForm.value.district;
+  
+    const districtData : DistrictInterface = {
+      districtName: this.profileForm.value.district,
+    };
+
+
+    axios.post('http://localhost:5000/addDistrict/',districtData).then((response) => {
+      console.log(response.data);
+      
+    })
 
     
   }

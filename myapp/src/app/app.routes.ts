@@ -1,44 +1,54 @@
-import { Routes } from '@angular/router';
-import { DistrictComponent } from './Admin/district/district.component';
-import { NavbarComponent } from './Admin/navbar/navbar.component';
-import { PlaceComponent } from './Admin/place/place.component';
-import { AdminhomepageComponent } from './Admin/adminhomepage/adminhomepage.component';
-import { CategoryComponent } from './Admin/category/category.component';
-import { SubcategoryComponent } from './Admin/subcategory/subcategory.component';
-import { OnInitComponent } from './Admin/on-init/on-init.component';
-
+ import { Routes } from '@angular/router';
+import { MainComponent } from './Admin/component/main/main.component';
+import { HomeComponent } from './Admin/pages/home/home.component';
+import { DistrictComponent } from './Admin/pages/district/district.component';
+import { PlaceComponent } from './Admin/pages/place/place.component';
+import { LocationComponent } from './Admin/pages/location/location.component';
+import { CategoryComponent } from './Admin/pages/category/category.component';
+import { HospitalComponent } from './Admin/pages/hospital/hospital.component';
+import { InstitutionComponent } from './Admin/pages/institution/institution.component';
+import { ScholarshipComponent } from './Admin/pages/scholarship/scholarship.component';
 export const routes: Routes = [
-    {
-        path: 'Admin',
-        component: NavbarComponent,
+     {
+    path: 'Admin',
+     component: MainComponent,
         children: [
             {
                 path: '',
-                component: AdminhomepageComponent,
+                component:HomeComponent,
             },
             {
-                path: 'District',
-                component: DistrictComponent,
+                path: 'district',
+                component:DistrictComponent ,
             },
             {
                 path: 'place',
                 component: PlaceComponent,
             },
             {
+                path: 'location',
+                component: LocationComponent,
+            },
+            {
                 path: 'category',
-                component: CategoryComponent,
+                component:CategoryComponent,
             },
             {
-                path: 'subcategory',
-                component: SubcategoryComponent,
+                path: 'hospital',
+                component:HospitalComponent,
             },
             {
-                path: 'Oninit',
-                component: OnInitComponent,
+                path: 'institution',
+                component:InstitutionComponent,
             },
+            {
+                path: 'scholarship',
+                component:ScholarshipComponent,
+            },
+            
 
 
         ]
-    },
+  },
 
-];
+ ];

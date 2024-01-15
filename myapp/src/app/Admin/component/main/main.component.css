@@ -1,29 +1,31 @@
 .main-container{
     display: grid;
-    grid-template-areas: 'area2 area1 area1 area1 area1 area1 area1 area1 area1'
-                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
-                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
-                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
-                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
+    height: 100vh;
+    grid-template-areas: 'area2 area1 area1 area1 area1 '
+                         'area2 area3 area3 area3 area3 '
+                         'area2 area3 area3 area3 area3 '
+                         'area2 area3 area3 area3 area3 '
+                         'area2 area3 area3 area3 area3 '
                             ;
 }
 .navbar-box{
     grid-area: area1;
-    height: 72px;
+    width: 85vw;
     
     
 }
 .sidebar-box{
-    display: grid;
     grid-area: area2;
+    width: 15vw;
 }
 .content{
     grid-area: area3;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: url('../../../../assets/background2.jpg');
-    height: 100vh;
     padding-top: 10%;
+    background-color: rgb(235, 235, 241);
+    margin-left: -28px;
     
     
     

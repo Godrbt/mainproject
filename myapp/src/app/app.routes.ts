@@ -21,10 +21,7 @@ export const routes: Routes = [
                 path: 'District',
                 component:DistrictComponent ,
             },
-            {
-                path: 'place',
-                component: PlaceComponent,
-            },
+           
             {
                 path: 'location',
                 component: LocationComponent,

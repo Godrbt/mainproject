@@ -1,5 +1,49 @@
-<div>
-    <div>District</div>
-    <div><input type="text"></div>
-    <div><input type="submit"></div>
-</div>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="dis">
+  <div class="parent">
+    <div class="child">
+      <div class="child1">
+        <label for="district">District</label>
+      </div>
+
+      <div class="child2"><input class="childbtn1" type="text" formControlName="district" id="district"></div>
+      <!-- <div class="child2"><input class="childbtn1" type="text" formControlName="place" id="district"></div> -->
+
+
+
+    </div>
+    <div class="child3"><button class="childbtn2" type="submit">save</button></div>
+  </div>
+  <div class="tablecontainer">
+    <table class="table table-hover  w-100">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td >Larry the Bird</td>
+          <td>twitter</td>
+           <td>twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+

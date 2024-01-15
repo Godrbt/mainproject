@@ -14,11 +14,11 @@ export const routes: Routes = [
      component: MainComponent,
         children: [
             {
-                path: '',
+                path: 'Home',
                 component:HomeComponent,
             },
             {
-                path: 'district',
+                path: 'District',
                 component:DistrictComponent ,
             },
             {

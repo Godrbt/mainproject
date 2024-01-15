@@ -5,47 +5,57 @@
     <aside>
         <div class="top">
             <div class="logo">
-                <img src="/myapp/src/assets/123.jpg">
+                <img src="../../../../assets/logo3.png">
                 <h2>INCLUSIVE <span class="red">NEST</span></h2>
+
             </div>
-            <div class="close"><span class="material-symbols-outlined">
+            <div class="close" id="close-btn"><span class="material-symbols-outlined">
                     close
                 </span></div>
         </div>
         <div class="sidebar">
-            <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> District </h3>
+            <a routerLink="Home" routerLinkActive="active" ariaCurrentwhenActive="page" class="active">
+                <span class="material-symbols-outlined">dashboard</span>
+                <h5> Dashboard</h5>
+            </a>
+            <a routerLink="District" routerLinkActive="active" ariaCurrentwhenActive="page">
+                <span class="material-symbols-outlined">map</span>
+                <h5> District</h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> place </h3>
+                <span class="material-symbols-outlined">my_location</span>
+                <h5> location </h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> location </h3>
+                <span class="material-symbols-outlined">category</span>
+                <h5> category </h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> category </h3>
+                <span class="material-symbols-outlined">vaccines</span>
+                <h5> hospital </h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> hospital </h3>
+                <span class="material-symbols-outlined">school</span>
+                <h5> insitution </h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> insitution </h3>
+                <span class="material-symbols-outlined">trophy</span>
+                <h5> scholarship </h5>
             </a>
             <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> scholarship </h3>
+                <span class="material-symbols-outlined">logout</span>
+                <h5> Logout </h5>
             </a>
-            <a href="#">
-                <span class="material-symbols-outlined">grid_view</span>
-                <h3> Logout </h3>
-            </a>
-
+            
         </div>
     </aside>
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+
+    </div>
 </div>
+<script src="../../../../../../backend/index.js"></script>

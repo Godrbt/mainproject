@@ -1,0 +1,30 @@
+.main-container{
+    display: grid;
+    grid-template-areas: 'area2 area1 area1 area1 area1 area1 area1 area1 area1'
+                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
+                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
+                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
+                         'area2 area3 area3 area3 area3  area3 area3 area3 area3'
+                            ;
+}
+.navbar-box{
+    grid-area: area1;
+    height: 72px;
+    
+    
+}
+.sidebar-box{
+    display: grid;
+    grid-area: area2;
+}
+.content{
+    grid-area: area3;
+    display: flex;
+    justify-content: center;
+    background-image: url('../../../../assets/background2.jpg');
+    height: 100vh;
+    padding-top: 10%;
+    
+    
+    
+}

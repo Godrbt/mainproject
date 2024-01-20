@@ -20,7 +20,7 @@
 }
 .content{
     grid-area: area3;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     padding-top: 10%;

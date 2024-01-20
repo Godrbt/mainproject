@@ -16,14 +16,14 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "",
-  port: 3308,
+  database: "db_main",
+  port: 3307,
 });
 
 // Check Database Connection
 
 db.connect((err) => {
-  if(err){
+  if (err) {
     console.error(err);
   }
 })
@@ -39,7 +39,6 @@ db.connect((err) => {
 // closeBtn.addEventListener('click', () => {
 //  sideMenu.style.display = 'none';
 // })
-
 
 
 app.get("/Test", (req, res) => {
@@ -81,33 +80,69 @@ app.get("/largest", (req, res) => {
   if (num1 > num2 && num1 > num3) {
     result = num1
   }
-  
-    else if (num2 > num1 && num2 > num3) {
-      result = num2
+
+  else if (num2 > num1 && num2 > num3) {
+    result = num2
+  }
+  else {
+    result = num3
+
+  }
+  res.send({
+
+    data: result
+  });
+
+});
+app.get("/prime", (req, res) => {
+  num1 = req.body.num1
+  for (i = 2; i < num1; i++) {
+    if (num1 % i == 0) {
+      res.send({
+        data: " is a prime"
+      });
     }
     else {
-      result = num3
-
-    }
-    res.send({
-
-      data: result
-    });
-
-  });
-  app.get("/prime", (req, res) => {
-    num1 = req.body.num1
-    for(i=2;i<num1;i++){
-    if(num1%i==0)
-    {
-    res.send({
-      data:" is a prime"
-    });}
-    else
-    {
       res.send({
-        data:" not a prime"
-      });}
+        data: " not a prime"
+      });
     }
-   
+  }
+
+});
+
+
+app.post("/District", (req, res) => {
+  const { districtName } = req.body
+  let qry =
+    "insert into tbl_district (district_name) values('" +
+   districtName +
+    "')";
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
   });
+});
+
+
+app.post("/category", (req, res) => {
+  const { CategoryName } = req.body
+  let qry =
+    "insert into tbl_district (district_name) values('" +
+   districtName +
+    "')";
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});

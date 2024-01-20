@@ -16,6 +16,8 @@ import axios from 'axios';
   templateUrl: './district.component.html',
   styleUrl: './district.component.css'
 })
+
+
 export class DistrictComponent {
   profileForm = new FormGroup(
     {
@@ -25,14 +27,13 @@ export class DistrictComponent {
   );
   var: any = ''
   onSubmit() {
-    // console.log(this.profileForm.value.district);
-    // console.log(this.profileForm.value.place);
+    console.log(this.profileForm.value.district);
     const districtdata : DistrictInterface ={
      districtName: this.profileForm.value.district,
 
   };
 
-  axios.post('http://localhost:4200/District/',districtdata).then((response) => {
+  axios.post('http://localhost:5000/District/',districtdata).then((response) => {
     console.log(response.data);
   })
 

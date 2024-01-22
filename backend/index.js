@@ -28,18 +28,6 @@ db.connect((err) => {
   }
 })
 
-// const sideMenu =document.querySelector("aside");
-// const menuBtn = document.querySelector("#menu-btn");
-// const closeBtn = document.querySelector("#close-btn"); 
-
-// menuBtn.addEventListener('click', () => {
-//  sideMenu.style.display = 'block';
-// })
-
-// closeBtn.addEventListener('click', () => {
-//  sideMenu.style.display = 'none';
-// })
-
 
 app.get("/Test", (req, res) => {
   res.send({
@@ -111,7 +99,7 @@ app.get("/prime", (req, res) => {
 
 });
 
-
+// district //
 app.post("/District", (req, res) => {
   const { districtName } = req.body
   let qry =
@@ -129,13 +117,14 @@ app.post("/District", (req, res) => {
   });
 });
 
-
+//category//
 app.post("/category", (req, res) => {
-  const { CategoryName } = req.body
+  const { categoryName,categoryDesc } = req.body
+
   let qry =
-    "insert into tbl_district (district_name) values('" +
-   districtName +
-    "')";
+    "insert into tbl_category (cat_name,cat_description) values('" +
+    categoryName +  "','" + categoryDesc +  "')";
+ 
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -146,3 +135,35 @@ app.post("/category", (req, res) => {
     }
   });
 });
+
+
+app.get("/category", (req, res) => {
+  let qry ="select * from tbl_category";
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        category: result,
+      });
+    }
+  });
+});
+
+
+app.delete("/category/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry ="delete from tbl_category where cat_id = "+ Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+//catageory end//

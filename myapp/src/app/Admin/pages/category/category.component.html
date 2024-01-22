@@ -5,7 +5,7 @@
             <div class="cat-container" style="display: flex;flex-direction: column;gap: 10px;margin-top: -50px;">
                 <div class="input-group">
                     <span class="input-group-text" style="width: 150px;">Category</span>
-                    <input type="text" formControlName="category" aria-label="First name" class="form-control  w-90">
+                    <input type="text" formControlName="catname" aria-label="First name" class="form-control  w-90">
 
                 </div>
                 <div class="input-group">
@@ -26,29 +26,19 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Action</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-
+                <tr *ngFor="let item of data;let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ item.cat_name }}</td>
+                    <td>{{ item.cat_description }}</td>
+                    <td>   <a href="javascript:void(0);" (click)="deleteRow(item.cat_id)">Delete</a>   </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>twitter</td>
-
-                </tr>
+               
             </tbody>
         </table>
     </div>

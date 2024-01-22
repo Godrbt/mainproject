@@ -5,15 +5,20 @@
                          'area2 area2 area2 area2 area2 '
                          'area2 area2 area2 area2 area2 '
                          'area2 area2 area2 area2 area2 '
-                         'area2 area2 area2 area2 area2 '
+                         'area3 area3 area3 area3 area3 '
                             ;
 }
 
 .navbar-box{
     grid-area: area1;
     height: 0;
+    margin: 0;
     
     
+}
+.footer-box{
+    grid-area: area3;
+    height: 0;
 }
 .content{
     grid-area: area2;

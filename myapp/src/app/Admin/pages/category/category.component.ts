@@ -1,39 +1,79 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import axios from 'axios';
-import { log } from 'console';
-import { response } from 'express';
 
 
-interface CategoryInterface{
-  categoryName:any;
-  categoryDesc:any;
+interface CategoryInterface {
+  categoryName: any;
+  categoryDesc: any;
+}
+
+interface categoryFetch {
+  cat_name: any,
+  cat_description: any,
+  cat_id: any
 }
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryComponent {
-  catform= new FormGroup(
+export class CategoryComponent implements OnInit {
+  data: categoryFetch[] = [];
+
+  deleteRow(index: number) {
+
+    // Remove the item at the specified index from the 'data' array
+    axios.delete(`http://localhost:5000/category/${index}`).then((response) => {
+      console.log(response.data)
+      this.fetchCategory()
+
+
+    })
+
+  }
+
+
+  ngOnInit() {
+    this.fetchCategory();
+  }
+
+  fetchCategory() {
+    axios.get('http://localhost:5000/category/').then((response) => {
+      // console.log(response.data.category)
+      this.data = response.data.category
+      this.fetchCategory();
+
+
+    })
+
+  }
+
+
+
+  catform = new FormGroup(
     {
-      category: new FormControl(''),
-      catdesc :new FormControl(''),
+      catname: new FormControl(''),
+      catdesc: new FormControl(''),
     }
   );
-var: any = ''
-onSubmit(){
-  // console.log(this.profileForm.value.category);
-  const catdata : CategoryInterface={
-    categoryName: this.catform.value.category,
-    categoryDesc:this.catform.value.catdesc
-  };
-  axios.post('http://localhost:5000/category/',catdata).then((response) => {
-    console.log(response.data);
-  })
+  var: any = ''
+  onSubmit() {
+    // console.log(this.profileForm.value.category);
+    const catdata: CategoryInterface = {
+      categoryName: this.catform.value.catname,
+      categoryDesc: this.catform.value.catdesc
+    };
+    axios.post('http://localhost:5000/category/', catdata).then((response) => {
+      alert(response.data.message)
+      this.catform.reset();
+
+    })
+  }
 }
-}
+
+

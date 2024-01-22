@@ -1,19 +1,30 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+<nav class="navbar  fixed-top navbar-expand-lg bg-body-tertiary p-0">
   <div class="container-fluid main2">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <a class="navbar-brand" href="#">Navbar scroll</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">Hidden brand</a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" routerLink="userhome" routerLinkActive="active" ariaCurrentwhenActive="page">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" routerLink="volunteerBooking" routerLinkActive="active" ariaCurrentwhenActive="page">Volunteer Booking</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Link
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="myprofile" routerLinkActive="active" ariaCurrentwhenActive="page">My Profile</a></li>
+            <li><a class="dropdown-item" routerLink="editprofile" routerLinkActive="active" ariaCurrentwhenActive="page">Edit Profile</a></li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+            <li><a class="dropdown-item" routerLink="changepassword" routerLinkActive="active" ariaCurrentwhenActive="page">Change Password</a></li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" routerLink="information" routerLinkActive="active" ariaCurrentwhenActive="page">Informations</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

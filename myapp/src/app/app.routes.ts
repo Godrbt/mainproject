@@ -15,9 +15,27 @@ import { VolunteerregistrationComponent } from './Guest/pages/volunteerregistrat
 import { UsermainComponent } from './User/components/usermain/usermain.component';
 import { Component } from '@angular/core';
 import { UserHomeComponent } from './User/pages/userhome/user-home.component';
+import { VolunteerBookingComponent } from './User/pages/volunteer-booking/volunteer-booking.component';
+import { MyprofileComponent } from './User/pages/myprofile/myprofile.component';
+import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
+import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
+import { InformationComponent } from './User/pages/information/information.component';
 
 
 export const routes: Routes = [
+    {
+        path: 'volunteerregistration',
+        component:VolunteerregistrationComponent,
+        // children:[
+        //     {
+        //         path:'',
+        //         redirectTo:'userhome',
+        //         pathMatch:'full'
+        //         // component: UserHomeComponent,
+
+        //     },
+        // ]
+    },
 
     {
         path: 'User',
@@ -25,8 +43,38 @@ export const routes: Routes = [
         children:[
             {
                 path:'',
+                redirectTo:'userhome',
+                pathMatch:'full'
+                // component: UserHomeComponent,
+
+            },
+            {
+                path: 'userhome',
                 component: UserHomeComponent,
             },
+        
+            {
+                path: 'volunteerBooking',
+                component: VolunteerBookingComponent,
+            },
+            {
+                path: 'myprofile',
+                component: MyprofileComponent,
+            },
+            {
+                path: 'editprofile',
+                component: EditprofileComponent,
+            },
+            {
+                path: 'changepassword',
+                component: ChangepasswordComponent,
+            },
+            {
+                path: 'information',
+                component: InformationComponent,
+            },
+            
+            
         ]
 
     },

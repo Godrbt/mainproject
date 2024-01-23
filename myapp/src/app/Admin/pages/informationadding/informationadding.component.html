@@ -1,0 +1,31 @@
+<form [formGroup]="infoaddingForm" (ngSubmit)="onSubmit()" action="" enctype="multipart/form-data" >
+    <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; ">
+
+        <div class="card-body" style="display:flex;gap: 10px;flex-direction: column ;">
+            <div class="head" style="margin-left: 40px;">
+                <p class="h3">INFORMATIONS ADDING</p>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" style="width: 150px;">Information Name</span>
+                <input type="text" aria-label="First name" class="form-control" formControlName="info_name" placeholder="Information Name">
+
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" style="width: 150px;">Information Photo</span>
+                <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" placeholder="upload photo">
+
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" style="width: 150px;">Information Details</span>
+                <textarea class="form-control" formControlName="info_details" aria-label="With textarea"></textarea>
+            </div>
+            <div class="child3" style="margin-left: 12rem;">
+                <button type="submit" class="btn btn-outline-success">Save</button>
+            </div>
+
+        </div>
+    </div>
+</form>

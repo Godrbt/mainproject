@@ -20,12 +20,13 @@ import { MyprofileComponent } from './User/pages/myprofile/myprofile.component';
 import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
 import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
 import { InformationComponent } from './User/pages/information/information.component';
+import { InformationaddingComponent } from './Admin/pages/informationadding/informationadding.component';
 
 
 export const routes: Routes = [
     {
-        path: 'volunteerregistration',
-        component:VolunteerregistrationComponent,
+        path: 'userregistration',
+        component:UserregistrationComponent,
         // children:[
         //     {
         //         path:'',
@@ -104,6 +105,12 @@ export const routes: Routes = [
                 path: 'scholarship',
                 component:ScholarshipComponent,
             },
+            {
+                path: 'informationadding',
+                component:InformationaddingComponent,
+            },
+            
+
             
 
 

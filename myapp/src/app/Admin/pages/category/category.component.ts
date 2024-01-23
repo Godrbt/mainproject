@@ -23,13 +23,16 @@ interface categoryFetch {
   styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit {
+
+
   data: categoryFetch[] = [];
 
-  deleteRow(index: number) {
+  deleteRow(index: number):void {
 
     // Remove the item at the specified index from the 'data' array
     axios.delete(`http://localhost:5000/category/${index}`).then((response) => {
-      console.log(response.data)
+      alert(response.data.message)
+      // console.log(response.data)
       this.fetchCategory()
 
 
@@ -46,7 +49,7 @@ export class CategoryComponent implements OnInit {
     axios.get('http://localhost:5000/category/').then((response) => {
       // console.log(response.data.category)
       this.data = response.data.category
-      this.fetchCategory();
+      
 
 
     })
@@ -71,6 +74,7 @@ export class CategoryComponent implements OnInit {
     axios.post('http://localhost:5000/category/', catdata).then((response) => {
       alert(response.data.message)
       this.catform.reset();
+      this.fetchCategory();
 
     })
   }

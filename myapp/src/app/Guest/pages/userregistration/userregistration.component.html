@@ -1,4 +1,4 @@
-<form style="display: flex;align-items: center;justify-content: center;margin-top: 30px; ">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" style="display: flex;align-items: center;justify-content: center;margin-top: 30px; ">
 
     <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px; ">
 
@@ -9,69 +9,75 @@
 
             <div class="input-group">
                 <span class="input-group-text">User Name</span>
-                <input type="text" aria-label="First name" class="form-control  " placeholder="Hospital Name">
+                <input type="text" formControlName="user_name" aria-label="First name" class="form-control  " placeholder="Hospital Name">
 
             </div>
             <div class="input-group">
                 <span class="input-group-text" style="width: 131px;">Contact </span>
-                <input type="text" aria-label="First name" class="form-control  " placeholder="Contact">
+                <input type="text" formControlName="user_contact" aria-label="First name" class="form-control  " placeholder="Contact">
 
             </div>
             <div class="input-group ">
-                <input type="text" class="form-control" placeholder="Email" id="demo" name="email">
+                <input type="email" formControlName="user_email" class="form-control" placeholder="Email" id="demo" name="email">
                 <div class="input-group-append">
                     <span class="input-group-text">e-mail</span>
                 </div>
             </div>
             <div class="input-group">
                 <span class="input-group-text">photo</span>
-                <input type="file" aria-label="First name" class="form-control  ">
+                <!-- <input type="file" formControlName="user_photo" aria-label="First name" class="form-control  "> -->
 
             </div>
             <div class="input-group">
                 <span class="input-group-text">
-                    Gender
-
+                  Gender
                 </span>
-                   <div class="form-control ">
-                    <input class="form-check-input"  aria-label="First name"  type="checkbox" value="male" id="flexCheckDefault" >
-                    <!-- <label class="form-check-label" for="flexCheckDefault"> -->
-                      male
-                    <!-- </label> -->
-           
-                    <input class="form-check-input"  aria-label="First name"  type="checkbox" value="female" id="flexCheckDefault" >
-                    <!-- <label class="form-check-label" for="flexCheckChecked"> -->
-                      female
-                    <!-- </label> -->
-                   </div>
-                  
-
-            </div>
+                <div class="form-control d-flex">
+                  <div class="form-check mr-2">
+                    <input class="form-check-input" formControlName="user_gender" aria-label="Male" type="radio" value="male" id="maleRadio" name="genderGroup">
+                    <label class="form-check-label" for="maleRadio">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check ml-2">
+                    <input class="form-check-input" formControlName="user_gender" aria-label="Female" type="radio" value="female" id="femaleRadio" name="genderGroup">
+                    <label class="form-check-label" for="femaleRadio">
+                      Female
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+              
+              
             <div class="input-group ">
 
                 <span class="input-group-text" style="width: 131px;">District </span>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select" formControlName="district_id" id="inputGroupSelect01" (change)="locFetch($event)">
                     <option selected>..district..</option>
+                    <option  [value]="item.district_id"  *ngFor="let item of data">{{ item.district_name }}</option>
 
                 </select>
             </div>
             <div class="input-group ">
 
                 <span class="input-group-text" style="width: 131px;">Location </span>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select" formControlName="loc_id" id="inputGroupSelect01">
                     <option selected>..location..</option>
+                    <option  [value]="item.loc_id"  *ngFor="let item of locdata">{{ item.loc_name }}</option>
+
 
                 </select>
             </div>
             <div class="input-group">
                 <span class="input-group-text" style="width: 131px;">Password</span>
-                <input type="password" aria-label="First name" class="form-control  " placeholder="Doctor Name">
+                <input type="password" formControlName="user_password" aria-label="First name" class="form-control  " placeholder="Doctor Name">
 
             </div>
 
             <div class="input-group">
                 <span class="input-group-text" style="width: 131px;">address</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea class="form-control" formControlName="user_address" aria-label="With textarea"></textarea>
             </div>
 <!-- 
             <div class="input-group">

@@ -1,4 +1,4 @@
-<form action="" class="locdetails">
+<form [formGroup]="locForm" (ngSubmit)="onSubmit()"   action="" class="locdetails">
     <div class="card p-5" style="width: 30rem;height: 14rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; ">
         <div class="card-body">
             <div class="loc-container">
@@ -7,16 +7,17 @@
                         <div class="input-group mb-3">
                           
                             <span class="input-group-text">District &nbsp;</span>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Choose...</option>
-                            </select>
-                        </div>
+                            <select class="form-select" id="inputGroupSelect01" formControlName="district_id" >
+                                <option value="" selected disabled >Select</option>
+                                <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
+                             </select>
+                        </div> 
 
                     </div>
                     <div class="loc-wrap">
                         <div class="input-group">
                             <span class="input-group-text">Location</span>
-                            <input type="text" aria-label="First name" class="form-control  w-90">
+                            <input type="text" formControlName="loc_name" aria-label="First name" class="form-control  w-90">
 
                         </div>
                     </div>
@@ -32,31 +33,20 @@
         <table class="table table-hover  w-100 tablecontainer">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">slno</th>
                     <th scope="col">District</th>
                     <th scope="col">Location</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>mdo</td>
+                <tr *ngFor="let item of locdata;let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ item.district_name }}</td>
+                    <td>{{ item.loc_name }}</td>
+                    <td> <a href="javascript:void(0);" (click)="deleteRow(item.loc_id)">Delete</a></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>twitter</td>
-                    <td>twitter</td>
-                </tr>
+               
             </tbody>
         </table>
     </div>

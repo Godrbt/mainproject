@@ -414,7 +414,7 @@ app.post("/userregistration",upload.fields([
   console.log(req.body);
   // var fileValue = JSON.parse(JSON.stringify(req.files));
   var fileValue = JSON.parse(JSON.stringify(req.files));
-  var user_photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
+  var photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
   const { loc_id, user_name, user_contact, user_email, user_gender, user_password, user_address } = req.body
   let qry =
     "insert into tbl_user(loc_id,user_name,user_contact,user_email,user_photo,user_gender,user_password,user_address) values('" +
@@ -422,7 +422,7 @@ app.post("/userregistration",upload.fields([
     user_name + "','" +
     user_contact + "','" +
     user_email + "','" +
-    user_photo + "','" +
+    photo + "','" +
     user_gender + "','" +
     user_password + "','" +
     user_address + "')";

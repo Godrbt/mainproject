@@ -140,6 +140,22 @@ app.post("/District", (req, res) => {
   });
 });
 
+
+app.patch("/District/:Id", (req, res) => {
+  const id = req.params.Id
+  const { districtName } = req.body
+  let qry = "update tbl_district set district_name = '"+districtName+"' where district_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
 app.get("/district", (req, res) => {
   let qry = "select * from tbl_district";
   db.query(qry, (err, result) => {
@@ -165,6 +181,22 @@ app.delete("/district/:id", (req, res) => {
     } else {
       res.send({
         message: 'data deleted',
+      });
+    }
+  });
+});
+
+
+app.get("/oneDistrict/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry = "select * from tbl_district  where district_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        district: result,
       });
     }
   });
@@ -228,6 +260,11 @@ app.delete("/category/:id", (req, res) => {
 
 //catageory end//
 
+
+
+
+
+
 //location start//
 
 app.post("/location", (req, res) => {
@@ -264,7 +301,7 @@ app.get("/location", (req, res) => {
 
 app.get("/location/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "SELECT * FROM tbl_location where district_id = "+ Id;
+  let qry = "SELECT * FROM tbl_location where district_id = " + Id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -292,9 +329,46 @@ app.delete("/location/:id", (req, res) => {
   });
 });
 
+app.get("/updateLoc/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry = "select * from tbl_location  where loc_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        locationupdate: result,
+      });
+    }
+  });
+});
+
+app.patch("/Location/:Id", (req, res) => {
+  const id = req.params.Id
+  const { loc_name,district_id } = req.body
+  let qry = "update tbl_Location set loc_name = '"+loc_name+"', district_id ='"+district_id+"' where loc_id = "+id ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
 
 
 //location end //
+
+
+
+
+
+
+
 
 // information start //
 
@@ -302,7 +376,6 @@ app.post("/informationadding",
   upload.fields([
     { name: "info_photo", maxCount: 1 },
   ]), (req, res) => {
-    console.log(req.files);
     var fileValue = JSON.parse(JSON.stringify(req.files));
     var info_photo = `http://127.0.0.1:${PORT}/images/${fileValue.info_photo[0].filename}`;
     const { info_name, info_details } = req.body
@@ -312,7 +385,6 @@ app.post("/informationadding",
       info_name + "','" + info_photo + "','" +
 
       info_details + "')";
-    console.log(qry);
     db.query(qry, (err, result) => {
       if (err) {
         console.log("Error");
@@ -336,18 +408,25 @@ app.post("/informationadding",
 
 //user registration //
 
-app.post("/userregistration", (req, res) => {
+app.post("/userregistration",upload.fields([
+  { name: "user_photo", maxCount: 1 },
+]),(req, res) => {
+  console.log(req.body);
+  // var fileValue = JSON.parse(JSON.stringify(req.files));
+  var fileValue = JSON.parse(JSON.stringify(req.files));
+  var user_photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
   const { loc_id, user_name, user_contact, user_email, user_gender, user_password, user_address } = req.body
   let qry =
-    "insert into tbl_location (loc_id,user_name,user_contact,user_email,user_gender,user_password,user_address) values('" +
+    "insert into tbl_user(loc_id,user_name,user_contact,user_email,user_photo,user_gender,user_password,user_address) values('" +
     loc_id + "','" +
     user_name + "','" +
-    user_contact + "''" +
-    user_email + "''" +
-    user_gender + "''" +
-    user_password + "''" +
+    user_contact + "','" +
+    user_email + "','" +
+    user_photo + "','" +
+    user_gender + "','" +
+    user_password + "','" +
     user_address + "')";
-    console.log(qry);
+  console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -358,6 +437,7 @@ app.post("/userregistration", (req, res) => {
     }
   });
 });
+
 
 
 

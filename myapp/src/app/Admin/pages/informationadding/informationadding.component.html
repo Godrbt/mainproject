@@ -14,7 +14,7 @@
 
             <div class="input-group">
                 <span class="input-group-text" style="width: 150px;">Information Photo</span>
-                <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" placeholder="upload photo">
+                <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" (change)="handleFile($event)"  placeholder="upload photo">
 
             </div>
 

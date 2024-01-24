@@ -24,6 +24,7 @@ interface districtFetch {
 
 export class DistrictComponent {
   data: districtFetch[] = [];
+  check: number = 0
 
 
   profileForm = new FormGroup(
@@ -41,19 +42,34 @@ export class DistrictComponent {
 
     };
 
-    axios.post('http://localhost:5000/District/', districtdata).then((response) => {
-      // console.log(response.data);
-       alert(response.data.message)
-       this.districtFetch();
-       this.profileForm.reset();
-    })
+    if (this.check === 0) {
+      axios.post('http://localhost:5000/District/', districtdata).then((response) => {
+        // console.log(response.data);
+        alert(response.data.message)
+        this.districtFetch();
+        this.profileForm.reset();
+      })
+
+    }
+    else {
+      axios.patch(`http://localhost:5000/District/${this.check}`, districtdata).then((response) => {
+        // console.log(response.data);
+        alert(response.data.message)
+        this.districtFetch();
+        this.profileForm.reset();
+        this.check = 0
+      })
+
+    }
+
+
 
 
 
   }
 
 
-  
+
   ngOnInit() {
     this.districtFetch();
   }
@@ -61,9 +77,9 @@ export class DistrictComponent {
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
       // console.log(response.data.category)
-     
+
       this.data = response.data.district
-      
+
 
 
     })
@@ -71,8 +87,8 @@ export class DistrictComponent {
   }
 
 
-  
-  deleteRow(index: number):void {
+
+  deleteRow(index: number): void {
 
     // Remove the item at the specified index from the 'data' array
     axios.delete(`http://localhost:5000/district/${index}`).then((response) => {
@@ -80,6 +96,19 @@ export class DistrictComponent {
       // console.log(response.data)
       this.districtFetch()
 
+
+    })
+
+  }
+
+
+
+  getOneDistrict(index: number): any {
+
+    axios.get(`http://localhost:5000/oneDistrict/${index}`).then((response) => {
+      console.log(response.data.district[0].district_name)
+      this.profileForm.get('district')?.setValue(response.data.district[0].district_name);
+      this.check = index
 
     })
 

@@ -14,8 +14,8 @@ interface districtFetch {
 }
 
 interface LocationFetch {
-  loc_id:any,
-  loc_name:any,
+  loc_id: any,
+  loc_name: any,
   // district_id:any
   district_name: any
 }
@@ -24,14 +24,18 @@ interface LocationFetch {
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './location.component.html',
   styleUrl: './location.component.css'
 })
 export class LocationComponent implements OnInit {
   data: districtFetch[] = [];
-  
   locdata: LocationFetch[] = [];
+  check: number = 0
+
+
+
+
 
   locForm = new FormGroup(
     {
@@ -48,27 +52,44 @@ export class LocationComponent implements OnInit {
 
     };
 
-    axios.post('http://localhost:5000/Location/', locationData).then((response) => {
-      // console.log(response.data);
-      alert(response.data.message)
-      this.locForm.reset();
-      this.locFetch();
 
-    })
+    if (this.check === 0) {
+      axios.post('http://localhost:5000/Location/', locationData).then((response) => {
+        // console.log(response.data);
+        alert(response.data.message)
+        this.locForm.reset();
+        this.locFetch();
+
+      })
+
+
+
+    }
+    else {
+      axios.patch(`http://localhost:5000/Location/${this.check}`, locationData).then((response) => {
+        console.log(response.data);
+        alert(response.data.message)
+        this.locFetch();
+        this.locForm.reset();
+        this.check = 0
+      })
+
+    }
 
 
 
   }
-
 
   ngOnInit() {
     this.districtFetch();
     this.locFetch();
 
   }
+
+
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
-       console.log(response.data.district)
+      // console.log(response.data.district)
 
       this.data = response.data.district
 
@@ -77,30 +98,46 @@ export class LocationComponent implements OnInit {
     })
 
   }
-  locFetch(){
+  locFetch() {
     axios.get('http://localhost:5000/location/').then((response) => {
       console.log(response.data.loaction)
 
-     this.locdata = response.data.location
+      this.locdata = response.data.location
 
-  })
-
-
-
-}
+    })
 
 
-  
-deleteRow(index: number):void {
 
-  // Remove the item at the specified index from the 'data' array
-  axios.delete(`http://localhost:5000/location/${index}`).then((response) => {
-    alert(response.data.message)
-    // console.log(response.data)
-    this.locFetch();
+  }
 
 
-  })
 
-}
+  deleteRow(index: number): void {
+
+    // Remove the item at the specified index from the 'data' array
+    axios.delete(`http://localhost:5000/location/${index}`).then((response) => {
+      alert(response.data.message)
+      // console.log(response.data)
+      this.locFetch();
+
+
+    })
+
+  }
+
+  updateLoc(index: number): any {
+    axios.get(`http://localhost:5000/updateLoc/${index}`).then((response) => {
+
+
+      console.log(response.data.locationupdate[0].loc_name)
+
+
+      this.locForm.get('loc_name')?.setValue(response.data.locationupdate[0].loc_name);
+      this.locForm.get('district_id')?.setValue(response.data.locationupdate[0].district_id);
+      this.check = index
+
+    })
+
+  }
+
 }

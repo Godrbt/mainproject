@@ -44,7 +44,8 @@
                     <th scope="row">{{ i + 1 }}</th>
                     <td>{{ item.district_name }}</td>
                     <td>{{ item.loc_name }}</td>
-                    <td> <a href="javascript:void(0);" (click)="deleteRow(item.loc_id)">Delete</a></td>
+                    <td> <a href="javascript:void(0);" (click)="deleteRow(item.loc_id)">Delete</a>
+                        <a href="javascript:void(0);" (click)="updateLoc(item.loc_id)">update</a></td>
                 </tr>
                
             </tbody>

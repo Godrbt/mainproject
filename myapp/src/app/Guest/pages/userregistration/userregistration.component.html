@@ -25,7 +25,7 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text">photo</span>
-                <!-- <input type="file" formControlName="user_photo" aria-label="First name" class="form-control  "> -->
+                <input type="file" formControlName="user_photo"  (change)="handleFile($event)" aria-label="First name" class="form-control  ">
 
             </div>
             <div class="input-group">
@@ -34,13 +34,13 @@
                 </span>
                 <div class="form-control d-flex">
                   <div class="form-check mr-2">
-                    <input class="form-check-input" formControlName="user_gender" aria-label="Male" type="radio" value="male" id="maleRadio" name="genderGroup">
+                    <input class="form-check-input" formControlName="user_gender" aria-label="Male" type="radio" value="male" id="maleRadio">
                     <label class="form-check-label" for="maleRadio">
                       Male
                     </label>
                   </div>
                   <div class="form-check ml-2">
-                    <input class="form-check-input" formControlName="user_gender" aria-label="Female" type="radio" value="female" id="femaleRadio" name="genderGroup">
+                    <input class="form-check-input" formControlName="user_gender" aria-label="Female" type="radio" value="female" id="femaleRadio">
                     <label class="form-check-label" for="femaleRadio">
                       Female
                     </label>

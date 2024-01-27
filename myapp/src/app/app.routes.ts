@@ -25,8 +25,8 @@ import { InformationaddingComponent } from './Admin/pages/informationadding/info
 
 export const routes: Routes = [
     {
-        path: 'userregistration',
-        component:UserregistrationComponent,
+        path: 'volunteerregistration',
+        component:VolunteerregistrationComponent,
         // children:[
         //     {
         //         path:'',

@@ -411,8 +411,6 @@ app.post("/informationadding",
 app.post("/userregistration",upload.fields([
   { name: "user_photo", maxCount: 1 },
 ]),(req, res) => {
-  console.log(req.body);
-  // var fileValue = JSON.parse(JSON.stringify(req.files));
   var fileValue = JSON.parse(JSON.stringify(req.files));
   var photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
   const { loc_id, user_name, user_contact, user_email, user_gender, user_password, user_address } = req.body
@@ -444,3 +442,47 @@ app.post("/userregistration",upload.fields([
 
 
 //user registration//
+
+
+// volunteer registration //
+
+app.post("/volunteerregistration",upload.fields([
+  { name: "volunteer_photo", maxCount: 1 },
+  { name: "volunteer_proof", maxCount: 1 },
+]),(req, res) => {
+  var fileValue = JSON.parse(JSON.stringify(req.files));
+  var photo = `http://127.0.0.1:${PORT}/images/${fileValue.volunteer_photo[0].filename}`;
+  var proof = `http://127.0.0.1:${PORT}/images/${fileValue.volunteer_proof[0].filename}`;
+  
+  const { loc_id, volunteer_name, volunteer_contact, volunteer_email, volunteer_gender, volunteer_password, volunteer_address } = req.body
+   
+  // console.log(req.body);
+  let qry =
+    "insert into tbl_volunteer(loc_id,volunteer_name,volunteer_contact,volunteer_email,volunteer_photo,volunteer_gender,volunteer_password,volunteer_address,volunteer_proof) values('" +
+    loc_id + "','" +
+    volunteer_name + "','" +
+    volunteer_contact + "','" +
+    volunteer_email + "','" +
+    photo + "','" +
+    volunteer_gender + "','" +
+    volunteer_password + "','" +
+    volunteer_address + "','" +
+    proof + "')";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+
+
+
+
+
+// volunteer registration end //

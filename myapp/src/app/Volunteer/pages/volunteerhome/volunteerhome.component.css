@@ -1,0 +1,194 @@
+.carousel-item {
+    position: relative;
+    width: 208vh;
+    height: 125vh;
+    /* margin-top: -40px; */
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the last parameter for opacity (0 to 1) */
+}
+@keyframes bounceInOut {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.carousel-item.active img {
+    animation: bounceInOut 4s ease-in-out infinite;
+}
+.submain{
+    width: 208vh;
+    height: 125vh ;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+.feedback{
+    width: 85vh;
+}
+
+
+
+/* footer css */
+
+.bg-footer {
+    background-color: #4f5357;
+    padding: 50px 0 30px;
+}
+.footer-heading {
+    letter-spacing: 2px;
+}
+ 
+.footer-link a {
+    color: #acacac;
+    line-height: 40px;
+    font-size: 14px;
+    transition: all 0.5s;
+}
+ 
+.footer-link a:hover {
+    color: #1bbc9b;
+}
+ 
+.contact-info {
+    color: #acacac;
+    font-size: 14px;
+}
+ 
+.footer-social-icon {
+    font-size: 15px;
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+}
+ 
+/* .facebook {
+    background-color: #4e71a8;
+    color: #ffffff;
+} */
+ 
+.twitter {
+    background-color: #3c3f40;
+    color: #ffffff;
+}
+ 
+.google {
+    background-color: #d6492f;
+    color: #ffffff;
+}
+ 
+.apple {
+    background-color: #424041;
+    color: #ffffff;
+}
+ 
+.footer-alt {
+    color: #acacac;
+}
+ 
+.footer-heading {
+    position: relative;
+    padding-bottom: 12px;
+}
+ 
+.footer-heading:after {
+    content: '';
+    width: 25px;
+    border-bottom: 1px solid #FFF;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    border-bottom: 1px solid #1bbc9b;
+}
+
+/* testicss */
+.testimonial-card {
+    overflow: hidden;
+    max-width: 600px;
+    /* height: 100px; */
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .testimonials-container {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .testimonial {
+    flex: 0 0 auto;
+    width: 100%; /* Adjust the card width as needed */
+    height: 8rem;
+    margin-right: 20px;
+    margin-top: 30px;
+    /* opacity: 0.8;  */
+    /* Add opacity */
+    transition: margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .testimonial:hover {
+    margin-right: 40px; /* Adjust the spacing on hover */
+    opacity: 1; 
+    /* Increase opacity on hover */
+  }
+  
+  .content {
+    padding: 20px;
+    border-radius: 10px;
+    /* background-color: #f9f9f9; */
+    text-align: center;
+  }
+  
+  h3 {
+    color: #2c3e50; /* Change font color */
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #7f8c8d; /* Change font color */
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+     /* Change arrow key background color */
+    color: #ffffff ; /* Change arrow key font color */
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .prev-button {
+    left: 10px;
+  }
+  
+  .next-button {
+    right: 10px;
+  }
+/* end */

@@ -21,21 +21,27 @@ import { ChangepasswordComponent } from './User/pages/changepassword/changepassw
 import { InformationComponent } from './User/pages/information/information.component';
 import { InformationaddingComponent } from './Admin/pages/informationadding/informationadding.component';
 import { LoginComponent } from './Guest/pages/login/login.component';
+import { VolunteermainComponent } from './Volunteer/components/volunteermain/volunteermain.component';
+import { VolunteerhomeComponent } from './Volunteer/pages/volunteerhome/volunteerhome.component';
 
 
 export const routes: Routes = [
     {
-        path: 'userregistration',
-        component:UserregistrationComponent,
-        // children:[
-        //     {
-        //         path:'',
-        //         redirectTo:'userhome',
-        //         pathMatch:'full'
-        //         // component: UserHomeComponent,
+        path: 'Volunteer',
+        component:VolunteermainComponent,
+        children:[
+            {
+                path:'',
+                redirectTo:'volunteerhome',
+                pathMatch:'full'
+                // component: UserHomeComponent,
 
-        //     },
-        // ]
+            },
+            {
+                path: 'volunteerhome',
+                component: VolunteerhomeComponent,
+            }
+        ]
     },
 
     {

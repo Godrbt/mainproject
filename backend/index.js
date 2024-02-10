@@ -378,11 +378,12 @@ app.post("/informationadding",
   ]), (req, res) => {
     var fileValue = JSON.parse(JSON.stringify(req.files));
     var info_photo = `http://127.0.0.1:${PORT}/images/${fileValue.info_photo[0].filename}`;
-    const { info_name, info_details } = req.body
+    const { info_name, info_details,cat_id } = req.body
+    // const info_photo = ""
     //  console.log(categoryDesc);
     let qry =
-      "insert into tbl_informatiion (info_name,info_photo,info_details) values('" +
-      info_name + "','" + info_photo + "','" +
+      "insert into tbl_informatiion (info_name,info_photo,cat_id,info_details) values('" +
+      info_name + "','" + info_photo + "','" + cat_id + "','" +
 
       info_details + "')";
     db.query(qry, (err, result) => {
@@ -438,6 +439,23 @@ app.post("/userregistration",upload.fields([
 
 
 
+app.get("/userregistration/:user_id", (req, res) => {
+  const user_id = req.params.user_id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "select * from tbl_user  where user_id = " + user_id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        user: result,
+      });
+    }
+  });
+});
+
+
 
 
 
@@ -486,3 +504,196 @@ app.post("/volunteerregistration",upload.fields([
 
 
 // volunteer registration end //
+
+
+// complaint start //
+
+app.post("/complaint", (req, res) => {
+  const { complaint_title, complaint_details,complaint_date,user_id } = req.body
+
+  let qry =
+    "insert into tbl_complaint (complaint_title,complaint_details,complaint_date,user_id) values('" +
+    complaint_title + "','" +
+    complaint_details + "','" +
+    complaint_date + "','" +
+    user_id + "')";
+ console.log(qry)
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+app.get("/complaint/", (req, res) => {
+  const user_id = req.params.user_id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "select * from tbl_complaint "
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        user: result,
+      });
+    }
+  });
+});
+
+
+app.patch("/complaint/:id", (req, res) => {
+  const id = req.params.id
+  const { complaint_title, complaint_details,complaint_date,user_id } = req.body
+  let qry = "update tbl_complaint set complaint_title = '"+complaint_title+"',complaint_details ='"+complaint_details+"',complaint_date ='"+complaint_date+"', user_id ='"+user_id+"' where complaint_id = "+id ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+app.delete("/complaint/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry = "delete from tbl_complaint where complaint_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+// complaint end //
+
+
+
+// user feedback //
+
+
+app.post("/userfeedback", (req, res) => {
+  const {  feedback_details,user_id } = req.body
+
+  let qry =
+    "insert into tbl_userfeedback (feedback_details,user_id) values('" +
+    feedback_details + "','" +
+    user_id + "')";
+ console.log(qry)
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+app.get("/userfeedback/", (req, res) => {
+  const user_id = req.params.user_id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "select * from tbl_userfeedback"
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        user: result,
+      });
+    }
+  });
+});
+
+app.delete("/userfeedback/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry = "delete from tbl_userfeedback where feedback_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+//user feedback end//
+
+
+// volunteer feedback //
+
+
+
+
+
+
+// volunteer feedbackend//
+
+
+
+
+app.post("/login", (req, res) => {
+  let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
+  let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "'";
+  let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "'";
+  
+  
+  db.query(selAdmin, (err, result) => {
+    if (err) {
+      console.log("Error");
+    }
+    else if (result.length > 0) {
+      res.send({
+        message: "Login Successful",
+        id: result[0].admin_id,
+        login: "admin"
+      })
+    }
+  })
+
+   
+  db.query(selUser, (err, result) => {
+    if (err) {
+      console.log("Error");
+    }
+    else if (result.length > 0) {
+      res.send({
+        message: "Login Successful",
+        id: result[0].user_id,
+        login: "user"
+      })
+    }
+  })
+ 
+
+   
+  db.query(selvolunteer, (err, result) => {
+    if (err) {
+      console.log("Error");
+    }
+    else if (result.length > 0) {
+      res.send({
+        message: "Login Successful",
+        id: result[0].volunteer_id,
+        login: "volunteer"
+      })
+    }
+  })
+})

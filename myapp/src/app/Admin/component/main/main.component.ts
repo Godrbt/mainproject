@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+  ngOnInit(): void {
+    console.log(sessionStorage.getItem("aid"));
+    
+  }
+
 
 }

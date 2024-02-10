@@ -16,9 +16,18 @@ interface UserInterface{
   user_photo:any
 }
 
-// interface UserFetch{
+interface UserFetch{
+  loc_id: any,
+  user_name: any,
+  user_contact: any,
+  user_email:any,
+  user_gender:any,
+  user_password:any,
+  user_address:any,
+  user_photo:any;
+  // user_id: any
 
-// }
+}
 
 interface districtFetch {
   district_name: any,
@@ -50,6 +59,7 @@ export class UserregistrationComponent {
   data: districtFetch[] = [];
   
   locdata: LocationFetch[] = [];
+  userdata: UserFetch[] = [];
 
   userForm = new FormGroup(
     {
@@ -119,8 +129,21 @@ export class UserregistrationComponent {
   ngOnInit() {
     this.districtFetch();
     // this.locFetch();
+    this.UserFetch();
 
   }
+  UserFetch(){
+
+    axios.get('http://localhost:5000/userregistration/').then((response) => {
+      console.log(response.data.user)
+
+     this.userdata = response.data.user
+
+
+
+   })
+ }
+
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
        console.log(response.data.district)

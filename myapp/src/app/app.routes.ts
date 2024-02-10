@@ -9,7 +9,6 @@ import { CategoryComponent } from './Admin/pages/category/category.component';
 // import { InstitutionComponent } from './Admin/pages/institution/institution.component';
 import { ScholarshipComponent } from './Admin/pages/scholarship/scholarship.component';
 import path from 'node:path';
-import { LoginComponent } from './Guest/pages/login/login.component';
 import { UserregistrationComponent } from './Guest/pages/userregistration/userregistration.component';
 import { VolunteerregistrationComponent } from './Guest/pages/volunteerregistration/volunteerregistration.component';
 import { UsermainComponent } from './User/components/usermain/usermain.component';
@@ -21,12 +20,13 @@ import { EditprofileComponent } from './User/pages/editprofile/editprofile.compo
 import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
 import { InformationComponent } from './User/pages/information/information.component';
 import { InformationaddingComponent } from './Admin/pages/informationadding/informationadding.component';
+import { LoginComponent } from './Guest/pages/login/login.component';
 
 
 export const routes: Routes = [
     {
-        path: 'volunteerregistration',
-        component:VolunteerregistrationComponent,
+        path: 'userregistration',
+        component:UserregistrationComponent,
         // children:[
         //     {
         //         path:'',
@@ -115,5 +115,11 @@ export const routes: Routes = [
 
 
         ]
+  }
+  ,  
+  {
+    path: 'Login',
+     component: LoginComponent,
+      
   }
  ];

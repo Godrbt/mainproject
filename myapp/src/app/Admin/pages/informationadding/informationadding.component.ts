@@ -6,9 +6,13 @@ import axios from 'axios';
 interface infoInterface {
   info_name: any,
   info_photo: any,
-  info_details: any
+  info_details: any,
+  cat_id:any
 }
-
+interface categoryFetch {
+  cat_name: any,
+  cat_id: any
+}
 
 
 
@@ -20,9 +24,10 @@ interface infoInterface {
   styleUrl: './informationadding.component.css'
 })
 export class InformationaddingComponent {
-
+   
+  data: categoryFetch[] = [];
   filedata: any
-  // data: districtFetch[] = [];
+  
 
 
   infoaddingForm = new FormGroup(
@@ -30,6 +35,8 @@ export class InformationaddingComponent {
       info_name: new FormControl(''),
       info_photo: new FormControl(''),
       info_details: new FormControl(''),
+      cat_id: new FormControl(''),
+
     }
   );
 
@@ -45,7 +52,8 @@ export class InformationaddingComponent {
     const infodata: infoInterface = {
       info_name: this.infoaddingForm.value.info_name,
       info_photo: this.filedata,
-      info_details: this.infoaddingForm.value.info_details
+      info_details: this.infoaddingForm.value.info_details,
+      cat_id: this.infoaddingForm.value.cat_id
 
 
     };
@@ -55,6 +63,7 @@ export class InformationaddingComponent {
     formData.append('info_name', infodata.info_name);
     formData.append('info_photo', infodata.info_photo);
     formData.append('info_details', infodata.info_details);
+    formData.append('cat_id', infodata.cat_id);
 
 
 
@@ -69,7 +78,20 @@ export class InformationaddingComponent {
 
 
   }
+  ngOnInit() {
+    this.fetchCategory();
+  }
 
+  fetchCategory() {
+    axios.get('http://localhost:5000/category/').then((response) => {
+      // console.log(response.data.category)
+      this.data = response.data.category
+      
+
+
+    })
+
+  }
 
 
 

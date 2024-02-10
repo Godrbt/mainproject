@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   ngOnInit(): void {
-    console.log(sessionStorage.getItem("aid"));
+    // console.log(sessionStorage.getItem("aid"));
     
   }
 

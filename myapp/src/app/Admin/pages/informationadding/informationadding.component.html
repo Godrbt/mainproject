@@ -6,12 +6,21 @@
                 <p class="h3">INFORMATIONS ADDING</p>
             </div>
 
+            <div class="input-group mb-3">
+                          
+                <span class="input-group-text" style="width: 150px;">Category &nbsp;</span>
+                <select class="form-select" id="inputGroupSelect01" formControlName="cat_id" >
+                    <option value="" selected disabled >Select</option>
+                    <option [value]="item.cat_id" *ngFor="let item of data">{{ item.cat_name }}</option>
+                 </select>
+            </div> 
+
             <div class="input-group">
                 <span class="input-group-text" style="width: 150px;">Information Name</span>
                 <input type="text" aria-label="First name" class="form-control" formControlName="info_name" placeholder="Information Name">
 
             </div>
-
+              
             <div class="input-group">
                 <span class="input-group-text" style="width: 150px;">Information Photo</span>
                 <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" (change)="handleFile($event)"  placeholder="upload photo">

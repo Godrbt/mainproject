@@ -379,6 +379,7 @@ app.post("/informationadding",
     var fileValue = JSON.parse(JSON.stringify(req.files));
     var info_photo = `http://127.0.0.1:${PORT}/images/${fileValue.info_photo[0].filename}`;
     const { info_name, info_details,cat_id } = req.body
+    console.log(cat_id);
     // const info_photo = ""
     //  console.log(categoryDesc);
     let qry =
@@ -439,7 +440,7 @@ app.post("/userregistration",upload.fields([
 
 
 
-app.get("/userregistration/:user_id", (req, res) => {
+app.get("/userregistration/:user_id ", (req, res) => {
   const user_id = req.params.user_id;
   // const Id = req.params.id
   // console.log(user_id);
@@ -725,6 +726,8 @@ app.post("/login", (req, res) => {
       console.log("Error");
     }
     else if (result.length > 0) {
+      sessionStorage.setItem("uid",result[0].user_id)
+
       res.send({
         message: "Login Successful",
         id: result[0].user_id,

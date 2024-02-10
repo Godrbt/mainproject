@@ -28,26 +28,24 @@ interface UserFetch{
 export class MyprofileComponent {
  
   userdata: UserFetch[] = [];
+  uid:any 
   // user_name: any;
   
 
-
-  var: any = ''
   
   ngOnInit() {
-    
+    this.uid = sessionStorage.getItem("uid")
     this.UserFetch();
 
   }
   UserFetch(){
-    let user_id: number = 9;
-    console.log(user_id);
+   
     
 
-    axios.get(`http://localhost:5000/userregistration/?user_id=${user_id}` ).then((response) => {
-      // console.log(response.data.user)
+    axios.get(`http://localhost:5000/userregistration/${this.uid}` ).then((response) => {
+      console.log(response.data.user)
 
-     this.userdata = response.data.user
+     this.userdata = response.data.user[0]
 
 
 

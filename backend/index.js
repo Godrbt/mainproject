@@ -640,13 +640,64 @@ app.delete("/userfeedback/:id", (req, res) => {
 // volunteer feedback //
 
 
+app.post("/volunteerfeedback", (req, res) => {
+  const {  vfeedback_details,volunteer_id } = req.body
+
+  let qry =
+    "insert into tbl_volunteerfeedback (vfeedback_details,volunteer_id) values('" +
+    vfeedback_details + "','" +
+    volunteer_id + "')";
+ console.log(qry)
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+app.get("/volunteerfeedback/", (req, res) => {
+  // const user_id = req.params.user_id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "select * from tbl_volunteerfeedback"
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        volunteer: result,
+      });
+    }
+  });
+});
+
+app.delete("/volunteerfeedback/:id", (req, res) => {
+  const Id = req.params.id
+  console.log(Id);
+  let qry = "delete from tbl_volunteerfeedback where vfeedback_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+
 
 
 
 
 // volunteer feedbackend//
 
-
+// login start //
 
 
 app.post("/login", (req, res) => {
@@ -697,3 +748,5 @@ app.post("/login", (req, res) => {
     }
   })
 })
+
+// login end //

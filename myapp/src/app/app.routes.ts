@@ -14,7 +14,6 @@ import { VolunteerregistrationComponent } from './Guest/pages/volunteerregistrat
 import { UsermainComponent } from './User/components/usermain/usermain.component';
 import { Component } from '@angular/core';
 import { UserHomeComponent } from './User/pages/userhome/user-home.component';
-import { VolunteerBookingComponent } from './User/pages/volunteer-booking/volunteer-booking.component';
 import { MyprofileComponent } from './User/pages/myprofile/myprofile.component';
 import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
 import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
@@ -23,6 +22,8 @@ import { InformationaddingComponent } from './Admin/pages/informationadding/info
 import { LoginComponent } from './Guest/pages/login/login.component';
 import { VolunteermainComponent } from './Volunteer/components/volunteermain/volunteermain.component';
 import { VolunteerhomeComponent } from './Volunteer/pages/volunteerhome/volunteerhome.component';
+import { ApplypageComponent } from './User/pages/applypage/applypage.component';
+import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunteerbooking.component';
 
 
 export const routes: Routes = [
@@ -59,11 +60,6 @@ export const routes: Routes = [
                 path: 'userhome',
                 component: UserHomeComponent,
             },
-        
-            {
-                path: 'volunteerBooking',
-                component: VolunteerBookingComponent,
-            },
             {
                 path: 'myprofile',
                 component: MyprofileComponent,
@@ -80,6 +76,15 @@ export const routes: Routes = [
                 path: 'information',
                 component: InformationComponent,
             },
+            {
+                path: 'volunteerbooking',
+                component: VolunteerbookingComponent,
+            },
+             {
+                path: 'applypage',
+                component: ApplypageComponent,
+            },
+           
             
             
         ]
@@ -124,8 +129,18 @@ export const routes: Routes = [
   }
   ,  
   {
+    path: 'userregistration',
+     component: UserregistrationComponent,
+      
+  },
+  {
     path: 'Login',
      component: LoginComponent,
+      
+  },
+  {
+    path: 'volunteerregistration',
+     component: VolunteerregistrationComponent,
       
   }
  ];

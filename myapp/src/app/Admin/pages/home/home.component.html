@@ -1,5 +1,9 @@
-
-<div class="home-container"></div>
-<div>
-    home works
-</div>
+<div class="card" style="width: 18rem;" *ngFor="let item of details">
+    <div class="card-body">
+        <h5> user name :{{item.user_name}} </h5>
+        <h5> user contact :{{item.user_contact}} </h5>
+        <h5> apply date :{{item.apply_curdate}} </h5>
+        <h5> info name :{{item.info_name}} </h5>
+        <h5> info details :{{item.info_details}} </h5>
+    </div>
+  </div>

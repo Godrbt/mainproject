@@ -398,6 +398,24 @@ app.post("/informationadding",
     });
   });
 
+  app.get("/informationadding/", (req, res) => {
+    // const user_id = req.params.id;
+    // const Id = req.params.id
+    // console.log(user_id);
+    let qry = "SELECT * FROM tbl_informatiion INNER JOIN tbl_category ON tbl_informatiion.cat_id = tbl_category.cat_id";
+    console.log(qry);
+    db.query(qry, (err, result) => {
+      if (err) {
+        console.log("Error");
+      } else {
+        res.send({
+          info: result,
+        });
+      }
+    });
+  });
+  
+
 
 
 
@@ -440,8 +458,9 @@ app.post("/userregistration",upload.fields([
 
 
 
-app.get("/userregistration/:user_id ", (req, res) => {
+app.get("/userregistration/:user_id", (req, res) => {
   const user_id = req.params.user_id;
+  console.log(user_id);
   // const Id = req.params.id
   // console.log(user_id);
   let qry = "select * from tbl_user  where user_id = " + user_id;
@@ -726,7 +745,6 @@ app.post("/login", (req, res) => {
       console.log("Error");
     }
     else if (result.length > 0) {
-      sessionStorage.setItem("uid",result[0].user_id)
 
       res.send({
         message: "Login Successful",
@@ -753,3 +771,100 @@ app.post("/login", (req, res) => {
 })
 
 // login end //
+
+//apply start //
+
+app.post("/apply", (req, res) => {
+  console.log(req.body);
+  const { info_id,user_id } = req.body
+
+  let qry =
+    "insert into tbl_apply(apply_curdate,info_id,user_id) values(curdate(),'" +
+    info_id + "','" +
+    user_id + "')";
+ console.log(qry)
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+
+
+app.get("/applyfetch/", (req, res) => {
+  // const user_id = req.params.id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "SELECT * FROM tbl_apply INNER JOIN tbl_informatiion ON tbl_apply.info_id = tbl_informatiion.info_id ";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        apply: result,
+      });
+    }
+  });
+});
+
+
+//apply end //
+
+// admin dashboard start//
+
+
+app.get("/Userdetails/", (req, res) => {
+ 
+  let qry = "SELECT * FROM tbl_apply INNER JOIN tbl_informatiion ON tbl_apply.info_id = tbl_informatiion.info_id INNER JOIN tbl_user on tbl_apply.user_id = tbl_user.user_id ";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        details: result,
+      });
+    }
+  });
+});
+
+
+// admin dashboard end//
+
+//  volunteer fetch //
+app.get("/volfetch/", (req, res) => {
+  let qry = "select * from tbl_volunteer"
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        volunteerdata: result,
+      });
+    }
+  });
+});
+
+
+app.get("/volfetchbyId/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_volunteer  where loc_id = " + Id 
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        volunteerdatabyId: result,
+      });
+    }
+  });
+});
+
+
+//  volunteer fetch //

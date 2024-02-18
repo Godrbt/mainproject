@@ -868,3 +868,29 @@ app.get("/volfetchbyId/:id", (req, res) => {
 
 
 //  volunteer fetch //
+
+
+// volunteer booking by user //
+
+app.post("/requestForvol", (req, res) => {
+  console.log(req.body);
+  const { volunteer_id,user_id,req_Details } = req.body
+   console.log(volunteer_id);
+  let qry =
+    "insert into tbl_apply(req_date,volunteer_id,user_id,req_Details) values(curdate(),'" +
+    volunteer_id + "','" +
+    user_id + "','" +
+    req_Details + "')";
+ console.log(qry)
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+// volunteer booking by user //

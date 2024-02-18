@@ -1,10 +1,9 @@
 <div>
-    
+
     <div class="input-group ">
 
         <span class="input-group-text" style="width: 131px;">District </span>
-        <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
-            (change)="locFetch($event)">
+        <select class="form-select" formControlName="district_id" id="inputGroupSelect01" (change)="locFetch($event)">
             <option selected>..district..</option>
             <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
 
@@ -13,7 +12,8 @@
     <div class="input-group ">
 
         <span class="input-group-text" style="width: 131px;">Location </span>
-        <select class="form-select" formControlName="loc_id" id="inputGroupSelect01"  (change)="volFetchdatabyId($event)">
+        <select class="form-select" formControlName="loc_id" id="inputGroupSelect01"
+            (change)="volFetchdatabyId($event)">
             <option selected>..location..</option>
             <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
 
@@ -23,10 +23,41 @@
 </div>
 
 <div *ngFor="let item of voldata">
-  <h5>{{item.volunteer_name}} </h5>
-  <h5>{{item.volunteer_contact}} </h5>
-  <h5>{{item.volunteer_photo}} </h5>
-  <h5>{{item.volunteer_address}} </h5>
-  <br><br><br>
+    <h5>{{item.volunteer_name}} </h5>
+    <h5>{{item.volunteer_contact}} </h5>
+    <h5>{{item.volunteer_photo}} </h5>
+    <h5>{{item.volunteer_address}} </h5>
+    <br><br><br>
 
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Request
+</button>
+
+<!-- Modal -->
+
+    <div [formGroup]="reqForm" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter request details</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+                <input type="text" aria-label="First name" formControlName="req_date"
+       class="form-control w-90" hidden>
+
+                </div>
+                <div class="modal-body">
+                    <textarea name="" id="" formControlName="req_Details" style="width: 29rem;"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="req(voldataForId.volunteer_id)">Save </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <button  (click)="apply(item.info_id)" type="submit" class="btn btn-outline-success" >request</button> -->

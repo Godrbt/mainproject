@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import axios from 'axios';
 
@@ -29,23 +29,36 @@ interface UserFetch {
 })
 export class MyprofileComponent {
 
-  userdata: UserFetch[] = [];
+  userdata!: UserFetch;
   uid:any 
+  
 
   // user_name: any;
-
+  
  
 
   ngOnInit() {
-    // this.uid = sessionStorage.getItem('uid')
-    // this.UserFetchdata();
+  
+    this.UserFetchdata();
+    
   }
   UserFetchdata() {
+
+    if (typeof sessionStorage !== 'undefined') {
+
+      this.uid = sessionStorage.getItem('uid');// Access sessionStorage here
+      
+  }
+  
+  
+    
+    
+
   
     axios.get(`http://localhost:5000/userregistration/${this.uid}`,).then((response) => {
       console.log(response.data.user[0])
 
-      this.userdata = response.data.user[0]
+      this.userdata = response?.data?.user[0]
 
 
 
@@ -54,3 +67,4 @@ export class MyprofileComponent {
 
 
 }
+

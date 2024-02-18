@@ -877,7 +877,7 @@ app.post("/requestForvol", (req, res) => {
   const { volunteer_id,user_id,req_Details } = req.body
    console.log(volunteer_id);
   let qry =
-    "insert into tbl_apply(req_date,volunteer_id,user_id,req_Details) values(curdate(),'" +
+    "insert into tbl_request(req_date,volunteer_id,user_id,req_Details) values(curdate(),'" +
     volunteer_id + "','" +
     user_id + "','" +
     req_Details + "')";

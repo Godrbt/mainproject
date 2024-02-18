@@ -58,7 +58,7 @@ export class VolunteerbookingComponent {
       console.log(response.data.volunteerdata)
 
       this.voldata = response.data.volunteerdata
-      this.voldataForId = response.data.volunteerdata
+      
 
 
     })
@@ -70,8 +70,9 @@ export class VolunteerbookingComponent {
       console.log(response.data.volunteerdata)
 
       this.voldata = response.data.volunteerdatabyId
-   
-      
+      // this.voldataForId = response.data.volunteerdatabyId
+      this.voldataForId = event.target.value;
+  
 
 
     })

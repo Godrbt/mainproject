@@ -38,7 +38,7 @@ export class MyprofileComponent {
  
 
   ngOnInit() {
-  
+    
     this.UserFetchdata();
     
   }
@@ -49,10 +49,6 @@ export class MyprofileComponent {
       this.uid = sessionStorage.getItem('uid');// Access sessionStorage here
       
   }
-  
-  
-    
-    
 
   
     axios.get(`http://localhost:5000/userregistration/${this.uid}`,).then((response) => {

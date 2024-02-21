@@ -1,27 +1,21 @@
-<form class="dis">
+<div class="main">
   <div class="card">
-    <div class="bg">
-      <div class="img">
-        <img src="" alt="">
-      </div>
-      <div class="name">
-        <h2>
-
-          user name :{{userdata?.user_name}}
-          <!-- user contact :{{userdata.user_contact}}  -->
-        </h2>
-
-      </div>
-      <div class="address">
-        <h2>
-
-        </h2>
-      </div>
-
-
-
-
+    <div class="img">
+      <img src="{{ userdata?.user_photo }}" alt="" style="height: 10rem;width: 10rem;">
     </div>
-    <div class="blob"></div>
+
+
+    <div class="details" style="display: flex;flex-direction: column; align-items: center;justify-content: center;margin-top: 8rem;">
+
+      <h2>Name : {{userdata?.user_name}}</h2>
+      <h2>Email : {{userdata?.user_email}}</h2>
+      <h2>Contact: {{userdata?.user_contact}}</h2>
+      <div style="display:flex;flex-direction: row;font-size: medium;font-style: italic;
+      font-weight: 700;
+      color: rgb(42, 55, 122);">
+        Address:{{userdata?.user_address}}
+      </div>
+      
+
   </div>
-</form>
+</div>

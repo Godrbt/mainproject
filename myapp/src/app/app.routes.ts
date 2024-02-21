@@ -24,6 +24,10 @@ import { VolunteermainComponent } from './Volunteer/components/volunteermain/vol
 import { VolunteerhomeComponent } from './Volunteer/pages/volunteerhome/volunteerhome.component';
 import { ApplypageComponent } from './User/pages/applypage/applypage.component';
 import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunteerbooking.component';
+import { UserrequestsComponent } from './Volunteer/pages/userrequests/userrequests.component';
+import { VolunteerprofileComponent } from './Volunteer/pages/volunteerprofile/volunteerprofile.component';
+import { VoleditprofileComponent } from './Volunteer/pages/voleditprofile/voleditprofile.component';
+import { VolchangepassComponent } from './Volunteer/pages/volchangepass/volchangepass.component';
 
 
 export const routes: Routes = [
@@ -41,7 +45,24 @@ export const routes: Routes = [
             {
                 path: 'volunteerhome',
                 component: VolunteerhomeComponent,
-            }
+            },
+            {
+                path: 'userrequests',
+                component: UserrequestsComponent,
+            },
+            {
+                path: 'volunteerprofile',
+                component: VolunteerprofileComponent,
+            },
+            {
+                path: 'voleditprofile',
+                component: VoleditprofileComponent,
+            },
+            {
+                path: 'volchangepass',
+                component: VolchangepassComponent,
+            },
+            
         ]
     },
 

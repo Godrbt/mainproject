@@ -47,7 +47,7 @@ export class LoginComponent {
       }
       if (login === "volunteer") {
         sessionStorage.setItem("vid", id)
-        this.router.navigate(["/User"])
+        this.router.navigate(["/Volunteer"])
 
       }
       if (login === "admin") {

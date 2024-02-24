@@ -1,1 +1,21 @@
-<p>volunteerprofile works!</p>
+<div class="main">
+    <div class="card">
+      <div class="img">
+        <img src="{{ volunteerdata?.volunteer_photo}}" alt="" style="height: 10rem;width: 10rem;">
+      </div>
+  
+  
+      <div class="details" style="display: flex;flex-direction: column; align-items: center;justify-content: center;margin-top: 8rem;">
+  
+        <h2>Name : {{volunteerdata?.volunteer_name}}</h2>
+        <h2>Email : {{volunteerdata?.volunteer_email}}</h2>
+        <h2>Contact: {{volunteerdata?.volunteer_contact}}</h2>
+        <div style="display:flex;flex-direction: row;font-size: medium;font-style: italic;
+        font-weight: 700;
+        color: rgb(42, 55, 122);">
+          Address:{{volunteerdata?.volunteer_address}}
+        </div>
+        
+  
+    </div>
+  </div>

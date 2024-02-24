@@ -1,1 +1,42 @@
-<p>voleditprofile works!</p>
+<form [formGroup]="voleditForm" (ngSubmit)="onSubmit()"
+    style="display: flex;align-items: center;justify-content: center;margin-top: 30px; ">
+
+    <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px; ">
+
+        <div class="card-body" style="display:flex;gap: 10px;flex-direction: column ;">
+            <div class="head" style="margin-left: 60px;">
+                <p class="h3">Edit Profile</p>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text">User Name</span>
+                <input type="text" formControlName="volunteer_name" aria-label="First name" class="form-control  "
+                    placeholder="Hospital Name">
+
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" style="width: 131px;">Contact </span>
+                <input type="text" formControlName="volunteer_contact" aria-label="First name" class="form-control  "
+                    placeholder="Contact">
+
+            </div>
+            <div class="input-group ">
+                <input type="email" formControlName="volunteer_email" class="form-control" placeholder="Email" id="demo"
+                    name="email">
+                <div class="input-group-append">
+                    <span class="input-group-text">e-mail</span>
+                </div>
+            </div>
+         
+
+
+          
+            
+            <div class="child3" style="margin-left: 12rem;">
+                <button type="submit" class="btn btn-outline-success">Save</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+

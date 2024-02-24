@@ -15,7 +15,7 @@ import { UsermainComponent } from './User/components/usermain/usermain.component
 import { Component } from '@angular/core';
 import { UserHomeComponent } from './User/pages/userhome/user-home.component';
 import { MyprofileComponent } from './User/pages/myprofile/myprofile.component';
-import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
+
 import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
 import { InformationComponent } from './User/pages/information/information.component';
 import { InformationaddingComponent } from './Admin/pages/informationadding/informationadding.component';
@@ -28,6 +28,7 @@ import { UserrequestsComponent } from './Volunteer/pages/userrequests/userreques
 import { VolunteerprofileComponent } from './Volunteer/pages/volunteerprofile/volunteerprofile.component';
 import { VoleditprofileComponent } from './Volunteer/pages/voleditprofile/voleditprofile.component';
 import { VolchangepassComponent } from './Volunteer/pages/volchangepass/volchangepass.component';
+import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
 
 
 export const routes: Routes = [

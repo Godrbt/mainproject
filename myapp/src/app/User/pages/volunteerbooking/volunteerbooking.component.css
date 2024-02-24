@@ -1,0 +1,8 @@
+.sort{
+    display: flex;
+}
+.card{
+    background-color: rgb(247, 242, 239);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+  
+}

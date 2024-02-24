@@ -6,6 +6,7 @@ const cors = require("cors");
 const multer = require("multer");
 const mysql = require("mysql2");
 app.use(bodyParser.json());
+app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
@@ -479,6 +480,26 @@ app.get("/userregistration/:user_id", (req, res) => {
 
 
 
+app.patch("/editInsert/:Id", (req, res) => {
+  const id = req.params.Id;
+  // console.log(res);
+  const { user_name, user_contact, user_email } = req.body;
+  let qry = "update tbl_user set user_name ='"+user_name+"', user_contact ='"+user_contact+"',user_email='"+user_email+"' where user_id = "+id ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+
+
 //user registration//
 
 
@@ -518,6 +539,44 @@ app.post("/volunteerregistration",upload.fields([
   });
 });
 
+
+
+
+app.get("/Vounteerprofile/:volunteer_id", (req, res) => {
+  const volunteer_id = req.params.volunteer_id;
+  // console.log(user_id);
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "select * from tbl_volunteer  where volunteer_id = " + volunteer_id;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        volunteer: result,
+      });
+    }
+  });
+});
+
+
+app.patch("/voleditInsert/:Id", (req, res) => {
+  const id = req.params.Id;
+  // console.log(res);
+  const { volunteer_name, volunteer_contact, volunteer_email } = req.body;
+  let qry = "update tbl_volunteer set volunteer_name ='"+volunteer_name+"', volunteer_contact ='"+volunteer_contact+"',volunteer_email='"+volunteer_email+"' where volunteer_id = "+id ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
 
 
 
@@ -874,6 +933,7 @@ app.get("/volfetchbyId/:id", (req, res) => {
 
 app.post("/requestForvol", (req, res) => {
   console.log(req.body);
+
   const { volunteer_id,user_id,req_Details } = req.body
   //  console.log(volunteer_id);
   let qry =
@@ -894,3 +954,57 @@ app.post("/requestForvol", (req, res) => {
 });
 
 // volunteer booking by user //
+
+// user req //
+
+app.get("/request/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "SELECT * FROM tbl_request r INNER JOIN tbl_user u ON r.user_id = u.user_id INNER JOIN tbl_volunteer v  on r.volunteer_id = v.volunteer_id  where v.volunteer_id = "+ Id + " AND r.req_status = 0"
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        requestdata: result,
+      });
+    }
+  });
+});
+
+
+
+app.patch("/reqaccept/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_request set req_status = 1 where req_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+app.patch("/reqreject/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_request set req_status = 2 where req_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+
+// user req end //

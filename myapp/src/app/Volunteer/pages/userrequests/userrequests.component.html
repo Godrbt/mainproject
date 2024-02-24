@@ -1,1 +1,12 @@
-<p>userrequests works!</p>
+<div class="req" style="display: flex; flex-direction: column;">
+    <div class="main" *ngFor="let item of requestdata">
+        <div class="cookieCard">
+            <p class="cookieHeading">Request From {{item.user_name}}</p>
+            <p class="cookieDescription"> {{item.req_Details}} </p>
+            <p class="cookieDescription"> {{item.user_contact}} </p>
+        </div>
+        <div class="btn">
+            <button class="acceptButton" (click)="userstat(item.req_id)">Accept</button> <button class="rejecttButton" (click)="userrejct(item.req_id)">Reject</button>
+        </div>
+    </div>
+</div>

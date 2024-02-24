@@ -1,4 +1,4 @@
-<div>
+<div  class="sort">
 
     <div class="input-group ">
 
@@ -22,18 +22,18 @@
     </div>
 </div>
 
-<div *ngFor="let item of voldata">
+<div class="card" *ngFor="let item of voldata">
     <h5>{{item.volunteer_name}} </h5>
     <h5>{{item.volunteer_contact}} </h5>
     <h5>{{item.volunteer_photo}} </h5>
     <h5>{{item.volunteer_address}} </h5>
     <br><br><br>
-
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="vol(item.volunteer_id)" >
+        Request
+    </button>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Request
-</button>
+
+
 
 <!-- Modal -->
 
@@ -55,7 +55,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="req(voldataForId.volunteer_id)">Save </button>
+                    <button type="button" class="btn btn-primary" (click)="req()">Save </button>
                 </div>
             </div>
         </div>

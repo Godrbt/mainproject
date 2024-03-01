@@ -1057,7 +1057,7 @@ app.patch("/volchangepass/:id", (req, res) => {
 
 app.get("/request/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "SELECT * FROM tbl  where volunteer_id = "+ Id + " AND voleq_status = 0"
+  let qry = "SELECT * FROM tbl_volunteer where volunteer_id = "+ Id + " AND voleq_status = 0"
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {

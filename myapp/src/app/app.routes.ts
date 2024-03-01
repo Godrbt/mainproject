@@ -29,6 +29,8 @@ import { VolunteerprofileComponent } from './Volunteer/pages/volunteerprofile/vo
 import { VoleditprofileComponent } from './Volunteer/pages/voleditprofile/voleditprofile.component';
 import { VolchangepassComponent } from './Volunteer/pages/volchangepass/volchangepass.component';
 import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
+import { VolfeedbackComponent } from './Volunteer/pages/volfeedback/volfeedback.component';
+import { VerificationComponent } from './Admin/pages/verification/verification.component';
 
 
 export const routes: Routes = [
@@ -62,6 +64,10 @@ export const routes: Routes = [
             {
                 path: 'volchangepass',
                 component: VolchangepassComponent,
+            },
+            {
+                path: 'volfeedback',
+                component: VolfeedbackComponent,
             },
             
         ]
@@ -141,6 +147,10 @@ export const routes: Routes = [
             {
                 path: 'informationadding',
                 component:InformationaddingComponent,
+            },
+            {
+                path: 'verification',
+                component:VerificationComponent,
             },
             
 

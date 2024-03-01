@@ -582,6 +582,7 @@ app.patch("/voleditInsert/:Id", (req, res) => {
 
 
 
+
 // volunteer registration end //
 
 
@@ -1008,3 +1009,69 @@ app.patch("/reqreject/:Id", (req, res) => {
 
 
 // user req end //
+
+// user password change //
+
+app.patch("/changepass/:id", (req, res) => {
+  let id = req.params.id;
+  let qry = "update tbl_user set user_password ='"+req.body.newuser_password+"' where user_id=" + id;
+  console.log(qry);
+  db.query(qry,(err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "updated",
+      });
+    }
+  });
+});
+
+
+// user password change //
+
+// volunteer password change //
+
+
+
+app.patch("/volchangepass/:id", (req, res) => {
+  let id = req.params.id;
+  let qry = "update tbl_volunteer set volunteer_password ='"+req.body.newvol_password+"' where volunteer_id=" + id;
+  console.log(qry);
+  db.query(qry,(err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "updated",
+      });
+    }
+  });
+});
+
+
+// volunteer password change //
+
+// volunteer verification //
+
+
+app.get("/request/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "SELECT * FROM tbl  where volunteer_id = "+ Id + " AND voleq_status = 0"
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        requestdata: result,
+      });
+    }
+  });
+});
+
+
+
+// volunteer verification //
+
+

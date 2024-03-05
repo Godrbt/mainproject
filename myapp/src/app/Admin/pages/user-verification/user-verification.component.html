@@ -1,3 +1,30 @@
+<form action="" [formGroup]="userverificationForm">
+    <div class="sort">
+
+        <div class="input-group ">
+
+            <span class="input-group-text" style="width: 131px;">District </span>
+            <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
+                (change)="locFetch($event)">
+                <option selected>..district..</option>
+                <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
+
+            </select>
+        </div>
+        <div class="input-group ">
+
+            <span class="input-group-text" style="width: 131px;">Location </span>
+            <select class="form-select" formControlName="loc_id" id="inputGroupSelect01"
+                (change)="userFetchdatabyId($event)">
+                <option selected>..location..</option>
+                <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
+
+
+            </select>
+        </div>
+    </div>
+</form>
+
 <div class="req" style="display: flex; flex-direction: column;">
     <div class="main" *ngFor="let item of userverificationdata">
         <div class="cookieCard">

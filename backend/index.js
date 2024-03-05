@@ -1171,3 +1171,20 @@ app.patch("/volunteerrequestreject/:Id", (req, res) => {
 
 // volunteer verify by admin //
 
+// sorting user verificaiton //
+
+app.get("/userfetchbyId/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_user  where loc_id = " + Id 
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        userdatabyId: result,
+      });
+    }
+  });
+});
+
+// sorting user verificaiton //

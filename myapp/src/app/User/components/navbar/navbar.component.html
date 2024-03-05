@@ -1,20 +1,29 @@
+
+
 <nav class="navbar  fixed-top navbar-expand-lg bg-body-tertiary p-0">
   <div class="container-fluid main2">
-    <!-- <a class="navbar-brand" href="#">Navbar scroll</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
           <a class="nav-link active" routerLink="userhome" routerLinkActive="active"
             ariaCurrentwhenActive="page">Home</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" routerLink="volunteerBooking" routerLinkActive="active" ariaCurrentwhenActive="page">Volunteer Booking</a>
-        </li> -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="information" routerLinkActive="active"
+            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Informations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="volunteerbooking" routerLinkActive="active"
+            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Volunteer Booking</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;margin-right: 40px;">
+        <div class="btn-group dropstart">
+          <a routerLinkActive="active" ariaCurrentwhenActive="page" style="text-decoration: none;color: black;"
+            class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Link
           </a>
           <ul class="dropdown-menu">
@@ -22,24 +31,36 @@
                 ariaCurrentwhenActive="page">My Profile</a></li>
             <li><a class="dropdown-item" routerLink="editprofile" routerLinkActive="active"
                 ariaCurrentwhenActive="page">Edit Profile</a></li>
-            <!-- <li><hr class="dropdown-divider"></li> -->
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li><a class="dropdown-item" routerLink="changepassword" routerLinkActive="active"
                 ariaCurrentwhenActive="page">Change Password</a></li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="information" routerLinkActive="active"
-            ariaCurrentwhenActive="page">Informations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="volunteerbooking" routerLinkActive="active"
-            ariaCurrentwhenActive="page">Volunteer Booking</a>
-        </li>
+        </div>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <!-- <a  routerLinkActive="active" ariaCurrentwhenActive="page"> -->
+        <!-- <span class="material-symbols-outlined" style="text-decoration: none;color: black;" >
+          notifications_active
+          <ul class="dropdown-menu" *ngFor="let item of notification">
+            {{item.volunteer_name}} volunteer has accepted your request
+          </ul> 
+        </span> -->
+        
+      <!-- </a> -->
+      <div class="btn-group dropstart">
+        <span class="material-symbols-outlined "  data-bs-toggle="dropdown" aria-expanded="false">
+          notifications_active
+        </span>
+      
+        <ul class="dropdown-menu"  style=" height: 40rem;width: 15rem;"  >
+          <div *ngFor="let item of notification" >
+            <div>{{item.volunteer_name}} volunteer has accepted your request</div>
+          <button style="width: 14rem;border: 0;margin-left: 8px;" (click)="clear(item.req_id)"> clear </button>
+        </div>
+        </ul> 
+      </div>
     </div>
   </div>
+
 </nav>

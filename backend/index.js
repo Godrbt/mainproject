@@ -1188,3 +1188,38 @@ app.get("/userfetchbyId/:id", (req, res) => {
 });
 
 // sorting user verificaiton //
+
+// notification from vol //
+
+app.get("/notificationfromVol/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_request r inner join tbl_user u ON r.user_id=u.user_id inner join tbl_volunteer v on r.volunteer_id = v.volunteer_id where r.req_status = 1 AND r.notificationstatus_vol = 0 AND r.user_id ="+Id;
+  console.log(qry); 
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        notitificationfromvol: result,
+      });
+    }
+  });
+});
+
+
+app.patch("/clearnotification/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_request set notificationstatus_vol = 1 where req_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+// notification from vol //

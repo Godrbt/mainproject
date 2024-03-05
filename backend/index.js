@@ -431,17 +431,20 @@ app.post("/informationadding",
 
 app.post("/userregistration",upload.fields([
   { name: "user_photo", maxCount: 1 },
+  { name: "user_proof", maxCount: 1 },
 ]),(req, res) => {
   var fileValue = JSON.parse(JSON.stringify(req.files));
   var photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
+  var proof = `http://127.0.0.1:${PORT}/images/${fileValue.user_proof[0].filename}`;
   const { loc_id, user_name, user_contact, user_email, user_gender, user_password, user_address } = req.body
   let qry =
-    "insert into tbl_user(loc_id,user_name,user_contact,user_email,user_photo,user_gender,user_password,user_address) values('" +
+    "insert into tbl_user(loc_id,user_name,user_contact,user_email,user_photo,user_proof,user_gender,user_password,user_address) values('" +
     loc_id + "','" +
     user_name + "','" +
     user_contact + "','" +
     user_email + "','" +
     photo + "','" +
+    proof + "','" +
     user_gender + "','" +
     user_password + "','" +
     user_address + "')";
@@ -1055,16 +1058,16 @@ app.patch("/volchangepass/:id", (req, res) => {
 // volunteer verification //
 
 
-app.get("/request/:id", (req, res) => {
-  const Id = req.params.id
-  let qry = "SELECT * FROM tbl_volunteer where volunteer_id = "+ Id + " AND voleq_status = 0"
+app.get("/volverification", (req, res) => {
+ 
+  let qry = "SELECT * FROM tbl_volunteer "
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
     } else {
       res.send({
-        requestdata: result,
+        verificationdata: result,
       });
     }
   });
@@ -1074,4 +1077,97 @@ app.get("/request/:id", (req, res) => {
 
 // volunteer verification //
 
+//user verification //
+
+
+app.get("/userverification", (req, res) => {
+ 
+  let qry = "SELECT * FROM tbl_user "
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        userverificationdata: result,
+      });
+    }
+  });
+});
+
+
+//user verification //
+
+// user verify by admin //
+
+app.patch("/userrequestaccept/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_user set userreq_status = 1 where user_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+
+app.patch("/userrequestreject/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_user set userreq_status = 2 where user_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+// user verify by admin //
+
+
+// volunteer verify by admin //
+
+app.patch("/volunteerrequestaccept/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_volunteer set volreq_status = 1 where volunteer_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+
+app.patch("/volunteerrequestreject/:Id", (req, res) => {
+  const id = req.params.Id
+  // const { districtName } = req.body
+  let qry = "update tbl_volunteer set volreq_status = 2 where volunteer_id = "+id ;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+
+// volunteer verify by admin //
 

@@ -29,7 +29,13 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text">photo</span>
-                <input type="file" formControlName="user_photo" (change)="handleFile($event)" aria-label="First name"
+                <input type="file" formControlName="user_photo" (change)="handleFile($event, 'user_photo')" aria-label="First name"
+                    class="form-control  ">
+
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">proof</span>
+                <input type="file" formControlName="user_proof" (change)="handleFile($event, 'user_proof')" aria-label="First name"
                     class="form-control  ">
 
             </div>

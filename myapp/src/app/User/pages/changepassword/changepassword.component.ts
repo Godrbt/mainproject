@@ -70,8 +70,7 @@ export class ChangepasswordComponent {
       console.log("error");
       
     }
-    debugger
-    
+   
   }
 
 

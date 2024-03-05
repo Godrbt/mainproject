@@ -31,6 +31,7 @@ import { VolchangepassComponent } from './Volunteer/pages/volchangepass/volchang
 import { EditprofileComponent } from './User/pages/editprofile/editprofile.component';
 import { VolfeedbackComponent } from './Volunteer/pages/volfeedback/volfeedback.component';
 import { VerificationComponent } from './Admin/pages/verification/verification.component';
+import { UserVerificationComponent } from './Admin/pages/user-verification/user-verification.component';
 
 
 export const routes: Routes = [
@@ -151,6 +152,10 @@ export const routes: Routes = [
             {
                 path: 'verification',
                 component:VerificationComponent,
+            },
+            {
+                path: 'user-verification',
+                component:UserVerificationComponent,
             },
             
 

@@ -6,6 +6,7 @@ import axios from 'axios';
 interface notificationfetch {
   volunteer_name: any
   req_id: any
+  req_status:any
 }
 
 @Component({

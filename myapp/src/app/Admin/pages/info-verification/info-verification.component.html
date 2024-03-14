@@ -1,0 +1,30 @@
+<div class="main">
+    <h2 style="margin-left: 22rem;">INFORMATION VERIFICATION</h2>
+    <br><br><br>
+    <div class="input-group " style="width: 20rem;margin-left: 25rem;">
+
+        <span class="input-group-text" style="width: 131px;">CATEGORY </span>
+        <select class="form-select" id="inputGroupSelect01" (change)="infoFetchdatabyId($event)">
+            <option selected>..category..</option>
+            <option [value]="item.cat_id" *ngFor="let item of cat">{{ item.cat_name }}</option>
+
+
+        </select>
+    </div>
+    <br><br><br>
+    <div class="allcards">
+        <div class="card" *ngFor="let item of infoverifydata">
+            <h4>{{item.info_name}}</h4>
+            <h4>{{item.info_details}}</h4>
+            <h4>{{item.user_name}}</h4>
+            <h4>{{item.user_details}}</h4>
+            <a href="{{item.user_proof}}" download>Proof</a>
+            <h4>{{item.apply_curdate}}</h4>
+            <button type="submit"> Verify </button>
+            <button type="submit"> Withheld </button>
+            <button type="submit"> Delete </button>
+            
+        </div>
+    </div>
+    <br><br><br><br>
+</div>

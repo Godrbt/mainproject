@@ -22,10 +22,10 @@
     grid-area: area3;
     height: auto;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     padding-top: 10%;
     background-color: rgb(235, 235, 241);
-    margin-left: -28px;
+    /* margin-left: 28px; */
     
     
     

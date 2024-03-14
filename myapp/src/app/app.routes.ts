@@ -5,8 +5,7 @@ import { DistrictComponent } from './Admin/pages/district/district.component';
 // import { PlaceComponent } from './Admin/pages/place/place.component';
 import { LocationComponent } from './Admin/pages/location/location.component';
 import { CategoryComponent } from './Admin/pages/category/category.component';
-// import { HospitalComponent } from './Admin/pages/hospital/hospital.component';
-// import { InstitutionComponent } from './Admin/pages/institution/institution.component';
+
 import { ScholarshipComponent } from './Admin/pages/scholarship/scholarship.component';
 import path from 'node:path';
 import { UserregistrationComponent } from './Guest/pages/userregistration/userregistration.component';
@@ -15,7 +14,6 @@ import { UsermainComponent } from './User/components/usermain/usermain.component
 import { Component } from '@angular/core';
 import { UserHomeComponent } from './User/pages/userhome/user-home.component';
 import { MyprofileComponent } from './User/pages/myprofile/myprofile.component';
-
 import { ChangepasswordComponent } from './User/pages/changepassword/changepassword.component';
 import { InformationComponent } from './User/pages/information/information.component';
 import { InformationaddingComponent } from './Admin/pages/informationadding/informationadding.component';
@@ -23,7 +21,6 @@ import { LoginComponent } from './Guest/pages/login/login.component';
 import { VolunteermainComponent } from './Volunteer/components/volunteermain/volunteermain.component';
 import { VolunteerhomeComponent } from './Volunteer/pages/volunteerhome/volunteerhome.component';
 import { ApplypageComponent } from './User/pages/applypage/applypage.component';
-import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunteerbooking.component';
 import { UserrequestsComponent } from './Volunteer/pages/userrequests/userrequests.component';
 import { VolunteerprofileComponent } from './Volunteer/pages/volunteerprofile/volunteerprofile.component';
 import { VoleditprofileComponent } from './Volunteer/pages/voleditprofile/voleditprofile.component';
@@ -32,6 +29,9 @@ import { EditprofileComponent } from './User/pages/editprofile/editprofile.compo
 import { VolfeedbackComponent } from './Volunteer/pages/volfeedback/volfeedback.component';
 import { VerificationComponent } from './Admin/pages/verification/verification.component';
 import { UserVerificationComponent } from './Admin/pages/user-verification/user-verification.component';
+import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunteerbooking.component';
+import { InfoVerificationComponent } from './Admin/pages/info-verification/info-verification.component';
+
 
 
 export const routes: Routes = [
@@ -43,7 +43,7 @@ export const routes: Routes = [
                 path:'',
                 redirectTo:'volunteerhome',
                 pathMatch:'full'
-                // component: UserHomeComponent,
+               
 
             },
             {
@@ -156,6 +156,10 @@ export const routes: Routes = [
             {
                 path: 'user-verification',
                 component:UserVerificationComponent,
+            },
+            {
+                path: 'info-verification',
+                component:InfoVerificationComponent,
             },
             
 

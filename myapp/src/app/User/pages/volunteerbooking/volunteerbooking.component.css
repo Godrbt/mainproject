@@ -1,8 +1,12 @@
 .sort{
     display: flex;
+    flex-wrap: nowrap;
+    width: 40rem;
+    margin-left: 20rem;
+    margin-top: -3rem;
 }
 .card{
-    background-color: rgb(247, 242, 239);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    background-color: rgb(83, 180, 222);
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  */
   
 }

@@ -126,26 +126,39 @@ app.get("/prime", (req, res) => {
 // district //
 app.post("/District", (req, res) => {
   const { districtName } = req.body
-  let qry =
-    "insert into tbl_district (district_name) values('" +
-    districtName +
-    "')";
-  db.query(qry, (err, result) => {
-    if (err) {
-      console.log("Error");
-    } else {
+  let CheckQry = "select * from tbl_district where district_name = '" + districtName + "'";
+  console.log(CheckQry);
+  db.query(CheckQry, (err, resultCheck) => {
+    if (resultCheck.length > 0) {
       res.send({
-        message: "Data Saved",
+        message: "Already have this district",
       });
     }
-  });
+    else {
+      let qry =
+        "insert into tbl_district (district_name) values('" +
+        districtName +
+        "')";
+      db.query(qry, (err, result) => {
+        if (err) {
+          console.log("Error");
+        } else {
+          res.send({
+            message: "Data Saved",
+          });
+        }
+      });
+
+    }
+  })
+
 });
 
 
 app.patch("/District/:Id", (req, res) => {
   const id = req.params.Id
   const { districtName } = req.body
-  let qry = "update tbl_district set district_name = '"+districtName+"' where district_id = "+id ;
+  let qry = "update tbl_district set district_name = '" + districtName + "' where district_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -214,16 +227,28 @@ app.get("/oneDistrict/:id", (req, res) => {
 app.post("/category", (req, res) => {
   const { categoryName, categoryDesc } = req.body
   console.log(categoryDesc);
-  let qry =
-    "insert into tbl_category (cat_name,cat_description) values('" +
-    categoryName + "','" + categoryDesc + "')";
 
-  db.query(qry, (err, result) => {
-    if (err) {
-      console.log("Error");
-    } else {
+  let CheckQry = "select * from tbl_category where cat_name = '" + categoryName + "' and cat_description ='" + categoryDesc + "'";
+  console.log(CheckQry);
+  db.query(CheckQry, (err, resultCheck) => {
+    if (resultCheck.length > 0) {
       res.send({
-        message: "Data Saved",
+        message: "Already have this category with same description",
+      });
+    }
+    else {
+      let qry =
+        "insert into tbl_category (cat_name,cat_description) values('" +
+        categoryName + "','" + categoryDesc + "')";
+
+      db.query(qry, (err, result) => {
+        if (err) {
+          console.log("Error");
+        } else {
+          res.send({
+            message: "Data Saved",
+          });
+        }
       });
     }
   });
@@ -240,13 +265,14 @@ app.get("/category", (req, res) => {
         category: result,
       });
     }
+
   });
 });
 
 
 app.delete("/category/:id", (req, res) => {
   const Id = req.params.id
-  console.log(Id);
+ 
   let qry = "delete from tbl_category where cat_id = " + Id;
   db.query(qry, (err, result) => {
     if (err) {
@@ -347,8 +373,8 @@ app.get("/updateLoc/:id", (req, res) => {
 
 app.patch("/Location/:Id", (req, res) => {
   const id = req.params.Id
-  const { loc_name,district_id } = req.body
-  let qry = "update tbl_Location set loc_name = '"+loc_name+"', district_id ='"+district_id+"' where loc_id = "+id ;
+  const { loc_name, district_id } = req.body
+  let qry = "update tbl_Location set loc_name = '" + loc_name + "', district_id ='" + district_id + "' where loc_id = " + id;
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -379,7 +405,7 @@ app.post("/informationadding",
   ]), (req, res) => {
     var fileValue = JSON.parse(JSON.stringify(req.files));
     var info_photo = `http://127.0.0.1:${PORT}/images/${fileValue.info_photo[0].filename}`;
-    const { info_name, info_details,cat_id } = req.body
+    const { info_name, info_details, cat_id } = req.body
     console.log(cat_id);
     // const info_photo = ""
     //  console.log(categoryDesc);
@@ -399,23 +425,23 @@ app.post("/informationadding",
     });
   });
 
-  app.get("/informationadding/", (req, res) => {
-    // const user_id = req.params.id;
-    // const Id = req.params.id
-    // console.log(user_id);
-    let qry = "SELECT * FROM tbl_informatiion INNER JOIN tbl_category ON tbl_informatiion.cat_id = tbl_category.cat_id";
-    console.log(qry);
-    db.query(qry, (err, result) => {
-      if (err) {
-        console.log("Error");
-      } else {
-        res.send({
-          info: result,
-        });
-      }
-    });
+app.get("/informationadding/", (req, res) => {
+  // const user_id = req.params.id;
+  // const Id = req.params.id
+  // console.log(user_id);
+  let qry = "SELECT * FROM tbl_informatiion INNER JOIN tbl_category ON tbl_informatiion.cat_id = tbl_category.cat_id";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        info: result,
+      });
+    }
   });
-  
+});
+
 
 
 
@@ -429,10 +455,10 @@ app.post("/informationadding",
 
 //user registration //
 
-app.post("/userregistration",upload.fields([
+app.post("/userregistration", upload.fields([
   { name: "user_photo", maxCount: 1 },
   { name: "user_proof", maxCount: 1 },
-]),(req, res) => {
+]), (req, res) => {
   var fileValue = JSON.parse(JSON.stringify(req.files));
   var photo = `http://127.0.0.1:${PORT}/images/${fileValue.user_photo[0].filename}`;
   var proof = `http://127.0.0.1:${PORT}/images/${fileValue.user_proof[0].filename}`;
@@ -487,7 +513,7 @@ app.patch("/editInsert/:Id", (req, res) => {
   const id = req.params.Id;
   // console.log(res);
   const { user_name, user_contact, user_email } = req.body;
-  let qry = "update tbl_user set user_name ='"+user_name+"', user_contact ='"+user_contact+"',user_email='"+user_email+"' where user_id = "+id ;
+  let qry = "update tbl_user set user_name ='" + user_name + "', user_contact ='" + user_contact + "',user_email='" + user_email + "' where user_id = " + id;
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -508,16 +534,16 @@ app.patch("/editInsert/:Id", (req, res) => {
 
 // volunteer registration //
 
-app.post("/volunteerregistration",upload.fields([
+app.post("/volunteerregistration", upload.fields([
   { name: "volunteer_photo", maxCount: 1 },
   { name: "volunteer_proof", maxCount: 1 },
-]),(req, res) => {
+]), (req, res) => {
   var fileValue = JSON.parse(JSON.stringify(req.files));
   var photo = `http://127.0.0.1:${PORT}/images/${fileValue.volunteer_photo[0].filename}`;
   var proof = `http://127.0.0.1:${PORT}/images/${fileValue.volunteer_proof[0].filename}`;
-  
+
   const { loc_id, volunteer_name, volunteer_contact, volunteer_email, volunteer_gender, volunteer_password, volunteer_address } = req.body
-   
+
   // console.log(req.body);
   let qry =
     "insert into tbl_volunteer(loc_id,volunteer_name,volunteer_contact,volunteer_email,volunteer_photo,volunteer_gender,volunteer_password,volunteer_address,volunteer_proof) values('" +
@@ -568,7 +594,7 @@ app.patch("/voleditInsert/:Id", (req, res) => {
   const id = req.params.Id;
   // console.log(res);
   const { volunteer_name, volunteer_contact, volunteer_email } = req.body;
-  let qry = "update tbl_volunteer set volunteer_name ='"+volunteer_name+"', volunteer_contact ='"+volunteer_contact+"',volunteer_email='"+volunteer_email+"' where volunteer_id = "+id ;
+  let qry = "update tbl_volunteer set volunteer_name ='" + volunteer_name + "', volunteer_contact ='" + volunteer_contact + "',volunteer_email='" + volunteer_email + "' where volunteer_id = " + id;
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -592,7 +618,7 @@ app.patch("/voleditInsert/:Id", (req, res) => {
 // complaint start //
 
 app.post("/complaint", (req, res) => {
-  const { complaint_title, complaint_details,complaint_date,user_id } = req.body
+  const { complaint_title, complaint_details, complaint_date, user_id } = req.body
 
   let qry =
     "insert into tbl_complaint (complaint_title,complaint_details,complaint_date,user_id) values('" +
@@ -600,7 +626,7 @@ app.post("/complaint", (req, res) => {
     complaint_details + "','" +
     complaint_date + "','" +
     user_id + "')";
- console.log(qry)
+  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -631,8 +657,8 @@ app.get("/complaint/", (req, res) => {
 
 app.patch("/complaint/:id", (req, res) => {
   const id = req.params.id
-  const { complaint_title, complaint_details,complaint_date,user_id } = req.body
-  let qry = "update tbl_complaint set complaint_title = '"+complaint_title+"',complaint_details ='"+complaint_details+"',complaint_date ='"+complaint_date+"', user_id ='"+user_id+"' where complaint_id = "+id ;
+  const { complaint_title, complaint_details, complaint_date, user_id } = req.body
+  let qry = "update tbl_complaint set complaint_title = '" + complaint_title + "',complaint_details ='" + complaint_details + "',complaint_date ='" + complaint_date + "', user_id ='" + user_id + "' where complaint_id = " + id;
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -668,13 +694,13 @@ app.delete("/complaint/:id", (req, res) => {
 
 
 app.post("/userfeedback", (req, res) => {
-  const {  feedback_details,user_id } = req.body
+  const { feedback_details, user_id } = req.body
 
   let qry =
     "insert into tbl_userfeedback (feedback_details,user_id) values('" +
     feedback_details + "','" +
     user_id + "')";
- console.log(qry)
+  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -724,13 +750,13 @@ app.delete("/userfeedback/:id", (req, res) => {
 
 
 app.post("/volunteerfeedback", (req, res) => {
-  const {  vfeedback_details,volunteer_id } = req.body
+  const { vfeedback_details, volunteer_id } = req.body
 
   let qry =
     "insert into tbl_volunteerfeedback (vfeedback_details,volunteer_id) values('" +
     vfeedback_details + "','" +
     volunteer_id + "')";
- console.log(qry)
+  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -787,8 +813,8 @@ app.post("/login", (req, res) => {
   let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
   let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "'";
   let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "'";
-  
-  
+
+
   db.query(selAdmin, (err, result) => {
     if (err) {
       console.log("Error");
@@ -802,7 +828,7 @@ app.post("/login", (req, res) => {
     }
   })
 
-   
+
   db.query(selUser, (err, result) => {
     if (err) {
       console.log("Error");
@@ -816,9 +842,9 @@ app.post("/login", (req, res) => {
       })
     }
   })
- 
 
-   
+
+
   db.query(selvolunteer, (err, result) => {
     if (err) {
       console.log("Error");
@@ -839,13 +865,13 @@ app.post("/login", (req, res) => {
 
 app.post("/apply", (req, res) => {
   console.log(req.body);
-  const { info_id,user_id } = req.body
+  const { info_id, user_id } = req.body
 
   let qry =
     "insert into tbl_apply(apply_curdate,info_id,user_id) values(curdate(),'" +
     info_id + "','" +
     user_id + "')";
- console.log(qry)
+  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -883,7 +909,7 @@ app.get("/applyfetch/", (req, res) => {
 
 
 app.get("/Userdetails/", (req, res) => {
- 
+
   let qry = "SELECT * FROM tbl_apply INNER JOIN tbl_informatiion ON tbl_apply.info_id = tbl_informatiion.info_id INNER JOIN tbl_user on tbl_apply.user_id = tbl_user.user_id ";
   console.log(qry);
   db.query(qry, (err, result) => {
@@ -917,7 +943,7 @@ app.get("/volfetch/", (req, res) => {
 
 app.get("/volfetchbyId/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "select * from tbl_volunteer  where loc_id = " + Id 
+  let qry = "select * from tbl_volunteer  where loc_id = " + Id
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -938,14 +964,14 @@ app.get("/volfetchbyId/:id", (req, res) => {
 app.post("/requestForvol", (req, res) => {
   console.log(req.body);
 
-  const { volunteer_id,user_id,req_Details } = req.body
+  const { volunteer_id, user_id, req_Details } = req.body
   //  console.log(volunteer_id);
   let qry =
     "insert into tbl_request(req_date,volunteer_id,user_id,req_Details) values(curdate(),'" +
     volunteer_id + "','" +
     user_id + "','" +
     req_Details + "')";
- console.log(qry)
+  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -963,7 +989,7 @@ app.post("/requestForvol", (req, res) => {
 
 app.get("/request/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "SELECT * FROM tbl_request r INNER JOIN tbl_user u ON r.user_id = u.user_id INNER JOIN tbl_volunteer v  on r.volunteer_id = v.volunteer_id  where v.volunteer_id = "+ Id + " AND r.req_status = 0"
+  let qry = "SELECT * FROM tbl_request r INNER JOIN tbl_user u ON r.user_id = u.user_id INNER JOIN tbl_volunteer v  on r.volunteer_id = v.volunteer_id  where v.volunteer_id = " + Id + " AND r.req_status = 0"
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -981,7 +1007,7 @@ app.get("/request/:id", (req, res) => {
 app.patch("/reqaccept/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_request set req_status = 1 where req_id = "+id ;
+  let qry = "update tbl_request set req_status = 1 where req_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -997,7 +1023,7 @@ app.patch("/reqaccept/:Id", (req, res) => {
 app.patch("/reqreject/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_request set req_status = 2 where req_id = "+id ;
+  let qry = "update tbl_request set req_status = 2 where req_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1017,9 +1043,9 @@ app.patch("/reqreject/:Id", (req, res) => {
 
 app.patch("/changepass/:id", (req, res) => {
   let id = req.params.id;
-  let qry = "update tbl_user set user_password ='"+req.body.newuser_password+"' where user_id=" + id;
+  let qry = "update tbl_user set user_password ='" + req.body.newuser_password + "' where user_id=" + id;
   console.log(qry);
-  db.query(qry,(err, result) => {
+  db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
     } else {
@@ -1039,9 +1065,9 @@ app.patch("/changepass/:id", (req, res) => {
 
 app.patch("/volchangepass/:id", (req, res) => {
   let id = req.params.id;
-  let qry = "update tbl_volunteer set volunteer_password ='"+req.body.newvol_password+"' where volunteer_id=" + id;
+  let qry = "update tbl_volunteer set volunteer_password ='" + req.body.newvol_password + "' where volunteer_id=" + id;
   console.log(qry);
-  db.query(qry,(err, result) => {
+  db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
     } else {
@@ -1059,7 +1085,7 @@ app.patch("/volchangepass/:id", (req, res) => {
 
 
 app.get("/volverification", (req, res) => {
- 
+
   let qry = "SELECT * FROM tbl_volunteer "
   console.log(qry);
   db.query(qry, (err, result) => {
@@ -1081,7 +1107,7 @@ app.get("/volverification", (req, res) => {
 
 
 app.get("/userverification", (req, res) => {
- 
+
   let qry = "SELECT * FROM tbl_user "
   console.log(qry);
   db.query(qry, (err, result) => {
@@ -1103,7 +1129,7 @@ app.get("/userverification", (req, res) => {
 app.patch("/userrequestaccept/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_user set userreq_status = 1 where user_id = "+id ;
+  let qry = "update tbl_user set userreq_status = 1 where user_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1120,7 +1146,7 @@ app.patch("/userrequestaccept/:Id", (req, res) => {
 app.patch("/userrequestreject/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_user set userreq_status = 2 where user_id = "+id ;
+  let qry = "update tbl_user set userreq_status = 2 where user_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1139,7 +1165,7 @@ app.patch("/userrequestreject/:Id", (req, res) => {
 app.patch("/volunteerrequestaccept/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_volunteer set volreq_status = 1 where volunteer_id = "+id ;
+  let qry = "update tbl_volunteer set volreq_status = 1 where volunteer_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1156,7 +1182,7 @@ app.patch("/volunteerrequestaccept/:Id", (req, res) => {
 app.patch("/volunteerrequestreject/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_volunteer set volreq_status = 2 where volunteer_id = "+id ;
+  let qry = "update tbl_volunteer set volreq_status = 2 where volunteer_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1175,7 +1201,7 @@ app.patch("/volunteerrequestreject/:Id", (req, res) => {
 
 app.get("/userfetchbyId/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "select * from tbl_user  where loc_id = " + Id 
+  let qry = "select * from tbl_user  where loc_id = " + Id
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1193,8 +1219,8 @@ app.get("/userfetchbyId/:id", (req, res) => {
 
 app.get("/notificationfromVol/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "select * from tbl_request r inner join tbl_user u ON r.user_id=u.user_id inner join tbl_volunteer v on r.volunteer_id = v.volunteer_id where r.req_status = 1 AND r.notificationstatus_vol = 0 AND r.user_id ="+Id;
-  console.log(qry); 
+  let qry = "select * from tbl_request r inner join tbl_user u ON r.user_id=u.user_id inner join tbl_volunteer v on r.volunteer_id = v.volunteer_id where r.notificationstatus_vol = 0 AND r.user_id =" + Id;
+ 
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1210,7 +1236,7 @@ app.get("/notificationfromVol/:id", (req, res) => {
 app.patch("/clearnotification/:Id", (req, res) => {
   const id = req.params.Id
   // const { districtName } = req.body
-  let qry = "update tbl_request set notificationstatus_vol = 1 where req_id = "+id ;
+  let qry = "update tbl_request set notificationstatus_vol = 1 where req_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1223,3 +1249,37 @@ app.patch("/clearnotification/:Id", (req, res) => {
 });
 
 // notification from vol //
+
+// information verification //
+
+app.get("/infoverification", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id ";
+  
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        infoverifybyadmin: result,
+      });
+    }
+  });
+});
+
+app.get("/infoverificationbyID/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id where cat_id = "+Id;
+  
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        infoverifybyID: result,
+      });
+    }
+  });
+});
+
+// information verification end //

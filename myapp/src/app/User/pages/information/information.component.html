@@ -1,25 +1,13 @@
-<!-- 
-<div class="card" style="width: 18rem;">
-    <img src="../../../../assets/1.jpg" class="card-img-top" alt="...">
-    <div class="card-body" style="display: flex;flex-direction: column;justify-content: center;">
-       
-        <div style="display: flex;flex-direction: row; align-items: center;justify-content: center;">
-      <h5 class="card-title" style="color: green;" >Card title</h5>
-      </div>
-
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary" >ViewMore</a>
-      <button type="submit" class="btn btn-outline-success" >ViewMore</button>
-    </div>
-  </div> -->
+<div class="main">
   <div class="card" *ngFor="let item of infodata">
-    <div class="card-image">{{item.info_photo}}</div>
-    <p class="card-title">{{item.cat_name}}</p>
-    <p class="card-title">{{item.info_name}}</p>
+    <div>{{item.info_photo}}</div>
+    <p>{{item.cat_name}}</p>
+    <p>{{item.info_name}}</p>
 
-    <p class="card-body">
+    <p>
       {{item.info_details}}
     </p>
-    <!-- <p class="footer">Written by <span class="by-name">John Doe</span> on <span class="date">25/05/23</span></p> -->
-      <button  (click)="apply(item.info_id)" type="submit" class="btn btn-outline-success" >apply</button>
+
+    <button (click)="apply(item.info_id)" type="submit" class="btn btn-outline-success">apply</button>
   </div>
+</div>

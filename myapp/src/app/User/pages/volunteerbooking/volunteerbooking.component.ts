@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import axios from 'axios';
 
 interface volfetch {
@@ -34,7 +34,7 @@ interface reqinterface {
 @Component({
   selector: 'app-volunteerbooking',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterOutlet, RouterModule, ReactiveFormsModule,RouterLinkActive],
   templateUrl: './volunteerbooking.component.html',
   styleUrl: './volunteerbooking.component.css'
 })

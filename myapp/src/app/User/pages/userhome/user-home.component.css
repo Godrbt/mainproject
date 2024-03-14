@@ -1,6 +1,6 @@
 .carousel-item {
     position: relative;
-    width: 208vh;
+    width: 100rem;
     height: 125vh;
     /* margin-top: -40px; */
 }

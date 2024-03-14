@@ -38,7 +38,7 @@ export class VolchangepassComponent {
     const formData: ChangevolPass = {
       newvol_password: this.volchangeForm.value.newvol_password,
     };
-    console.log(this.volchangeForm.value);
+   
 
 
 
@@ -56,7 +56,7 @@ export class VolchangepassComponent {
           })
           .catch((error) => {
             console.error('Error occurred while changing password:', error);
-            // Handle error display or logging as needed
+           
           });
       }
       else{
@@ -85,7 +85,7 @@ export class VolchangepassComponent {
     }
 
     axios.get(`http://localhost:5000/Vounteerprofile/${this.vid}`).then((response) => {
-      // console.log(response.data.user[0].user_password)
+    
       this.volpassword = response.data.volunteer[0].volunteer_password;
     })
 

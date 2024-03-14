@@ -35,15 +35,9 @@ export class ChangepasswordComponent {
 
   onSubmit() {
 
-
-
     const formData: ChangeUserPass = {
       newuser_password: this.changeForm.value.newuser_password,
     };
-    console.log(this.changeForm.value);
-
-
-
 
 
     if (this.changeForm.value.curuser_password == this.userpassword) {
@@ -61,18 +55,17 @@ export class ChangepasswordComponent {
             // Handle error display or logging as needed
           });
       }
-      else{
+      else {
         console.log("error");
-        
+
       }
     }
-    else{
+    else {
       console.log("error");
-      
-    }
-   
-  }
 
+    }
+
+  }
 
   ngOnInit() {
     this.Getpassword();
@@ -80,13 +73,12 @@ export class ChangepasswordComponent {
 
   Getpassword() {
 
-
     if (typeof sessionStorage !== 'undefined') {
       this.uid = sessionStorage.getItem('uid');
     }
 
     axios.get(`http://localhost:5000/userregistration/${this.uid}`).then((response) => {
-      console.log(response.data.user[0].user_password)
+
       this.userpassword = response.data.user[0].user_password;
     })
 

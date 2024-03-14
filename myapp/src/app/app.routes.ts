@@ -5,8 +5,6 @@ import { DistrictComponent } from './Admin/pages/district/district.component';
 // import { PlaceComponent } from './Admin/pages/place/place.component';
 import { LocationComponent } from './Admin/pages/location/location.component';
 import { CategoryComponent } from './Admin/pages/category/category.component';
-
-import { ScholarshipComponent } from './Admin/pages/scholarship/scholarship.component';
 import path from 'node:path';
 import { UserregistrationComponent } from './Guest/pages/userregistration/userregistration.component';
 import { VolunteerregistrationComponent } from './Guest/pages/volunteerregistration/volunteerregistration.component';
@@ -161,10 +159,6 @@ export const routes: Routes = [
                 component:CategoryComponent,
             },
           
-            {
-                path: 'scholarship',
-                component:ScholarshipComponent,
-            },
             {
                 path: 'informationadding',
                 component:InformationaddingComponent,

@@ -48,7 +48,7 @@ export class VolunteerbookingComponent {
 
 
   ngOnInit() {
-    // this.uid = sessionStorage.getItem('uid')
+  
     this.volFetchdata();
     this.districtFetch();
 
@@ -56,11 +56,7 @@ export class VolunteerbookingComponent {
   volFetchdata() {
 
     axios.get(`http://localhost:5000/volfetch/`,).then((response) => {
-      console.log(response.data.volunteerdata)
-
       this.voldata = response.data.volunteerdata
-
-
 
     })
   }
@@ -68,22 +64,15 @@ export class VolunteerbookingComponent {
     const selectedVolunteerId = event.target.value;
 
     axios.get(`http://localhost:5000/volfetchbyId/${selectedVolunteerId}`,).then((response) => {
-      console.log(response.data.volunteerdatabyId)
-
       this.voldata = response.data.volunteerdatabyId
-      // this.voldataForId = response.data.volunteerdatabyId
-      // this.voldataForId = event.target.value;
-
-
-
+   
     })
   }
 
 
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
-      console.log(response.data.district)
-
+   
       this.data = response.data.district
 
 
@@ -96,8 +85,7 @@ export class VolunteerbookingComponent {
     const selectedDistrictId = event.target.value;
 
     axios.get(`http://localhost:5000/location/${selectedDistrictId}`).then((response) => {
-      console.log(response.data.location)
-
+     
       this.locdata = response.data.location
 
     })
@@ -113,26 +101,21 @@ export class VolunteerbookingComponent {
   );
 
   req() {
-
-
-
     const data: reqinterface = {
       req_Details: this.reqForm.value.req_Details,
       req_date: this.reqForm.value.req_date,
       volunteer_id: this.volId,
       user_id: sessionStorage.getItem("uid")
     };
+
     axios.post('http://localhost:5000/requestForvol/', data).then((response) => {
       alert(response.data.message)
-
-
     })
 
   }
 
   vol(event: any) {
-   
-    
+
     this.volId = event;
   }
 

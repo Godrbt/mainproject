@@ -25,35 +25,16 @@ export class VolunteerprofileComponent {
 
   volunteerdata!: VolunteerFetch;
   vid:any 
-  
-
-  // user_name: any;
-  
- 
-
   ngOnInit() {
-    
     this.VolunteerFetchdata();
-    
   }
   VolunteerFetchdata() {
-
     if (typeof sessionStorage !== 'undefined') {
-
-      this.vid = sessionStorage.getItem('vid');// Access sessionStorage here
-      
+      this.vid = sessionStorage.getItem('vid');
   }
 
-  
     axios.get(`http://localhost:5000/Vounteerprofile/${this.vid}`,).then((response) => {
-      console.log(response.data.volunteer[0])
-
       this.volunteerdata = response?.data?.volunteer[0]
-
-
-
     })
   }
-
-
 }

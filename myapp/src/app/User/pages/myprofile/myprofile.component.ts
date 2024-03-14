@@ -31,11 +31,6 @@ export class MyprofileComponent {
 
   userdata!: UserFetch;
   uid:any 
-  
-
-  // user_name: any;
-  
- 
 
   ngOnInit() {
     
@@ -50,14 +45,8 @@ export class MyprofileComponent {
       
   }
 
-  
     axios.get(`http://localhost:5000/userregistration/${this.uid}`,).then((response) => {
-      console.log(response.data.user[0])
-
       this.userdata = response?.data?.user[0]
-
-
-
     })
   }
 

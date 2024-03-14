@@ -37,7 +37,7 @@ export class RejectedreqComponent {
   }
 
     axios.get(`http://localhost:5000/rejectedrequest/${this.vid}`).then((response) => {
-      console.log(response.data.requestdata)
+      
 
       this.rejectedrequestdata = response.data.rejectedrequestdata;
 

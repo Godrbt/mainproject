@@ -37,10 +37,8 @@ export class HomeComponent {
 
 
     axios.get(`http://localhost:5000/Userdetails`).then((response) => {
-      console.log(response.data.details)
 
       this.details = response.data.details;
-
 
 
     })

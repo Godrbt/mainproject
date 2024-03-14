@@ -38,7 +38,7 @@ export class ApplypageComponent {
 
   applyfetch() {
     axios.get('http://localhost:5000/applyfetch/').then((response) => {
-      // console.log(response.data.category)
+      
       this.applydata = response.data.apply
       
 

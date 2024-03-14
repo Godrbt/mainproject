@@ -35,8 +35,7 @@ export class DistrictComponent {
   );
   var: any = ''
   onSubmit() {
-    console.log(this.profileForm.value.district);
-
+    
     const districtdata: DistrictInterface = {
       districtName: this.profileForm.value.district,
 
@@ -44,7 +43,7 @@ export class DistrictComponent {
 
     if (this.check === 0) {
       axios.post('http://localhost:5000/District/', districtdata).then((response) => {
-        // console.log(response.data);
+      
         alert(response.data.message)
         this.districtFetch();
         this.profileForm.reset();
@@ -53,7 +52,7 @@ export class DistrictComponent {
     }
     else {
       axios.patch(`http://localhost:5000/District/${this.check}`, districtdata).then((response) => {
-        // console.log(response.data);
+       
         alert(response.data.message)
         this.districtFetch();
         this.profileForm.reset();
@@ -76,7 +75,6 @@ export class DistrictComponent {
 
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
-      // console.log(response.data.category)
 
       this.data = response.data.district
 
@@ -93,7 +91,7 @@ export class DistrictComponent {
     // Remove the item at the specified index from the 'data' array
     axios.delete(`http://localhost:5000/district/${index}`).then((response) => {
       alert(response.data.message)
-      // console.log(response.data)
+     
       this.districtFetch()
 
 

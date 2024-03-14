@@ -67,7 +67,7 @@ export class LocationComponent implements OnInit {
     }
     else {
       axios.patch(`http://localhost:5000/Location/${this.check}`, locationData).then((response) => {
-        console.log(response.data);
+        
         alert(response.data.message)
         this.locFetch();
         this.locForm.reset();
@@ -100,8 +100,7 @@ export class LocationComponent implements OnInit {
   }
   locFetch() {
     axios.get('http://localhost:5000/location/').then((response) => {
-      console.log(response.data.loaction)
-
+      
       this.locdata = response.data.location
 
     })
@@ -127,9 +126,6 @@ export class LocationComponent implements OnInit {
 
   updateLoc(index: number): any {
     axios.get(`http://localhost:5000/updateLoc/${index}`).then((response) => {
-
-
-      console.log(response.data.locationupdate[0].loc_name)
 
 
       this.locForm.get('loc_name')?.setValue(response.data.locationupdate[0].loc_name);

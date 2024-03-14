@@ -35,7 +35,7 @@ export class UserrequestsComponent {
   }
 
     axios.get(`http://localhost:5000/request/${this.vid}`).then((response) => {
-      console.log(response.data.requestdata)
+    
 
       this.requestdata = response.data.requestdata;
 

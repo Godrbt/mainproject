@@ -32,7 +32,6 @@ export class CategoryComponent implements OnInit {
     // Remove the item at the specified index from the 'data' array
     axios.delete(`http://localhost:5000/category/${index}`).then((response) => {
       alert(response.data.message)
-      // console.log(response.data)
       this.fetchCategory()
 
 
@@ -47,7 +46,7 @@ export class CategoryComponent implements OnInit {
 
   fetchCategory() {
     axios.get('http://localhost:5000/category/').then((response) => {
-      // console.log(response.data.category)
+  
       this.data = response.data.category
       
 
@@ -66,7 +65,7 @@ export class CategoryComponent implements OnInit {
   );
   var: any = ''
   onSubmit() {
-    // console.log(this.profileForm.value.category);
+   
     const catdata: CategoryInterface = {
       categoryName: this.catform.value.catname,
       categoryDesc: this.catform.value.catdesc

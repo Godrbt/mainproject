@@ -44,11 +44,11 @@ export class EditprofileComponent {
   }
 
     axios.get(`http://localhost:5000/userregistration/${this.uid}`).then((response) => {
-      // console.log(response.data.district[0].district_name)
+      
       this.editForm.get('user_name')?.setValue(response.data.user[0].user_name);
       this.editForm.get('user_contact')?.setValue(response.data.user[0].user_contact);
       this.editForm.get('user_email')?.setValue(response.data.user[0].user_email);
-      // this.check = index
+     
 
     })
 

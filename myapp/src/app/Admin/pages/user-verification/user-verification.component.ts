@@ -50,8 +50,7 @@ export class UserVerificationComponent {
 
   districtFetch() {
     axios.get('http://localhost:5000/district/').then((response) => {
-      console.log(response.data.district)
-
+     
       this.data = response.data.district
 
 
@@ -64,8 +63,7 @@ export class UserVerificationComponent {
     const selectedDistrictId = event.target.value;
 
     axios.get(`http://localhost:5000/location/${selectedDistrictId}`).then((response) => {
-      console.log(response.data.location)
-
+     
       this.locdata = response.data.location
 
     })

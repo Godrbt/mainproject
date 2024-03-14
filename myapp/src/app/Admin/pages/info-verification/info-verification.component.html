@@ -1,16 +1,20 @@
 <div class="main">
-    <h2 style="margin-left: 22rem;">INFORMATION VERIFICATION</h2>
-    <br><br><br>
-    <div class="input-group " style="width: 20rem;margin-left: 25rem;">
+    <form action="" [formGroup]="infoverificationForm">
 
-        <span class="input-group-text" style="width: 131px;">CATEGORY </span>
-        <select class="form-select" id="inputGroupSelect01" (change)="infoFetchdatabyId($event)">
-            <option selected>..category..</option>
-            <option [value]="item.cat_id" *ngFor="let item of cat">{{ item.cat_name }}</option>
+        <h2 style="margin-left: 22rem;">INFORMATION VERIFICATION</h2>
+        <br><br><br>
+        <div class="input-group " style="width: 20rem;margin-left: 25rem;">
+
+            <span class="input-group-text" style="width: 131px;">CATEGORY </span>
+            <select class="form-select" id="inputGroupSelect01" formControlName="cat_id"
+                (change)="infoFetchdatabyId($event)">
+                <option selected>..category..</option>
+                <option [value]="item.cat_id" *ngFor="let item of cat">{{ item.cat_name }}</option>
 
 
-        </select>
-    </div>
+            </select>
+        </div>
+    </form>
     <br><br><br>
     <div class="allcards">
         <div class="card" *ngFor="let item of infoverifydata">
@@ -20,10 +24,12 @@
             <h4>{{item.user_details}}</h4>
             <a href="{{item.user_proof}}" download>Proof</a>
             <h4>{{item.apply_curdate}}</h4>
-            <button type="submit"> Verify </button>
-            <button type="submit"> Withheld </button>
-            <button type="submit"> Delete </button>
-            
+            <button type="submit" [disabled]="item.info_status === 1" (click)="infoaccept(item.info_id)"> Verify
+            </button>
+
+            <button type="submit" [disabled]="item.info_status === 2" (click)="inforreject(item.info_id)"> Reject
+            </button>
+
         </div>
     </div>
     <br><br><br><br>

@@ -16,6 +16,14 @@
           <a class="nav-link" routerLink="volunteerbooking" routerLinkActive="active"
             style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Volunteer Booking</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="feedback" routerLinkActive="active"
+            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="complaint" routerLinkActive="active"
+            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Complaint</a>
+        </li>
       </ul>
 
       <ul class="navbar-nav  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;margin-right: 40px;">
@@ -46,8 +54,8 @@
         <ul class="dropdown-menu" style=" height: 40rem;width: 15rem;">
           <div *ngFor="let item of notification">
 
-            <div *ngIf="item.req_status === 1">{{item.volunteer_name}} volunteer has accepted your request</div>
-            <div *ngIf="item.req_status === 2">{{item.volunteer_name}} volunteer has rejected your request</div>
+            <div *ngIf="item.req_status === 1">{{item.volunteer_name}}  has accepted your request</div>
+            <div *ngIf="item.req_status === 2">{{item.volunteer_name}}  has rejected your request</div>
 
             <button style="width: 14rem;border: 0;margin-left: 8px;" (click)="clear(item.req_id)"> clear </button>
           </div>

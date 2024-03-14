@@ -31,6 +31,8 @@ import { VerificationComponent } from './Admin/pages/verification/verification.c
 import { UserVerificationComponent } from './Admin/pages/user-verification/user-verification.component';
 import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunteerbooking.component';
 import { InfoVerificationComponent } from './Admin/pages/info-verification/info-verification.component';
+import { FeedbackComponent } from './User/pages/feedback/feedback.component';
+import { ComplaintComponent } from './User/pages/complaint/complaint.component';
 
 
 
@@ -113,7 +115,14 @@ export const routes: Routes = [
                 path: 'applypage',
                 component: ApplypageComponent,
             },
-           
+            {
+                path: 'feedback',
+                component: FeedbackComponent,
+            },
+            {
+                path: 'complaint',
+                component: ComplaintComponent,
+            },
             
             
         ]

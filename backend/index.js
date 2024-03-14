@@ -1282,4 +1282,68 @@ app.get("/infoverificationbyID/:id", (req, res) => {
   });
 });
 
+
+app.patch("/infoaccept/:Id", (req, res) => {
+  const id = req.params.Id
+  let qry = "update tbl_informatiion set info_status = 1 where info_id = " + id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
+app.patch("/inforeject/:Id", (req, res) => {
+  const id = req.params.Id
+  let qry = "update tbl_informatiion set info_status = 2 where info_id = " + id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
+
 // information verification end //
+
+// notification of infol //
+
+// app.get("/notificationfromVol/:id", (req, res) => {
+//   const Id = req.params.id
+//   let qry = "select * from tbl_request r inner join tbl_user u ON r.user_id=u.user_id inner join tbl_volunteer v on r.volunteer_id = v.volunteer_id where r.notificationstatus_vol = 0 AND r.user_id =" + Id;
+ 
+//   db.query(qry, (err, result) => {
+//     if (err) {
+//       console.log("Error");
+//     } else {
+//       res.send({
+//         notitificationfromvol: result,
+//       });
+//     }
+//   });
+// });
+
+
+// app.patch("/clearnotification/:Id", (req, res) => {
+//   const id = req.params.Id
+//   // const { districtName } = req.body
+//   let qry = "update tbl_request set notificationstatus_vol = 1 where req_id = " + id;
+//   db.query(qry, (err, result) => {
+//     if (err) {
+//       console.log("Error");
+//     } else {
+//       res.send({
+//         message: "Data updated",
+//       });
+//     }
+//   });
+// });
+
+// notification of info //

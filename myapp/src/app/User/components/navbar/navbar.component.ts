@@ -9,6 +9,15 @@ interface notificationfetch {
   req_status:any
 }
 
+interface infonot {
+  info_name: any
+  info_id: any
+  apply_id:any
+  notificationstatus_info:any
+  user_id:any
+  apply_status:any
+}
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -19,8 +28,10 @@ interface notificationfetch {
 export class NavbarComponent {
 
   notification: notificationfetch[] = [];
+  notitificationofinfo:infonot[]=[];
   uid: any
   req_id: any
+  apply_id:any
 
   constructor() { }
   menu_icon_variable: boolean = false;
@@ -34,6 +45,7 @@ export class NavbarComponent {
 
     }
     this.notifications();
+    this.infonotificationd();
   }
 
   notifications() {
@@ -48,6 +60,25 @@ export class NavbarComponent {
       this.notifications() 
     })
   }
+
+
+  infonotificationd() {
+    axios.get(`http://localhost:5000/infonotification/${this.uid}`).then((response) => {
+      this.notitificationofinfo = response.data.notitificationofinfo  
+    })
+  }
+
+  clearinfo(event: any) {
+    this.apply_id = event
+    axios.patch(`http://localhost:5000/clearnotificationofinfo/${this.apply_id}`).then((response) => {
+      this.notifications() 
+      this.infonotificationd() 
+    })
+  }
+
+
+
+
 
 
 

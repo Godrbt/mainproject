@@ -208,11 +208,7 @@ export const routes: Routes = [
              component: UserregistrationComponent,
               
           },
-          {
-            path: 'login',
-             component: LoginComponent,
-              
-          },
+          
           {
             path: 'volunteerregistration',
              component: VolunteerregistrationComponent,

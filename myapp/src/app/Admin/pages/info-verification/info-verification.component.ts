@@ -12,7 +12,8 @@ interface info {
   user_details: any,
   user_proof: any,
   apply_curdate: any
-  info_status:any,
+  apply_status:any,
+  apply_id:any
 }
 
 interface catFetch {
@@ -29,7 +30,7 @@ interface catFetch {
 export class InfoVerificationComponent {
   infoverifydata: info[] = [];
   cat: catFetch[] = [];
-  info_id:any
+  apply_id:any
 
   infoverificationForm = new FormGroup(
     {
@@ -63,8 +64,8 @@ export class InfoVerificationComponent {
   }
 
   infoaccept(event:any){
-    this.info_id=event
-  axios.patch(`http://localhost:5000/infoaccept/${this.info_id}` ).then((response) => {
+    this.apply_id=event
+  axios.patch(`http://localhost:5000/infoaccept/${this.apply_id}` ).then((response) => {
     alert(response.data.message)
     this.infoVerificationFetch()
     this.infoverificationForm.reset();
@@ -73,8 +74,8 @@ export class InfoVerificationComponent {
   })
  }
  inforreject(event:any){
-  this.info_id=event
-axios.patch(`http://localhost:5000/inforeject/${this.info_id}` ).then((response) => {
+  this.apply_id=event
+axios.patch(`http://localhost:5000/inforeject/${this.apply_id}` ).then((response) => {
   alert(response.data.message)
   this.infoVerificationFetch()
   this.infoverificationForm.reset();

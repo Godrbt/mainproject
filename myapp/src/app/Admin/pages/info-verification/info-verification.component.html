@@ -24,10 +24,10 @@
             <h4>{{item.user_details}}</h4>
             <a href="{{item.user_proof}}" download>Proof</a>
             <h4>{{item.apply_curdate}}</h4>
-            <button type="submit" [disabled]="item.info_status === 1" (click)="infoaccept(item.info_id)"> Verify
+            <button type="submit" [disabled]="item.apply_status === 1" (click)="infoaccept(item.apply_id)"> Verify
             </button>
 
-            <button type="submit" [disabled]="item.info_status === 2" (click)="inforreject(item.info_id)"> Reject
+            <button type="submit" [disabled]="item.apply_status === 2" (click)="inforreject(item.apply_id)"> Reject
             </button>
 
         </div>

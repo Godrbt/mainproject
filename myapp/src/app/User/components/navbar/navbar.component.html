@@ -59,6 +59,14 @@
 
             <button style="width: 14rem;border: 0;margin-left: 8px;" (click)="clear(item.req_id)"> clear </button>
           </div>
+
+          <div *ngFor="let item of notitificationofinfo">
+
+            <div *ngIf="item.apply_status === 1">Admin has accepted your request</div>
+            <div *ngIf="item.apply_status === 2">Admin has rejected your request</div>
+
+            <button style="width: 14rem;border: 0;margin-left: 8px;" (click)="clearinfo(item.apply_id)"> clear </button>
+          </div>
         </ul>
       </div>
     </div>

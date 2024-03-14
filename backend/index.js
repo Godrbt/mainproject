@@ -1318,7 +1318,7 @@ app.get("/infoverificationbyID/:id", (req, res) => {
 
 app.patch("/infoaccept/:Id", (req, res) => {
   const id = req.params.Id
-  let qry = "update tbl_informatiion set info_status = 1 where info_id = " + id;
+  let qry = "update tbl_apply set apply_status = 1,notificationstatus_info = 0  where apply_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1332,7 +1332,7 @@ app.patch("/infoaccept/:Id", (req, res) => {
 
 app.patch("/inforeject/:Id", (req, res) => {
   const id = req.params.Id
-  let qry = "update tbl_informatiion set info_status = 2 where info_id = " + id;
+  let qry = "update tbl_apply set apply_status = 2,notificationstatus_info = 0  where apply_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1346,38 +1346,37 @@ app.patch("/inforeject/:Id", (req, res) => {
 
 // information verification end //
 
-// notification of infol //
+// notification of info //
 
-// app.get("/notificationfromVol/:id", (req, res) => {
-//   const Id = req.params.id
-//   let qry = "select * from tbl_request r inner join tbl_user u ON r.user_id=u.user_id inner join tbl_volunteer v on r.volunteer_id = v.volunteer_id where r.notificationstatus_vol = 0 AND r.user_id =" + Id;
- 
-//   db.query(qry, (err, result) => {
-//     if (err) {
-//       console.log("Error");
-//     } else {
-//       res.send({
-//         notitificationfromvol: result,
-//       });
-//     }
-//   });
-// });
+app.get("/infonotification/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on a.info_id = i.info_id where a.notificationstatus_info = 0 AND a.user_id =" + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      console.log(result);
+      res.send({
+        notitificationofinfo: result,
+      });
+    }
+  });
+});
 
 
-// app.patch("/clearnotification/:Id", (req, res) => {
-//   const id = req.params.Id
-//   // const { districtName } = req.body
-//   let qry = "update tbl_request set notificationstatus_vol = 1 where req_id = " + id;
-//   db.query(qry, (err, result) => {
-//     if (err) {
-//       console.log("Error");
-//     } else {
-//       res.send({
-//         message: "Data updated",
-//       });
-//     }
-//   });
-// });
+app.patch("/clearnotificationofinfo/:Id", (req, res) => {
+  const id = req.params.Id
+  let qry = "update tbl_apply set notificationstatus_info = 1 where apply_id = " + id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
 
 // notification of info //
 

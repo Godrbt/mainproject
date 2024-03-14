@@ -1,1 +1,10 @@
-<p>volfeedback works!</p>
+<form [formGroup]="volfeedform" (ngSubmit)="onSubmit()" class="dis">
+<div class="input-group">
+    <span class="input-group-text" style="width: 150px;">FeedBack</span>
+    <textarea class="form-control" formControlName="volfeedback" aria-label="With textarea"></textarea>
+</div>
+
+<div class="child3">
+    <button type="submit" class="btn btn-outline-success">Save</button>
+</div>
+</form>

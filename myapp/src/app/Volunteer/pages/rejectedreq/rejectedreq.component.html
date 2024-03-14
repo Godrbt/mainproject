@@ -1,0 +1,12 @@
+<div class="req" style="display: flex; flex-direction: column;">
+    <div class="main" *ngFor="let item of rejectedrequestdata">
+        <div class="cookieCard">
+            <p class="cookieHeading">Request From {{item.user_name}}</p>
+            <p class="cookieDescription"> {{item.req_Details}} </p>
+            <p class="cookieDescription"> {{item.user_contact}} </p>
+        </div>
+        <div class="btn">
+            <button class="acceptButton" (click)="userstat(item.req_id)">Accept</button> 
+        </div>
+    </div>
+</div>

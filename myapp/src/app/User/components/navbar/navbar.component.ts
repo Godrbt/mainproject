@@ -38,24 +38,22 @@ export class NavbarComponent {
 
   notifications() {
     axios.get(`http://localhost:5000/notificationfromVol/${this.uid}`).then((response) => {
-
       this.notification = response.data.notitificationfromvol
-
-
-
     })
-
   }
 
   clear(event: any) {
     this.req_id = event
     axios.patch(`http://localhost:5000/clearnotification/${this.req_id}`).then((response) => {
       this.notifications() 
-
-
     })
   }
 
+
+
+
+
+  
   openMenu() {
     this.menuVariable = !this.menuVariable;
     this.menu_icon_variable = !this.menu_icon_variable;

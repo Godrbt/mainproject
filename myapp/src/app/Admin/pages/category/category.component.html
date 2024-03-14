@@ -8,10 +8,6 @@
                     <input type="text" formControlName="catname" aria-label="First name" class="form-control  w-90">
 
                 </div>
-                <div class="input-group">
-                    <span class="input-group-text" style="width: 150px;">Description</span>
-                    <textarea class="form-control" formControlName="catdesc" aria-label="With textarea"></textarea>
-                </div>
 
                 <div class="child3">
                     <button type="submit" class="btn btn-outline-success">Save</button>
@@ -26,7 +22,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Description</th>
+                    
                     <th scope="col">Action</th>
 
                 </tr>
@@ -35,7 +31,7 @@
                 <tr *ngFor="let item of data;let i = index">
                     <th scope="row">{{ i + 1 }}</th>
                     <td>{{ item.cat_name }}</td>
-                    <td>{{ item.cat_description }}</td>
+    
                     <td>   <a href="javascript:void(0);" (click)="deleteRow(item.cat_id)">Delete</a>   </td>
                 </tr>
                

@@ -225,21 +225,21 @@ app.get("/oneDistrict/:id", (req, res) => {
 
 //category//
 app.post("/category", (req, res) => {
-  const { categoryName, categoryDesc } = req.body
-  console.log(categoryDesc);
+  const { categoryName  } = req.body
+ 
 
-  let CheckQry = "select * from tbl_category where cat_name = '" + categoryName + "' and cat_description ='" + categoryDesc + "'";
+  let CheckQry = "select * from tbl_category where cat_name = '" + categoryName + "' ";
   console.log(CheckQry);
   db.query(CheckQry, (err, resultCheck) => {
     if (resultCheck.length > 0) {
       res.send({
-        message: "Already have this category with same description",
+        message: "Already have this category ",
       });
     }
     else {
       let qry =
-        "insert into tbl_category (cat_name,cat_description) values('" +
-        categoryName + "','" + categoryDesc + "')";
+        "insert into tbl_category (cat_name) values('" +
+        categoryName + "')";
 
       db.query(qry, (err, result) => {
         if (err) {
@@ -1003,6 +1003,39 @@ app.get("/request/:id", (req, res) => {
 });
 
 
+app.get("/acceptrequest/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "SELECT * FROM tbl_request r INNER JOIN tbl_user u ON r.user_id = u.user_id INNER JOIN tbl_volunteer v  on r.volunteer_id = v.volunteer_id  where v.volunteer_id = " + Id + " AND r.req_status = 1"
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        acceptrequestdata: result,
+      });
+    }
+  });
+});
+
+
+app.get("/rejectedrequest/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "SELECT * FROM tbl_request r INNER JOIN tbl_user u ON r.user_id = u.user_id INNER JOIN tbl_volunteer v  on r.volunteer_id = v.volunteer_id  where v.volunteer_id = " + Id + " AND r.req_status = 2"
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        rejectedrequestdata: result,
+      });
+    }
+  });
+});
+
+
+
 
 app.patch("/reqaccept/:Id", (req, res) => {
   const id = req.params.Id
@@ -1347,3 +1380,47 @@ app.patch("/inforeject/:Id", (req, res) => {
 // });
 
 // notification of info //
+
+// feed back by volunteer//
+
+app.post("/volfeed", (req, res) => {
+  const { vfeedback_details,volunteer_id} = req.body
+  let qry =
+    "insert into tbl_volunteerfeedback (vfeedback_details,volunteer_id) values('" +
+    vfeedback_details + "','" +
+    volunteer_id + "')";
+
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+// feed back by volunteer//
+
+// feed back by user//
+
+
+app.post("/userfeed", (req, res) => {
+  const { feedback_details,user_id} = req.body
+  let qry =
+    "insert into tbl_userfeedback (feedback_details,user_id) values('" +
+    feedback_details + "','" +
+    user_id + "')";
+
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+// feed back by user//

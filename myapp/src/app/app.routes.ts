@@ -33,6 +33,10 @@ import { VolunteerbookingComponent } from './User/pages/volunteerbooking/volunte
 import { InfoVerificationComponent } from './Admin/pages/info-verification/info-verification.component';
 import { FeedbackComponent } from './User/pages/feedback/feedback.component';
 import { ComplaintComponent } from './User/pages/complaint/complaint.component';
+import { AcceptedreqComponent } from './Volunteer/pages/acceptedreq/acceptedreq.component';
+import { RejectedreqComponent } from './Volunteer/pages/rejectedreq/rejectedreq.component';
+import { GuestmainComponent } from './Guest/components/guestmain/guestmain.component';
+import { GuestHomeComponent } from './Guest/pages/guest-home/guest-home.component';
 
 
 
@@ -72,6 +76,14 @@ export const routes: Routes = [
                 path: 'volfeedback',
                 component: VolfeedbackComponent,
             },
+            {
+                path: 'acceptedreq',
+                component: AcceptedreqComponent,
+            },
+            {
+                path: 'rejectedreq',
+                component: RejectedreqComponent,
+            },
             
         ]
     },
@@ -84,7 +96,6 @@ export const routes: Routes = [
                 path:'',
                 redirectTo:'userhome',
                 pathMatch:'full'
-                // component: UserHomeComponent,
 
             },
             {
@@ -176,8 +187,42 @@ export const routes: Routes = [
 
 
         ]
-  }
-  ,  
+  },  
+
+  {
+    path: 'Guest',
+    component:GuestmainComponent,
+    children:[
+        {
+            path:'',
+            redirectTo:'guest-home',
+            pathMatch:'full'
+
+        },
+        {
+            path: 'guest-home',
+            component: GuestHomeComponent,
+        },
+        {
+            path: 'userregistration',
+             component: UserregistrationComponent,
+              
+          },
+          {
+            path: 'login',
+             component: LoginComponent,
+              
+          },
+          {
+            path: 'volunteerregistration',
+             component: VolunteerregistrationComponent,
+              
+          }
+        
+    ]
+
+},
+
   {
     path: 'userregistration',
      component: UserregistrationComponent,

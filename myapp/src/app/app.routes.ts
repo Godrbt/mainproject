@@ -35,6 +35,9 @@ import { AcceptedreqComponent } from './Volunteer/pages/acceptedreq/acceptedreq.
 import { RejectedreqComponent } from './Volunteer/pages/rejectedreq/rejectedreq.component';
 import { GuestmainComponent } from './Guest/components/guestmain/guestmain.component';
 import { GuestHomeComponent } from './Guest/pages/guest-home/guest-home.component';
+import { ViewFeedbackfromUsersComponent } from './Admin/pages/view-feedbackfrom-users/view-feedbackfrom-users.component';
+import { ViewFeedbackfromvolComponent } from './Admin/pages/view-feedbackfromvol/view-feedbackfromvol.component';
+import { ViewComplaintComponent } from './Admin/pages/view-complaint/view-complaint.component';
 
 
 
@@ -174,6 +177,18 @@ export const routes: Routes = [
             {
                 path: 'info-verification',
                 component:InfoVerificationComponent,
+            },
+             {
+                path: 'view-feedbackfrom-users',
+                component:ViewFeedbackfromUsersComponent,
+            },
+            {
+                path: 'view-feedbackfromvol',
+                component:ViewFeedbackfromvolComponent,
+            },
+            {
+                path: 'view-complaint',
+                component:ViewComplaintComponent,
             },
             
 

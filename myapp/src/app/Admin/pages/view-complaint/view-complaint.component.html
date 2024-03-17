@@ -1,1 +1,35 @@
-<p>view-complaint works!</p>
+<div style="width: 900px;">
+    <table class="table table-hover  w-100 tablecontainer">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Complaint Title</th>
+                <th scope="col">Complaint details</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of allcomdata">
+                <th>{{ item.complaint_date}}</th>
+                <td>{{ item.complaint_title }}</td>
+                <td>{{ item.complaint_details }}</td>
+                <!-- <td><button mat-raised-button (click)="openDialog()" >Pick one</button></td> -->
+
+                
+            </tr>
+           
+        </tbody>
+    </table>
+</div>
+
+
+<!-- <mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input type="time" >
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</mat-dialog-actions> -->

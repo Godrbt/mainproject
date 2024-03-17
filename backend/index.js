@@ -864,14 +864,14 @@ app.post("/login", (req, res) => {
 //apply start //
 
 app.post("/apply", (req, res) => {
-  console.log(req.body);
+  
   const { info_id, user_id } = req.body
 
   let qry =
     "insert into tbl_apply(apply_curdate,info_id,user_id) values(curdate(),'" +
     info_id + "','" +
     user_id + "')";
-  console.log(qry)
+  
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1423,3 +1423,76 @@ app.post("/userfeed", (req, res) => {
   });
 });
 // feed back by user//
+
+//complaint by user //
+
+
+app.post("/userComplaint", (req, res) => {
+  const {complaint_title,complaint_details,user_id} = req.body
+  let qry =
+    "insert into tbl_complaint (complaint_title,complaint_details,user_id,complaint_date) values('" +
+    complaint_title + "','" +
+    complaint_details + "','" +
+    user_id + "',curdate())";
+   
+
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+
+
+app.get("/compliant/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_user a inner join tbl_complaint c ON a.user_id=c.user_id   where  a.user_id =" + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        complaint: result,
+      });
+    }
+  });
+});
+
+app.delete("/complaint/:id", (req, res) => {
+  const Id = req.params.id
+  
+  let qry = "delete from tbl_complaint where complaint_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+
+//complaint by user end //
+
+// compalint view by admin //
+app.get("/allcomplaints", (req, res) => {
+  
+  let qry = "select * from  tbl_complaint ";
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        allcomplaint: result,
+      });
+    }
+  });
+});
+
+// compalint view by admin //

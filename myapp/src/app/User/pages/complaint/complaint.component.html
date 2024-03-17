@@ -1,0 +1,62 @@
+<!-- <div style="font-size: 30px; color: green; margin-right: 30rem;">
+    <h1>SUBMIT YOUR COMPLAINT</h1>
+</div> -->
+
+<br><br><br><br>
+
+<form class="main" [formGroup]="complaintForm" (ngSubmit)="onSubmit()">
+
+
+
+    <div style="display: flex;">
+        <div style="width: 9rem;color: green;">
+            COMPLAINT TITLE
+        </div>
+
+        <div>
+            <input type="text" required formControlName="title">
+        </div>
+    </div>
+
+    <div style="display: flex;">
+        <div style="width: 9rem;color: green;">
+            COMPLAINT DETAILS
+        </div>
+
+        <div>
+            <textarea name="" id="" cols="21" rows="5" formControlName="details"></textarea>
+        </div>
+
+    </div>
+
+
+    <div>
+        <button type="submit" class="btn btn-success"> save </button>
+    </div>
+
+    <div style="width: 900px;">
+        <table class="table table-hover  w-100 tablecontainer">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Complaint Title</th>
+                    <th scope="col">Complaint details</th>
+                    <th scope="col">Reply from admin</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of comdata">
+                    <th>{{ item.complaint_date}}</th>
+                    <td>{{ item.complaint_title }}</td>
+                    <td>{{ item.complaint_details }}</td>
+                    <td>{{ item.complaint_reply }}</td>
+                    <td><a href="javascript:void(0);" (click)="deleteRow(item.complaint_id)">Delete</a> </td> 
+                    
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+
+</form>

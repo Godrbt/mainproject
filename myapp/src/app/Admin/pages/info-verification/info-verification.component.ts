@@ -6,7 +6,7 @@ import axios from 'axios';
 
 interface info {
   info_name: any,
-  info_details: any,
+  // info_details: any,
   info_id: any,
   user_name: any,
   user_details: any,
@@ -14,6 +14,7 @@ interface info {
   apply_curdate: any
   apply_status:any,
   apply_id:any
+  cat_name:any
 }
 
 interface catFetch {

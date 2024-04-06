@@ -9,3 +9,10 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+h4{
+  font-size: 20px;
+  font-weight: bold;
+}
+h3{
+  font-size: 20px;
+}

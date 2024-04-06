@@ -813,7 +813,10 @@ app.post("/login", (req, res) => {
   let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
   let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "'";
   let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "'";
-
+   
+  console.log(selAdmin);
+  console.log(selUser);
+  console.log(selvolunteer);
 
   db.query(selAdmin, (err, result) => {
     if (err) {
@@ -1287,7 +1290,7 @@ app.patch("/clearnotification/:Id", (req, res) => {
 
 app.get("/infoverification", (req, res) => {
   const Id = req.params.id
-  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id ";
+  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id inner join tbl_category c on c.cat_id=i.cat_id ";
   
   db.query(qry, (err, result) => {
     if (err) {
@@ -1302,7 +1305,7 @@ app.get("/infoverification", (req, res) => {
 
 app.get("/infoverificationbyID/:id", (req, res) => {
   const Id = req.params.id
-  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id where cat_id = "+Id;
+  let qry = "select * from tbl_apply a inner join tbl_user u ON a.user_id=u.user_id inner join tbl_informatiion i on i.info_id = a.info_id inner join tbl_category c on c.cat_id=i.cat_id  where c.cat_id = "+Id;
   
   db.query(qry, (err, result) => {
     if (err) {
@@ -1422,6 +1425,23 @@ app.post("/userfeed", (req, res) => {
     }
   });
 });
+
+
+app.get("/userfeeback", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_userfeedback f inner join tbl_user u on f.user_id=u.user_id" ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        allfeed: result,
+      });
+    }
+  });
+});
+
 // feed back by user//
 
 //complaint by user //

@@ -137,3 +137,14 @@ aside .sidebar a:hover{
     font-size: 2rem;
 }
  
+.custom{
+    background-color: rgb(206, 208, 209);
+    width: 200px;
+    margin-left: 30px;
+}
+
+.custom :hover{
+
+    background-color: #b3999b;
+}
+

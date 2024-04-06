@@ -2,7 +2,6 @@
 import { MainComponent } from './Admin/component/main/main.component';
 import { HomeComponent } from './Admin/pages/home/home.component';
 import { DistrictComponent } from './Admin/pages/district/district.component';
-// import { PlaceComponent } from './Admin/pages/place/place.component';
 import { LocationComponent } from './Admin/pages/location/location.component';
 import { CategoryComponent } from './Admin/pages/category/category.component';
 import path from 'node:path';

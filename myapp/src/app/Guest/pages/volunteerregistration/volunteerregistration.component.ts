@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 
 
@@ -41,6 +42,10 @@ interface LocationFetch {
   styleUrl: './volunteerregistration.component.css'
 })
 export class VolunteerregistrationComponent {
+
+  constructor(
+    private route:ActivatedRoute){}
+  
    
   filedata: any 
   fileproof: any

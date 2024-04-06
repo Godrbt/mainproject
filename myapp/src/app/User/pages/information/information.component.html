@@ -1,4 +1,4 @@
-<div class="main">
+<!-- <div class="main">
   <div class="card" *ngFor="let item of infodata">
     <div>{{item.info_photo}}</div>
     <p>{{item.cat_name}}</p>
@@ -11,3 +11,42 @@
     <button (click)="apply(item.info_id)" type="submit" class="btn btn-outline-success">apply</button>
   </div>
 </div>
+ -->
+
+
+
+<br><br>
+<div class="row g-3" style="display: flex;flex-direction: column;flex-wrap: wrap;gap: 20px;">
+
+
+
+  <div class="col-md-12 col-lg-4 col-xl-3 card" *ngFor="let item of infodata" style="background-color: rgb(222, 240, 224);  width: 1400px;height: 600px;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+  ">
+    <div class="rounded position-relative fruite-item" style="display: flex;flex-direction: row;">
+      <div class="fruite-img" style="width: 700px;height: 600px;display: flex;align-items: center;">
+        <img src="{{item.info_photo}}" class="img-fluid w-100 rounded-top" style="width: 500px;height: 520px;" alt="">
+      </div>
+
+      <div class="p-4  border-secondary border-top-0 rounded-bottom" style="width: 700px;height: 590px; display: flex;flex-wrap: wrap;flex-direction: column; justify-content: space-between;">
+        <div>
+
+          <h2 style="margin-top: 20px;color: green;margin-left: 200px;font-size: 40px;font-weight: bold;">{{item.info_name}}</h2>
+          <h4>{{item.cat_name}}</h4>
+          
+          <h3>
+            {{item.info_details}}
+          </h3>
+          
+        </div>
+        <div class="d-flex justify-content-center flex-lg-wrap" >
+
+          <button (click)="apply(item.info_id)" type="submit" class="btn btn-outline-success" style="width: 300px;">apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<br><br><br>

@@ -1,1 +1,9 @@
-<p>view-feedbackfrom-users works!</p>
+<div class="card" style="width: 18rem;" *ngFor="let item of userfeedbackdisplay">
+    <div class="card-body">
+
+        <h5> user name :{{item.user_name}} </h5>
+        <h5> user details :{{item.feedback_details}} </h5>
+       
+       
+    </div>
+</div>

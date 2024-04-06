@@ -13,7 +13,8 @@
                 <th>{{ item.complaint_date}}</th>
                 <td>{{ item.complaint_title }}</td>
                 <td>{{ item.complaint_details }}</td>
-                <!-- <td><button mat-raised-button (click)="openDialog()" >Pick one</button></td> -->
+                <td><a href=""  data-toggle="modal" data-target="#exampleModal"
+                  (click)="complaint(item.complaint_id)">Reply</a></td> 
 
                 
             </tr>
@@ -22,14 +23,23 @@
     </table>
 </div>
 
+<div [formGroup]="replyForm" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <div class="modal-body">
+                <textarea name="" id="" formControlName="reply_Details" style="width: 29rem;"></textarea>
+            </div>
+            <div class="modal-footer">
+             
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="req()">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- <mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input type="time" >
-  </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</mat-dialog-actions> -->
+
+
+
+<!-- (click)="vol(item.volunteer_id)" -->

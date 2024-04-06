@@ -1403,6 +1403,22 @@ app.post("/volfeed", (req, res) => {
   });
 });
 
+app.get("/volfeeback", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_volunteerfeedback v inner join tbl_volunteer x on v.volunteer_id=x.volunteer_id" ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        allvfeed: result,
+      });
+    }
+  });
+});
+
+
 // feed back by volunteer//
 
 // feed back by user//
@@ -1515,4 +1531,21 @@ app.get("/allcomplaints", (req, res) => {
   });
 });
 
+
+app.patch("/complaintreply/:id", (req, res) => {
+  const id = req.params.id;
+  
+  const { complaint_reply } = req.body;
+  let qry = "update tbl_complaint set complaint_reply ='"+complaint_reply+"' where complaint_id =" +id ;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: "Data updated",
+      });
+    }
+  });
+});
 // compalint view by admin //

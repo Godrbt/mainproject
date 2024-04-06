@@ -110,6 +110,7 @@ export class VolunteerbookingComponent {
 
     axios.post('http://localhost:5000/requestForvol/', data).then((response) => {
       alert(response.data.message)
+      window.location.reload();
     })
 
   }

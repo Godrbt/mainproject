@@ -1,23 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import axios from 'axios';
-// import {MatButtonModule} from '@angular/material/button';
-
-// import {
-//   MatDialog
-// } from '@angular/material/dialog';
 
 
 interface allcomplaintFetch{
   complaint_title:any,
   complaint_details:any,
   complaint_date:any
+  complaint_id:any
+}
+
+interface replyinterface{
+  complaint_reply:any
+  complaint_id:any
 }
 
 @Component({
   selector: 'app-view-complaint',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './view-complaint.component.html',
   styleUrl: './view-complaint.component.css'
 })
@@ -25,6 +27,7 @@ export class ViewComplaintComponent {
 
 
   allcomdata:allcomplaintFetch[]=[];
+  comId: any;
 
   ngOnInit() {
 
@@ -41,14 +44,31 @@ export class ViewComplaintComponent {
     })
   }
 
-//   constructor(public dialog: MatDialog) {}
-
-//   openDialog(): void {
-//     this.dialog.open(ViewComplaintComponent);
-// }
 
 
-    
+
+replyForm = new FormGroup(
+  {
+    reply_Details: new FormControl(''),
+  }
+);
+
+req() {
+  const data: replyinterface = {
+    complaint_reply: this.replyForm.value.reply_Details,
+    complaint_id: this.comId,
+  };
+
+  axios.patch(`http://localhost:5000/complaintreply/${this.comId}`, data).then((response) => {
+    alert(response.data.message)
+    window.location.reload();
+  })
+
+}
+complaint(event: any) {
+
+  this.comId = event;
+}
 
 
 }

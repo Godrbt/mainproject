@@ -1,1 +1,9 @@
-<p>view-feedbackfromvol works!</p>
+<div class="card" style="width: 18rem;" *ngFor="let item of volfeedbackdisplay">
+    <div class="card-body">
+
+        <h5> volunteer name :{{item.volunteer_name}} </h5>
+        <h5> volunteer details :{{item.vfeedback_details}} </h5>
+       
+       
+    </div>
+</div>

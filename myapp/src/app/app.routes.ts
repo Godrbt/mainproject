@@ -17,7 +17,7 @@ import { InformationaddingComponent } from './Admin/pages/informationadding/info
 import { LoginComponent } from './Guest/pages/login/login.component';
 import { VolunteermainComponent } from './Volunteer/components/volunteermain/volunteermain.component';
 import { VolunteerhomeComponent } from './Volunteer/pages/volunteerhome/volunteerhome.component';
-import { ApplypageComponent } from './User/pages/applypage/applypage.component';
+
 import { UserrequestsComponent } from './Volunteer/pages/userrequests/userrequests.component';
 import { VolunteerprofileComponent } from './Volunteer/pages/volunteerprofile/volunteerprofile.component';
 import { VoleditprofileComponent } from './Volunteer/pages/voleditprofile/voleditprofile.component';
@@ -122,10 +122,7 @@ export const routes: Routes = [
                 path: 'volunteerbooking',
                 component: VolunteerbookingComponent,
             },
-             {
-                path: 'applypage',
-                component: ApplypageComponent,
-            },
+           
             {
                 path: 'feedback',
                 component: FeedbackComponent,

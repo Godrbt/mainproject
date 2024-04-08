@@ -13,13 +13,13 @@ interface loginInterface {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  
+
 
   constructor(private router: Router) { }
 
@@ -30,8 +30,13 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     }
   );
+
   var: any = ''
   onSubmit() {
+    if (this.loginForm.value.email === '' ) {
+      alert('email Requerd')
+      return
+    }
 
 
     const logindata: loginInterface = {
@@ -60,7 +65,7 @@ export class LoginComponent {
 
       }
       else
-      console.log(message);
+        console.log(message);
       console.log(id);
       console.log(login);
 

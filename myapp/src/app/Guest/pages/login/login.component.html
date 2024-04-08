@@ -1,20 +1,18 @@
 
-<div [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form1">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form1">
 <div class="container">
-	<form>
 		<div class="form-group">
 			<input type="email" name="email" placeholder="Email" required formControlName="email" >
 		</div>
 		<div class="form-group">
-			<input type="password" name="password" placeholder="Password" required formControlName="password">
+			<input type="password" name="password" placeholder="Password" required  formControlName="password">
 		</div>
 		<div class="form-group">
 			<button type="submit">Submit</button>
 		</div>
-	</form>
 	<div class="action-buttons">
 		<a href="#" [routerLink]="['/Guest/volunteerregistration']" class="register-button">Register as Volunteer</a>
 		<a href="#" [routerLink]="['/Guest/userregistration']" class="register-button">Register as User</a>
 	</div>
 </div>
-</div> 
+</form> 

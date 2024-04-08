@@ -1,11 +1,11 @@
 .main-container{
     display: grid;
     height: 100vh;
-    grid-template-areas: 'area1 area1 area1 area1 area1 '
-                         'area2 area2 area2 area2 area2 '
-                         'area2 area2 area2 area2 area2 '
-                         'area2 area2 area2 area2 area2 '
-                         'area3 area3 area3 area3 area3 '
+    grid-template-areas: 'area1 area1 area1 area1 area1 area1'
+                         'area2 area2 area2 area2 area2 area2'
+                         'area2 area2 area2 area2 area2 area2'
+                         'area2 area2 area2 area2 area2 area2'
+                         'area3 area3 area3 area3 area3 area3 '
                             ;
 }
 
@@ -19,17 +19,15 @@
 .footer-box{
     grid-area: area3;
     height: 0;
+    z-index:1;
 }
 .content{
     grid-area: area2;
     height: auto;
     display: flex;
-    justify-content: center;
-    padding-top: 10%;
     background-color: rgb(247, 242, 239);
-    margin-left: -28px;
-    margin-top: -96px;
-    
+    justify-content: center;
+   
     
     
 }

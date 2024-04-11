@@ -8,6 +8,16 @@ interface userfeedback{
   user_id:any
 }
 
+interface ufeeddis {
+  
+  feedback_id:any
+  feedback_details:any
+  ufeedback_date:any
+
+}
+
+
+
 @Component({
   selector: 'app-feedback',
   standalone: true,
@@ -17,6 +27,7 @@ interface userfeedback{
 })
 export class FeedbackComponent {
   uid:any
+  userfeedbackdisplay: ufeeddis[] = [];
 
   userfeedform = new FormGroup(
     {
@@ -36,6 +47,44 @@ export class FeedbackComponent {
     axios.post(`http://localhost:5000/userfeed/`, userdata).then((response) => {
       alert(response.data.message)
       this.userfeedform.reset();
+      this.Userfeeddetails();
+
+    })
+  }
+
+  deleteRow(index: number): void {
+
+    
+    axios.delete(`http://localhost:5000/deletefeed/${index}`).then((response) => {
+      alert(response.data.message)
+     
+      this.Userfeeddetails();
+
+
+    })
+
+  }
+
+
+
+  ngOnInit() {
+    this.Userfeeddetails();
+
+  }
+  Userfeeddetails() {
+
+    if (typeof sessionStorage !== 'undefined') {
+
+      this.uid = sessionStorage.getItem('uid');// Access sessionStorage here
+      
+  }
+
+
+
+    axios.get(`http://localhost:5000/userfeeback1/${this.uid}`).then((response) => {
+
+      this.userfeedbackdisplay = response.data.allfeed;
+
 
     })
   }

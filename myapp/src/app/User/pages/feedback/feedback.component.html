@@ -1,10 +1,43 @@
-<form [formGroup]="userfeedform" (ngSubmit)="onSubmit()" class="dis">
-    <div class="input-group">
-        <span class="input-group-text" style="width: 150px;">FeedBack</span>
-        <textarea class="form-control" formControlName="userfeedback" aria-label="With textarea"></textarea>
-    </div>
+<div style="height: 5rem;"></div>
+<div></div>
 
-    <div class="child3">
-        <button type="submit" class="btn btn-outline-success">Save</button>
+<div class="card shadow " style="width: 30rem;margin-left: 8rem;">
+    <div class="card-body " style="padding: 10px; display: flex;justify-content: center;">
+        <form [formGroup]="userfeedform" (ngSubmit)="onSubmit()" class="dis" style="height: 10rem;">
+            <div class="input-group mb-3">
+                <span class="input-group-text" style="width: 150px;">Feedback</span>
+                <textarea class="form-control" formControlName="userfeedback" aria-label="With textarea"></textarea>
+            </div>
+
+            <div class="child3" style="display: flex;height: 6rem; justify-content: center;align-items: center;">
+                <button type="submit" style="width: 8rem;" class="btn btn-success">Save</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
+<br><br><br><br>
+
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-10">
+        <div class="table-responsive" >
+            <table class="table table-hover table-bordered justify-content-center" style="width: 50rem;">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Feedback Sended</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of userfeedbackdisplay">
+                        <td>{{ item.ufeedback_date}}</td>
+                        <td>{{ item.feedback_details}}</td>
+                        <td><a href="javascript:void(0);" class="btn btn-danger" (click)="deleteRow(item.feedback_id)">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

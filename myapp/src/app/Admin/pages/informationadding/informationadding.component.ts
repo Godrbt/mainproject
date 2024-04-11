@@ -8,6 +8,7 @@ interface infoInterface {
   info_photo: any,
   info_details: any,
   cat_id:any
+  info_validity:any
 }
 interface categoryFetch {
   cat_name: any,
@@ -36,6 +37,7 @@ export class InformationaddingComponent {
       info_photo: new FormControl(''),
       info_details: new FormControl(''),
       cat_id: new FormControl(''),
+      info_validity: new FormControl(''),
 
     }
   );
@@ -53,7 +55,9 @@ export class InformationaddingComponent {
       info_name: this.infoaddingForm.value.info_name,
       info_photo: this.filedata,
       info_details: this.infoaddingForm.value.info_details,
-      cat_id: this.infoaddingForm.value.cat_id
+      cat_id: this.infoaddingForm.value.cat_id,
+      info_validity: this.infoaddingForm.value.info_validity
+
 
 
     };
@@ -64,14 +68,13 @@ export class InformationaddingComponent {
     formData.append('info_photo', infodata.info_photo);
     formData.append('info_details', infodata.info_details);
     formData.append('cat_id', infodata.cat_id);
+    formData.append('info_validity', infodata.info_validity);
 
 
 
 
     axios.post('http://localhost:5000/informationadding/', formData).then((response) => {
-      // console.log(response.data);
       alert(response.data.message);
-      //  this.districtFetch();
       this.infoaddingForm.reset();
     })
 
@@ -84,11 +87,8 @@ export class InformationaddingComponent {
 
   fetchCategory() {
     axios.get('http://localhost:5000/category/').then((response) => {
-      // console.log(response.data.category)
       this.data = response.data.category
       
-
-
     })
 
   }

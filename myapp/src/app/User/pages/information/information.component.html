@@ -15,7 +15,7 @@
 
 
 
-<br><br>
+<div style="height: 8rem;"></div>
 <div class="row g-3" style="display: flex;flex-direction: column;flex-wrap: wrap;gap: 20px;">
 
 
@@ -31,7 +31,9 @@
         <div>
 
           <h2 style="margin-top: 20px;color: green;margin-left: 200px;font-size: 40px;font-weight: bold;">{{item.info_name}}</h2>
-          <h4>{{item.cat_name}}</h4>
+          <h4>Category : {{item.cat_name}}</h4>
+          <h4>Date : {{item.infoadded_date}}</h4>
+          <h4 *ngIf="item.info_validity !='' " >Validity Date : {{item.info_validity}}</h4>
           
           <h3>
             {{item.info_details}}

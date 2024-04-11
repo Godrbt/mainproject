@@ -1,8 +1,7 @@
 <br><br>
-<!-- <div style="width: 80rem;height: 5rem; font-size: 30px;display: flex;justify-content: center;color: rgb(45, 175, 69);">
-    SELECT VOLUNTEERS</div> -->
-<div style="position: fixed;width: 100%;margin-left: -1rem;">
-    <img src="../../../.././assets/mainvolimg.jpg" style=" width: 100rem;
+
+<div style="position: fixed;width: 100%;margin-left: -7rem;">
+    <img src="../../../.././assets/mainvolimg.jpg" style=" width: 110rem;
         height: 125vh;margin-top: -45px;" alt="">
     <div class="dark-overlay"></div>
 
@@ -17,7 +16,7 @@
         </div>
 
     </div>
-jj
+
     <div class="card-body ">
         <div class="input-group card1">
             <div class="label">District</div>
@@ -41,7 +40,7 @@ jj
 <br><br>
 
 
-<div class="row" style="display: flex;flex-wrap: wrap; padding: 10px; gap: 20px;">
+<div class="row" style="display: flex;flex-wrap: wrap; padding: 10px; gap: 20px;justify-content: center;">
     <div class="card" *ngFor="let item of voldata">
         <div class="image">
             <img src="{{item.volunteer_photo}}" class="image">
@@ -52,8 +51,9 @@ jj
             <span class="price">Address : {{item.volunteer_address}} </span>
         </div>
         <div style="height: 40px; width: 100%;">
-            <button type="button" class="btn btn-primary w-100 " data-toggle="modal" data-target="#exampleModal"
+            <button type="button" class="btn btn-primary w-100 "  data-toggle="modal" data-target="#exampleModal"
                 (click)="vol(item.volunteer_id)">
+             
                 Request
             </button>
         </div>
@@ -67,11 +67,11 @@ jj
 <div [formGroup]="reqForm" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content">s
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Enter request details</h5>
 
-                <input type="text" aria-label="First name" formControlName="req_date" class="form-control w-90" hidden>
+                <!-- <input type="text" aria-label="First name" formControlName="req_date" class="form-control w-90" hidden> -->
 
             </div>
             <div class="modal-body">

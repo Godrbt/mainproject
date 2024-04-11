@@ -26,17 +26,17 @@ export class LoginComponent {
 
   loginForm = new FormGroup(
     {
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      email: new FormControl(''),
+      password: new FormControl('')
     }
   );
 
   var: any = ''
   onSubmit() {
-    if (this.loginForm.value.email === '' ) {
-      alert('email Requerd')
-      return
-    }
+    // if (this.loginForm.value.email === '' ) {
+    //   alert('email Requerd')
+    //   return
+    // }
 
 
     const logindata: loginInterface = {

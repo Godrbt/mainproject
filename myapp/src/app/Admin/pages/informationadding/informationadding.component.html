@@ -1,3 +1,5 @@
+
+
 <form [formGroup]="infoaddingForm" (ngSubmit)="onSubmit()" action="" enctype="multipart/form-data" >
     <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; ">
 
@@ -8,7 +10,7 @@
 
             <div class="input-group mb-3">
                           
-                <span class="input-group-text" style="width: 150px;">Category &nbsp;</span>
+                <span class="input-group-text" style="width: 180px;">Category &nbsp;</span>
                 <select class="form-select" id="inputGroupSelect01" formControlName="cat_id" >
                     <option value="" selected disabled >Select</option>
                     <option [value]="item.cat_id" *ngFor="let item of data">{{ item.cat_name }}</option>
@@ -16,14 +18,24 @@
             </div> 
 
             <div class="input-group">
-                <span class="input-group-text" style="width: 150px;">Information Name</span>
+                <span class="input-group-text" style="width: 180px;">Information Name</span>
                 <input type="text" aria-label="First name" class="form-control" formControlName="info_name" placeholder="Information Name">
 
             </div>
               
             <div class="input-group">
-                <span class="input-group-text" style="width: 150px;">Information Photo</span>
+                <span class="input-group-text" style="width: 180px;">Information Photo</span>
                 <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" (change)="handleFile($event)"  placeholder="upload photo">
+
+            </div>
+            <div class="input-group">
+                
+                <input type="button" value="show" onclick="document.getElementById('showV').style.display='flex'"/>
+
+            </div>
+            <div class="input-group"id="showV" style="display: none;">
+                <span class="input-group-text" style="width: 180px;">Information Validity</span>
+                <input type="date" aria-label="First name" class="form-control " formControlName="info_validity" >
 
             </div>
 

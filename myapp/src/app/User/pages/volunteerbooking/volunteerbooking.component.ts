@@ -27,7 +27,7 @@ interface LocationFetch {
 interface reqinterface {
   req_Details: any,
   user_id: any,
-  req_date: any,
+  // req_date: any,
   volunteer_id: any
 }
 
@@ -44,6 +44,7 @@ export class VolunteerbookingComponent {
   locdata: LocationFetch[] = [];
   voldata: volfetch[] = []
   volId: any
+  uid: any;
 
 
 
@@ -68,6 +69,8 @@ export class VolunteerbookingComponent {
    
     })
   }
+
+
 
 
   districtFetch() {
@@ -96,22 +99,43 @@ export class VolunteerbookingComponent {
   reqForm = new FormGroup(
     {
       req_Details: new FormControl(''),
-      req_date: new FormControl(''),
+      // req_date: new FormControl(''),
     }
   );
 
   req() {
     const data: reqinterface = {
       req_Details: this.reqForm.value.req_Details,
-      req_date: this.reqForm.value.req_date,
+      // req_date: this.reqForm.value.req_date,
       volunteer_id: this.volId,
       user_id: sessionStorage.getItem("uid")
     };
+
+    if (typeof sessionStorage !== 'undefined') {
+
+      this.uid = sessionStorage.getItem('uid');// Access sessionStorage here
+      
+  }
+
+    axios.get(`http://localhost:5000/volfetchbyuser/${this.volId}/${this.uid}`).then((response) => {
+     console.log(response.data.check);
+     
+   if(response.data.check){
 
     axios.post('http://localhost:5000/requestForvol/', data).then((response) => {
       alert(response.data.message)
       window.location.reload();
     })
+
+   }
+   else
+   {
+    alert("wait till volunteer accepting or rejecting your request before sending another")
+   }
+
+  })
+
+   
 
   }
 

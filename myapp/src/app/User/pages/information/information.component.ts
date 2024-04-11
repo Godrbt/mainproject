@@ -9,6 +9,8 @@ interface infoFetch{
   info_details: any,
   cat_name:any,
   info_id:any
+  infoadded_date:any
+  info_validity:any
 }
 
 interface applyInterface{
@@ -45,9 +47,23 @@ export class InformationComponent {
     info_id: info_id,
     user_id:sessionStorage.getItem("uid")
   };
+  
+  axios.get(`http://localhost:5000/informationaddingconfirm/${sessionStorage.getItem("uid")}/${info_id}` ).then((response) => {
+  if(response.data.check)   {
+    axios.post('http://localhost:5000/apply/', data).then((response) => {
+      alert(response.data.message)
+    })
 
-  axios.post('http://localhost:5000/apply/', data).then((response) => {
-    alert(response.data.message)
-  })
+  }
+  else
+  {
+    alert("already applied")
+  }
+  
+  
+   })
+
+
+ 
 }
 }

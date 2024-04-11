@@ -1,21 +1,13 @@
 <div class="main">
   <div class="card">
     <div class="img">
-      <img src="{{ userdata?.user_photo}}" alt="" style="height: 10rem;width: 10rem;">
+      <img src="{{ userdata?.user_photo}}" alt="User Photo">
     </div>
-
-
-    <div class="details" style="display: flex;flex-direction: column; align-items: center;justify-content: center;margin-top: 8rem;">
-
-      <h2>Name : {{userdata?.user_name}}</h2>
-      <h2>Email : {{userdata?.user_email}}</h2>
-      <h2>Contact: {{userdata?.user_contact}}</h2>
-      <div style="display:flex;flex-direction: row;font-size: medium;font-style: italic;
-      font-weight: 700;
-      color: rgb(42, 55, 122);">
-        Address:{{userdata?.user_address}}
-      </div>
-      
-
+    <div class="details">
+      <h2 class="name">Name: {{userdata?.user_name}}</h2>
+      <p>Email: {{userdata?.user_email}}</p>
+      <p>Contact: {{userdata?.user_contact}}</p>
+      <p class="address">Address: {{userdata?.user_address}}</p>
+    </div>
   </div>
 </div>

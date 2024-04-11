@@ -12,12 +12,12 @@ body {
 }
 .profile-photo{
     display: flex;
-    width: 50px;
+    width: 77rem;
     height:50px;
-    /* border-radius: 50%; */
+    border-radius: 50%;
     /* overflow: hidden; */
-    margin-left: 165vh;
-
+    /* margin-left: 165vh; */
+   justify-content: end;
  } 
 
 .navbar {

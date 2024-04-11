@@ -53,6 +53,7 @@ export class ComplaintComponent {
     axios.post(`http://localhost:5000/userComplaint/`, complaintdata).then((response) => {
       alert(response.data.message)
       this.complaintForm.reset();
+      this.complaintFetch();
 
     })
     this.complaintFetch();

@@ -1,44 +1,52 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()"
     style="display: flex;align-items: center;justify-content: center;margin-top: 30px; ">
 
-    <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px; ">
+    <div class="card" style="width: 60rem;height: auto;box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px; ">
 
         <div class="card-body" style="display:flex;gap: 10px;flex-direction: column ;">
-            <div class="head" style="margin-left: 60px;">
+            <div class="head" style="display: flex;justify-content: center;color: green;">
                 <p class="h3">USER REGISTRATION</p>
             </div>
+            <div style="display: flex;">
+                <div class="input-group">
+                    <span class="input-group-text">User Name</span>
+                    <input type="text" formControlName="user_name" aria-label="First name" class="form-control  "
+                        placeholder="User Name">
 
-            <div class="input-group">
-                <span class="input-group-text">User Name</span>
-                <input type="text" formControlName="user_name" aria-label="First name" class="form-control  "
-                    placeholder="Hospital Name">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text" style="width: 131px;">Contact </span>
+                    <input type="text" formControlName="user_contact" aria-label="First name" class="form-control  "
+                        placeholder="Contact">
 
+                </div>
             </div>
             <div class="input-group">
-                <span class="input-group-text" style="width: 131px;">Contact </span>
-                <input type="text" formControlName="user_contact" aria-label="First name" class="form-control  "
-                    placeholder="Contact">
-
+                <span class="input-group-text" style="width: 131px;">Address</span>
+                <textarea class="form-control" formControlName="user_address" aria-label="With textarea"></textarea>
             </div>
             <div class="input-group ">
                 <input type="email" formControlName="user_email" class="form-control" placeholder="Email" id="demo"
                     name="email">
                 <div class="input-group-append">
-                    <span class="input-group-text">e-mail</span>
+                    <span class="input-group-text">E-Mail</span>
                 </div>
             </div>
-            <div class="input-group">
-                <span class="input-group-text">photo</span>
-                <input type="file" formControlName="user_photo" (change)="handleFile($event, 'user_photo')" aria-label="First name"
-                    class="form-control  ">
+            <div style="display: flex;">
+                <div class="input-group">
+                    <span class="input-group-text">Photo</span>
+                    <input type="file" formControlName="user_photo" (change)="handleFile($event, 'user_photo')"
+                        aria-label="First name" class="form-control  ">
 
-            </div>
-            <div class="input-group">
-                <span class="input-group-text">proof</span>
-                <input type="file" formControlName="user_proof" (change)="handleFile($event, 'user_proof')" aria-label="First name"
-                    class="form-control  ">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Proof</span>
+                    <input type="file" formControlName="user_proof" (change)="handleFile($event, 'user_proof')"
+                        aria-label="First name" class="form-control  ">
 
+                </div>
             </div>
+           
             <div class="input-group">
                 <span class="input-group-text">
                     Gender
@@ -61,27 +69,28 @@
                 </div>
             </div>
 
+            <div style="display: flex;">
+
+                <div class="input-group ">
+
+                    <span class="input-group-text" style="width: 131px;">District </span>
+                    <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
+                        (change)="locFetch($event)">
+                        <option selected>..district..</option>
+                        <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
+
+                    </select>
+                </div>
+                <div class="input-group ">
+
+                    <span class="input-group-text" style="width: 131px;">Location </span>
+                    <select class="form-select" formControlName="loc_id" id="inputGroupSelect01">
+                        <option selected>..location..</option>
+                        <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
 
 
-            <div class="input-group ">
-
-                <span class="input-group-text" style="width: 131px;">District </span>
-                <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
-                    (change)="locFetch($event)">
-                    <option selected>..district..</option>
-                    <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
-
-                </select>
-            </div>
-            <div class="input-group ">
-
-                <span class="input-group-text" style="width: 131px;">Location </span>
-                <select class="form-select" formControlName="loc_id" id="inputGroupSelect01">
-                    <option selected>..location..</option>
-                    <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
-
-
-                </select>
+                    </select>
+                </div>
             </div>
             <div class="input-group">
                 <span class="input-group-text" style="width: 131px;">Password</span>
@@ -90,18 +99,10 @@
 
             </div>
 
-            <div class="input-group">
-                <span class="input-group-text" style="width: 131px;">address</span>
-                <textarea class="form-control" formControlName="user_address" aria-label="With textarea"></textarea>
-            </div>
-            <!-- 
-            <div class="input-group">
-                <span class="input-group-text">proof</span>
-                <input type="file" aria-label="First name" class="form-control  ">
 
-            </div> -->
-            <div class="child3" style="margin-left: 12rem;">
-                <button type="submit" class="btn btn-outline-success">Save</button>
+
+            <div class="child3" style="display: flex;justify-content: center;" >
+                <button type="submit" class="btn btn-outline-success" style="width: 20rem;">Save</button>
             </div>
 
         </div>

@@ -15,6 +15,13 @@ interface categoryFetch {
   cat_id: any
 }
 
+interface infoFetch{
+  info_name: any,
+  cat_name:any,
+  infoadded_date:any,
+  info_id:any,
+  info_validity:any
+}
 
 
 @Component({
@@ -28,6 +35,7 @@ export class InformationaddingComponent {
    
   data: categoryFetch[] = [];
   filedata: any
+  infodata: infoFetch[] = [];
   
 
 
@@ -76,6 +84,7 @@ export class InformationaddingComponent {
     axios.post('http://localhost:5000/informationadding/', formData).then((response) => {
       alert(response.data.message);
       this.infoaddingForm.reset();
+      this.infoFetchbyadmin();
     })
 
 
@@ -83,6 +92,7 @@ export class InformationaddingComponent {
   }
   ngOnInit() {
     this.fetchCategory();
+    this.infoFetchbyadmin();
   }
 
   fetchCategory() {
@@ -94,6 +104,25 @@ export class InformationaddingComponent {
   }
 
 
+  
+  deleteRow(index: number): void {
+
+    // Remove the item at the specified index from the 'data' array
+    axios.delete(`http://localhost:5000/infoadmin/${index}`).then((response) => {
+      alert(response.data.message)
+     
+      this.infoFetchbyadmin()
+
+
+    })
+
+  }
+
+  infoFetchbyadmin(){
+    axios.get(`http://localhost:5000/informationadding2` ).then((response) => {
+     this.infodata = response.data.info
+   })
+ }
 
 
 

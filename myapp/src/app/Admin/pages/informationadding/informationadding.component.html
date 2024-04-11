@@ -1,7 +1,6 @@
-
-
 <form [formGroup]="infoaddingForm" (ngSubmit)="onSubmit()" action="" enctype="multipart/form-data" >
-    <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; ">
+    <div style="display: flex;justify-content: center;width: 70rem;">
+    <div class="card" style="width: 30rem;height: auto;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;display: flex;justify-content: center; ">
 
         <div class="card-body" style="display:flex;gap: 10px;flex-direction: column ;">
             <div class="head" style="margin-left: 40px;">
@@ -9,44 +8,82 @@
             </div>
 
             <div class="input-group mb-3">
-                          
+
                 <span class="input-group-text" style="width: 180px;">Category &nbsp;</span>
-                <select class="form-select" id="inputGroupSelect01" formControlName="cat_id" >
-                    <option value="" selected disabled >Select</option>
+                <select class="form-select" id="inputGroupSelect01" formControlName="cat_id">
+                    <option value="" selected disabled>Select</option>
                     <option [value]="item.cat_id" *ngFor="let item of data">{{ item.cat_name }}</option>
-                 </select>
-            </div> 
+                </select>
+            </div>
 
             <div class="input-group">
                 <span class="input-group-text" style="width: 180px;">Information Name</span>
-                <input type="text" aria-label="First name" class="form-control" formControlName="info_name" placeholder="Information Name">
+                <input type="text" aria-label="First name" class="form-control" formControlName="info_name"
+                    placeholder="Information Name">
 
             </div>
-              
+
             <div class="input-group">
                 <span class="input-group-text" style="width: 180px;">Information Photo</span>
-                <input type="file" aria-label="First name" class="form-control " formControlName="info_photo" (change)="handleFile($event)"  placeholder="upload photo">
+                <input type="file" aria-label="First name" class="form-control " formControlName="info_photo"
+                    (change)="handleFile($event)" placeholder="upload photo">
 
             </div>
             <div class="input-group">
-                
-                <input type="button" value="show" onclick="document.getElementById('showV').style.display='flex'"/>
-
-            </div>
-            <div class="input-group"id="showV" style="display: none;">
-                <span class="input-group-text" style="width: 180px;">Information Validity</span>
-                <input type="date" aria-label="First name" class="form-control " formControlName="info_validity" >
-
-            </div>
-
-            <div class="input-group">
-                <span class="input-group-text" style="width: 150px;">Information Details</span>
+                <span class="input-group-text" style="width: 180px;">Information Details</span>
                 <textarea class="form-control" formControlName="info_details" aria-label="With textarea"></textarea>
             </div>
-            <div class="child3" style="margin-left: 12rem;">
+            <div class="input-group">
+
+                <input type="button" value="Click to add Validity if needed"
+                    style="width: 100%;color: white; background-color: rgb(65, 123, 65);border: 0;"
+                    onclick="document.getElementById('showV').style.display='flex'" />
+
+            </div>
+            <div class="input-group" id="showV" style="display: none;">
+                <span class="input-group-text" style="width: 180px;">Information Validity</span>
+                <input type="date" aria-label="First name" class="form-control " formControlName="info_validity">
+
+            </div>
+
+
+            <!-- <div class="child3" style="margin-left: 12rem;">
                 <button type="submit" class="btn btn-outline-success">Save</button>
+            </div> -->
+            <div class="child3" style="display: flex;justify-content: center;">
+                <button type="submit" class="btn btn-outline-success" style="width: 15rem;">Save</button>
             </div>
 
         </div>
     </div>
+</div>
 </form>
+
+<br><br><br>
+<div style="display: flex;justify-content: center;width: 70rem;">
+<div class="table-responsive" style="width: 50rem;">
+    <table class="table table-hover table-bordered justify-content-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Information Title</th>
+                <th scope="col">Information Category</th>
+                <th scope="col">Information Date</th>
+                <th scope="col">Information Validity</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of infodata;let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ item.info_name}}</td>
+                        <td>{{ item.cat_name}}</td>
+                        <td>{{ item.infoadded_date }}</td>
+                        <td>{{ item.info_validity}}</td>
+                        <td><a href="javascript:void(0);" class="btn btn-danger" (click)="deleteRow(item.info_id)">Delete</a></td>
+                    </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>

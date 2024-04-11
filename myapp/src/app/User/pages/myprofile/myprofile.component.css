@@ -1,17 +1,56 @@
-h2{
-  font-size: medium;
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 40rem; /* Adjust card width as needed */
+}
+
+.img {
+  margin-bottom: 20px;
+}
+
+.img img {
+  height: 25rem; /* 8:10 ratio compared to the card */
+  width: 36rem; /* Adjust as needed */
+  border-radius: 8px; /* Square shape */
+  object-fit: fill;
+  transition: transform 0.3s ease;
+}
+
+.img:hover img {
+  transform: scale(1.1);
+}
+
+.details {
+  text-align: center;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold; /* Bold font */
+  color: #333; /* Name color */
+  margin-bottom: 10px;
+}
+
+.details p {
+  font-size: 18px;
+  font-weight: bold; /* Bold font */
+  color: #333; /* Text color */
+}
+
+.address {
   font-style: italic;
   font-weight: 700;
-  color: rgb(42, 55, 122);
+  color: #333;
 }
-
-
-.card{
-  width: 55rem;
-  height: 35rem;
-  background-color: rgb(247, 242, 239);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-

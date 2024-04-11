@@ -432,7 +432,35 @@ app.get("/informationadding/", (req, res) => {
   });
 });
 
+app.get("/informationadding2/", (req, res) => {
 
+  let qry = "SELECT * FROM tbl_informatiion i INNER JOIN tbl_category c ON i.cat_id = c.cat_id  ORDER BY i.infoadded_date DESC";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        info: result,
+      });
+    }
+  });
+});
+
+app.delete("/infoadmin/:id", (req, res) => {
+  const Id = req.params.id
+
+  let qry = "delete from tbl_informatiion where info_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
 
 
 

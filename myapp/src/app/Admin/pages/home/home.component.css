@@ -2,3 +2,48 @@
     width: 900px;
     height: auto;
 } */
+
+.child1{
+    display: flex !important;
+    flex-wrap: nowrap;
+    width: 70rem;
+    /* gap: 20px; */
+    height: 30vh;
+    justify-content: space-between;
+
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    height: 200vh;
+}
+
+.child2{
+
+    display: flex !important;
+    flex-wrap: nowrap;
+    width: 70rem;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: 60vh;
+    justify-content: space-between;
+    z-index: 1000;
+    gap: 20px;
+
+
+
+}
+h3{
+    font-size: 20px;
+    font-weight: 500;
+   
+}
+
+/* .details{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 10rem ;
+
+} */

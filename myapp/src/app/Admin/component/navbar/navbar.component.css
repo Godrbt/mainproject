@@ -28,7 +28,9 @@ body {
     background-color: rgb(251, 249, 249);
     color: #151212;
     width: 85vw;
+    margin-left: 26px;
     height: 80px;
+    z-index: 1000;
     /* margin-left: 30vh; */
 }
 

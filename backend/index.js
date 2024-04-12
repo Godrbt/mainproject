@@ -962,7 +962,7 @@ app.get("/applyfetch/", (req, res) => {
 
 app.get("/Userdetails/", (req, res) => {
 
-  let qry = "SELECT * FROM tbl_apply INNER JOIN tbl_informatiion ON tbl_apply.info_id = tbl_informatiion.info_id INNER JOIN tbl_user on tbl_apply.user_id = tbl_user.user_id ";
+  let qry = "SELECT * FROM tbl_user";
   console.log(qry);
   db.query(qry, (err, result) => {
     if (err) {
@@ -974,6 +974,53 @@ app.get("/Userdetails/", (req, res) => {
     }
   });
 });
+
+app.get("/voldetailsfetch/", (req, res) => {
+
+  let qry = "SELECT * FROM tbl_volunteer ";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        voldetails: result,
+      });
+    }
+  });
+});
+
+app.get("/usercount", (req, res) => {
+
+  let qry = " SELECT COUNT(*) AS userCount FROM tbl_user";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        count: result,
+      });
+    }
+  });
+});
+
+app.get("/volcount", (req, res) => {
+
+  let qry = " SELECT COUNT(*) AS volCount FROM tbl_volunteer";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        count: result,
+      });
+    }
+  });
+});
+
+
 
 
 // admin dashboard end//

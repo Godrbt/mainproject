@@ -6,13 +6,12 @@ import { info } from 'console';
 
 
 interface detailsFetch {
-
   user_name: any,
   user_contact: any,
-  apply_curdate: any,
-  info_name: any,
-  info_details: any
-
+}
+interface voldetailsFetch {
+  volunteer_name: any,
+  volunteer_contact: any,
 }
 
 
@@ -25,11 +24,19 @@ interface detailsFetch {
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  
+  
 
   details: detailsFetch[] = [];
+  voldetails: voldetailsFetch[] = [];
+  userCount: number | undefined;
+  volCount: number | undefined;
 
   ngOnInit() {
     this.Userdetails();
+    this.Usercount();
+    this.Volcount();
+    this.Voldetails();
 
   }
   Userdetails() {
@@ -42,6 +49,38 @@ export class HomeComponent {
 
 
     })
+  }
+
+  Voldetails() {
+
+
+
+    axios.get(`http://localhost:5000/voldetailsfetch`).then((response) => {
+
+      this.voldetails = response.data.voldetails;
+
+
+    })
+  }
+
+  Usercount(){
+
+    axios.get(`http://localhost:5000/usercount`).then((response) => {
+
+    this.userCount = response?.data?.count?.[0]?.userCount
+
+    })
+
+  }
+
+ Volcount(){
+
+    axios.get(`http://localhost:5000/volcount`).then((response) => {
+
+    this.volCount = response?.data?.count?.[0]?.volCount
+    
+    })
+
   }
 
 

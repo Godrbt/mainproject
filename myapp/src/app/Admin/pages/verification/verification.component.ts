@@ -10,7 +10,8 @@ interface verificationFetch {
   volunteer_name: any,
   volunteer_email: any,
   volunteer_id: any,
-  volreq_status: any
+  volreq_status: any,
+  volunteer_details:any
 }
 interface districtFetch {
   district_name: any,

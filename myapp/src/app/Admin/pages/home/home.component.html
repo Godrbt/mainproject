@@ -1,46 +1,30 @@
 <div class="main">
-
     <div class="child1">
         <div class="card "
             style="display: flex;width: 28rem;height: 8rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-
             <div style="display: flex;flex-direction: row;justify-content: center;height:8rem ; align-items: center;">
                 <img style="border-radius: 50%;height: 6rem;" src="../../../../assets/logouser.png" alt="">
                 <h2 style="font-size: medium;font-weight: bold"> TOTAL NUMBER OF USERS </h2>
-
                 <h2> : {{userCount}} </h2>
             </div>
-
         </div>
-
-
-
-
         <div class="card "
             style="display: flex;width: 28rem;height: 8rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-
-
             <div style="display: flex;flex-direction: row;justify-content: center;height:8rem ; align-items: center;">
                 <img style="border-radius: 50%;height: 6rem;" src="../../../../assets/vol.png" alt="">
                 <h2 style="font-size: medium; font-weight: bold;">TOTAL NUMBER OF VOLUNTEERS </h2>
-
                 <h2> : {{volCount}} </h2>
             </div>
-
         </div>
     </div>
 
     <div class="child2">
-
          <div class="card "
             style="display: flex;width: 31rem;height: 20rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;padding: 10px;">
 
             <div
                 style="display: flex;flex-direction: column;justify-content: center;height:6rem ; align-items: center;">
-
                 <h2 style="font-size: medium;font-weight: bold ;text-decoration:underline ;">USER DETAILS</h2>
-
-
             </div>
             <div style="height: 13rem; overflow-y: auto;">
                 <div *ngFor="let item of details;let i = index" class="details"
@@ -55,20 +39,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
         <div class="card "
             style="display: flex;width: 31rem;height: 20rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;padding: 10px;">
 
             <div
                 style="display: flex;flex-direction: column;justify-content: center;height:6rem ; align-items: center;">
-
                 <h2 style="font-size: medium;font-weight: bold ;text-decoration:underline ;">VOLUNTEER DETAILS</h2>
-
-
             </div>
             <div style="height: 13rem; overflow-y: auto;">
                 <div *ngFor="let item of voldetails;let i = index" class="details"
@@ -83,14 +60,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
-
-
-
-
-
 </div>

@@ -47,6 +47,7 @@ export class UserrequestsComponent {
     this.req_id=event
   axios.patch(`http://localhost:5000/reqaccept/${this.req_id}` ).then((response) => {
     alert(response.data.message)
+    this.reqdetails();
 
 
   })

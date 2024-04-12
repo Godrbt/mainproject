@@ -1,31 +1,41 @@
-<form action="" [formGroup]="userverificationForm">
-    <div class="sort">
+<div style="display: flex;justify-content: center;width: 85rem;">
+    <h2 style="font-size: 30px;font-weight: bold;width: 28rem; color: green;">USER VERIFICATION</h2>
+</div>
 
-        <div class="input-group ">
+<br><br>
+<div style="display: flex;justify-content: center;width: 85rem;">
+    <form action="" [formGroup]="userverificationForm">
+        <div class="sort">
 
-            <span class="input-group-text" style="width: 131px;">District </span>
-            <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
-                (change)="locFetch($event)">
-                <option selected>..district..</option>
-                <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
+            <div class="input-group ">
 
-            </select>
+                <span class="input-group-text" style="width: 20rem; ">District </span>
+                <select style="width: 18rem; " class="form-select" formControlName="district_id" id="inputGroupSelect01"
+                    (change)="locFetch($event)">
+                    <option selected>..district..</option>
+                    <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
+
+                </select>
+            </div>
+            <div class="input-group ">
+
+                <span class="input-group-text" style="width: 20rem; ">Location </span>
+                <select style="width: 18rem; " class="form-select" formControlName="loc_id" id="inputGroupSelect01"
+                    (change)="userFetchdatabyId($event)">
+                    <option selected>..location..</option>
+                    <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
+
+
+                </select>
+            </div>
         </div>
-        <div class="input-group ">
-
-            <span class="input-group-text" style="width: 131px;">Location </span>
-            <select class="form-select" formControlName="loc_id" id="inputGroupSelect01"
-                (change)="userFetchdatabyId($event)">
-                <option selected>..location..</option>
-                <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
+    </form>
+</div>
 
 
-            </select>
-        </div>
-    </div>
-</form>
 
-<div class="req" style="display: flex; flex-direction: column;">
+
+<!-- <div class="req" style="display: flex; flex-direction: column;">
     <div class="main" *ngFor="let item of userverificationdata">
         <div class="cookieCard">
             <p class="cookieHeading">{{item.user_name}} </p>
@@ -33,15 +43,47 @@
             <p class="cookieDescription">{{item.user_email}} </p>
         </div>
         <div class="btn">
-            <button class="acceptButton"  [disabled]="item.userreq_status === 1"
-                (click)="userrequest(item.user_id)">
+            <button class="btn btn-success" [disabled]="item.userreq_status === 1" (click)="userrequest(item.user_id)">
                 Accept
             </button>
 
-            <button class="rejecttButton" [disabled]="item.userreq_status === 2" 
+            <button class="btn btn-danger" [disabled]="item.userreq_status === 2"
                 (click)="userrejectedbyadmin(item.user_id)">
                 Reject
             </button>
         </div>
     </div>
+</div> -->
+
+
+
+<div class="main">
+
+    <br><br><br>
+
+    <div class="allcards">
+
+        <div class="card" *ngFor="let item of userverificationdata">
+            <h4>{{item.user_name}} </h4>
+            <h4>{{item.user_contact}}</h4>
+            <h4>{{item.user_email}} </h4>
+            <h4>{{item.user_details}}</h4>
+            <a href="{{item.user_proof}}" download>Proof</a>
+            <br><br>
+           <div style="display: flex;flex-direction: row;gap: 10px;">
+            <button class="btn btn-success" [disabled]="item.userreq_status === 1" (click)="userrequest(item.user_id)">
+                Verify
+            </button>
+            <button class="btn btn-danger" [disabled]="item.userreq_status === 2"
+            (click)="userrejectedbyadmin(item.user_id)">
+            Reject
+        </button>
+        </div>
+
+        </div>
+
+    </div>
+
+    <br><br><br><br>
+
 </div>

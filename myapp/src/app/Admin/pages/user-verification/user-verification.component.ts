@@ -10,6 +10,7 @@ interface userverificationFetch{
   user_email:any,
   user_id:any,
   userreq_status:any
+  user_details:any
 }
 
 

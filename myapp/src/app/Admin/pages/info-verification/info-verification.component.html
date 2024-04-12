@@ -1,22 +1,32 @@
-<div class="main">
+<div style="display: flex;justify-content: center;width: 85rem;">
+    <h2 style="font-size: 30px;font-weight: bold;width: 33rem; color: green;">INFORMATION VERIFICATION</h2>
+</div>
+
+<br><br>
+<div style="display: flex;justify-content: center;width: 85rem;">
     <form action="" [formGroup]="infoverificationForm">
 
-        <h2 style="margin-left: 22rem;">INFORMATION VERIFICATION</h2>
-        <br><br><br>
-        <div class="input-group " style="width: 20rem;margin-left: 25rem;">
+        <div class="input-group ">
 
-            <span class="input-group-text" style="width: 131px;">CATEGORY </span>
-            <select class="form-select" id="inputGroupSelect01" formControlName="cat_id"
+            <span class="input-group-text" style="width: 20rem; ">CATEGORY </span>
+            <select style="width: 20rem ;" class="form-select" id="inputGroupSelect01" formControlName="cat_id"
                 (change)="infoFetchdatabyId($event)">
-                <option selected>..category..</option>
+                <option value="" selected disabled>Select</option>
                 <option [value]="item.cat_id" *ngFor="let item of cat">{{ item.cat_name }}</option>
 
 
             </select>
         </div>
+
     </form>
+</div>
+
+<div class="main">
+
     <br><br><br>
+
     <div class="allcards">
+
         <div class="card" *ngFor="let item of infoverifydata">
             <h4>{{item.info_name}}</h4>
             <h4>{{item.cat_name}}</h4>
@@ -24,13 +34,17 @@
             <h4>{{item.user_details}}</h4>
             <a href="{{item.user_proof}}" download>Proof</a>
             <h4>{{item.apply_curdate}}</h4>
-            <button type="submit" [disabled]="item.apply_status === 1" (click)="infoaccept(item.apply_id)"> Verify
+           <div style="display: flex;flex-direction: row;gap: 10px;">
+            <button class="btn btn-success" type="submit" [disabled]="item.apply_status === 1" (click)="infoaccept(item.apply_id)"> Verify
             </button>
-
-            <button type="submit" [disabled]="item.apply_status === 2" (click)="inforreject(item.apply_id)"> Reject
+            <button class="btn btn-danger" type="submit" [disabled]="item.apply_status === 2" (click)="inforreject(item.apply_id)"> Reject
             </button>
+        </div>
 
         </div>
+
     </div>
+
     <br><br><br><br>
+
 </div>

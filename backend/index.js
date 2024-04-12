@@ -1499,10 +1499,27 @@ app.patch("/clearnotificationofinfo/:Id", (req, res) => {
 
 // feed back by volunteer//
 
+app.delete("/deletevfeed/:id", (req, res) => {
+  const Id = req.params.id
+
+  let qry = "delete from tbl_volunteerfeedback where vfeedback_id = " + Id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        message: 'data deleted',
+      });
+    }
+  });
+});
+
+
+
 app.post("/volfeed", (req, res) => {
   const { vfeedback_details, volunteer_id } = req.body
   let qry =
-    "insert into tbl_volunteerfeedback (vfeedback_details,volunteer_id) values('" +
+    "insert into tbl_volunteerfeedback (vfeedback_date,vfeedback_details,volunteer_id) values(curdate(),'" +
     vfeedback_details + "','" +
     volunteer_id + "')";
 
@@ -1527,6 +1544,21 @@ app.get("/volfeeback", (req, res) => {
     } else {
       res.send({
         allvfeed: result,
+      });
+    }
+  });
+});
+
+app.get("/volfeeback1/:id", (req, res) => {
+  const Id = req.params.id
+  let qry = "select * from tbl_volunteerfeedback v inner join tbl_volunteer x on v.volunteer_id=x.volunteer_id where x.volunteer_id=" + Id;
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        allfeed: result,
       });
     }
   });

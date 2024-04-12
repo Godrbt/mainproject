@@ -8,6 +8,15 @@ interface volfeedback{
   volunteer_id:any
 }
 
+
+interface vfeeddis {
+  
+  vfeedback_id:any
+  vfeedback_details:any
+  vfeedback_date:any
+
+}
+
 @Component({
   selector: 'app-volfeedback',
   standalone: true,
@@ -18,6 +27,7 @@ interface volfeedback{
 export class VolfeedbackComponent {
 
   vid:any
+  volfeedbackdisplay: vfeeddis[] = [];
 
   volfeedform = new FormGroup(
     {
@@ -37,6 +47,45 @@ export class VolfeedbackComponent {
     axios.post(`http://localhost:5000/volfeed/`, voldata).then((response) => {
       alert(response.data.message)
       this.volfeedform.reset();
+      this.vol1feeddetails();
+
+    })
+  }
+
+
+  deleteRow(index: number): void {
+
+    
+    axios.delete(`http://localhost:5000/deletevfeed/${index}`).then((response) => {
+      alert(response.data.message)
+     
+      this.vol1feeddetails();
+
+
+    })
+
+  }
+
+
+
+  ngOnInit() {
+    this.vol1feeddetails();
+
+  }
+  vol1feeddetails() {
+
+    if (typeof sessionStorage !== 'undefined') {
+
+      this.vid = sessionStorage.getItem('vid');// Access sessionStorage here
+      
+  }
+
+
+
+    axios.get(`http://localhost:5000/volfeeback1/${this.vid}`).then((response) => {
+
+      this.volfeedbackdisplay = response.data.allfeed;
+
 
     })
   }

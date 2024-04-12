@@ -1,8 +1,10 @@
 .card{
 display: flex;
 flex-wrap: wrap;    
-width: 20rem;
-height: 10rem;
+width: 25rem;
+height: 18rem;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+padding: 20px 20px 20px 20px;
 }
 
 .allcards{
@@ -11,5 +13,9 @@ height: 10rem;
     flex-wrap: wrap;
     margin-left: 30px;
     gap: 20px;
+    padding-left: 20px;
     
+}
+.btn{
+    width: 10rem;
 }

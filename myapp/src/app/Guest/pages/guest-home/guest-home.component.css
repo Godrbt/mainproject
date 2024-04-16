@@ -31,7 +31,7 @@
 }
 .submain{
     width: 208vh;
-    height: 125vh ;
+    height: 205vh ;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -130,6 +130,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+    height: 250px;
   }
   
   .testimonials-container {
@@ -142,7 +143,7 @@
     width: 100%; /* Adjust the card width as needed */
     height: 8rem;
     margin-right: 20px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     /* opacity: 0.8;  */
     /* Add opacity */
     transition: margin 0.3s ease-in-out, opacity 0.3s ease-in-out;

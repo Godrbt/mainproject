@@ -1,6 +1,6 @@
 .main-container{
     display: grid;
-    height: 100vh;
+    height: 200vh;
     grid-template-areas: 'area1 area1 area1 area1 area1 '
                          'area2 area2 area2 area2 area2 '
                          'area2 area2 area2 area2 area2 '

@@ -1703,3 +1703,25 @@ app.patch("/complaintreply/:id", (req, res) => {
   });
 });
 // compalint view by admin //
+
+// testimonial //
+
+app.get("/testimonial", (req, res) => {
+
+  let qry = "select * from  tbl_userfeedback f inner join tbl_user u where u.user_id = f.user_id ";
+  
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        userFeedback: result,
+      });
+    }
+  });
+});
+
+
+
+//testimonial //

@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import axios from 'axios';
+
+interface feedbackINT{
+  feedback_details:any
+  user_name:any
+  user_photo:any
+  user_contact:any
+}
 
 @Component({
   selector: 'app-user-home',
@@ -10,20 +18,31 @@ import { Component } from '@angular/core';
 })
 export class UserHomeComponent {
   currentIndex = 0;
+  ufeedbackdata : feedbackINT [] = [];
 
-  testimonials = [
-    { id: 1, name: 'John Doe', quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { id: 2, name: 'Jane Smith', quote: 'Vivamus consectetuer hendrerit lacus. Fusce suscipit libero eget elit.' },
-    // Add more testimonials as needed
-  ];
+  ngOnInit() {
+    
+    this.testimonialfetch();
+    
+  }
+  testimonialfetch() {
+
+
+    axios.get(`http://localhost:5000/testimonial/`,).then((response) => {
+      this.ufeedbackdata = response.data.userFeedback
+      console.log(response.data.userFeedback);
+      
+    })
+  }
+  
 
   prevTestimonial(): void {
-    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    this.currentIndex = (this.currentIndex - 1 + this.ufeedbackdata.length) % this.ufeedbackdata.length;
     this.updateTransform();
   }
 
   nextTestimonial(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+    this.currentIndex = (this.currentIndex + 1) % this.ufeedbackdata.length;
     this.updateTransform();
   }
 

@@ -181,46 +181,47 @@
 
 <!-- statistics -->
 
-<!-- Tastimonial Start -->
-<div class="container-fluid testimonial py-5">
-  <div class="container py-5">
-    <div class="testimonial-header text-center">
-      <h1 class="display-5 mb-5 text-dark">Our client Saying!</h1>
-    </div>
-    <div class="owl-carousel testimonial-carousel" *ngFor="let item of allfeed">
-      <div class="testimonial-item img-border-radius bg-light rounded p-4">
-        <div class="position-relative">
-          <i
-            class="fa fa-quote-right fa-2x text-secondary position-absolute"
-            style="bottom: 30px; right: 0"
-          ></i>
-          <div class="mb-4 pb-4 border-bottom border-secondary">
-            <p class="mb-0">{{ item.feedback_details }}</p>
+   <!-- testimonial -->
+
+    <!-- user-home.component.html -->
+
+    <div class="testimonial-card">
+      <div class="testimonials-container">
+        <div class="testimonial" style="padding: 20px;">
+          <div class="content">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
           </div>
-          <div class="d-flex align-items-center flex-nowrap">
-            <div class="bg-secondary rounded">
-              <img
-                src="{{ item.user_photo }}"
-                class="img-fluid rounded"
-                style="width: 100px; height: 100px"
-                alt=""
-              />
+          <hr>
+          <div style="display: flex; gap: 20px; padding: 20px;">
+            <div>
+              <img src="" alt="" style="width: 100px;height: 100px;border-radius: 20px;">
             </div>
-            <div class="ms-4 d-block">
-              <h4 class="text-dark">{{ item.user_name }}</h4>
-              <p class="m-0 pb-3">{{ item.user_email }}</p>
-              <div class="d-flex pe-5">
-                <i class="fas fa-star text-primary"></i>
-                <i class="fas fa-star text-primary"></i>
-                <i class="fas fa-star text-primary"></i>
-                <i class="fas fa-star text-primary"></i>
-                <i class="fas fa-star"></i>
-              </div>
+            <div>
+              <h2>Name</h2>
+              <h3>Name</h3>
             </div>
           </div>
         </div>
+
+        
+        <!-- Add more testimonials as needed -->
       </div>
+      <button
+        class="nav-button prev-button"
+       
+        style="color: #000000 ;cursor: pointer;"
+      >
+        ❮
+      </button>
+      <button
+        class="nav-button next-button"
+        
+        style="color: #000000;cursor: pointer;"
+      >
+        ❯
+      </button>
     </div>
-  </div>
-</div>
-<!-- Tastimonial End -->
+
+    <!-- testimonial end -->
+
+    <div></div>

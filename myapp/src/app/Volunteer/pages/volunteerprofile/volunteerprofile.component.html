@@ -1,4 +1,4 @@
-<div class="main">
+<!-- <div class="main">
     <div class="card">
       <div class="img">
         <img src="{{ volunteerdata?.volunteer_photo}}" alt="" style="height: 10rem;width: 10rem;">
@@ -18,4 +18,21 @@
         
   
     </div>
+  </div> -->
+
+
+
+  <div class="main">
+    <div class="card">
+      <div class="img">
+        <img src="{{ volunteerdata?.volunteer_photo}}" alt="User Photo">
+      </div>
+      <div class="details">
+        <h2 class="name">Name: {{volunteerdata?.volunteer_name}}</h2>
+        <p>Email: {{volunteerdata?.volunteer_email}}</p>
+        <p>Contact: {{volunteerdata?.volunteer_contact}}</p>
+        <p class="address">Address:  Address:{{volunteerdata?.volunteer_address}}</p>
+      </div>
+    </div>
   </div>
+  

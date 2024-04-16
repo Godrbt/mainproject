@@ -1,32 +1,104 @@
-<nav class="navbar  fixed-top navbar-expand-lg bg-body-tertiary p-0">
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary p-0">
   <div class="container-fluid main2">
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      <ul
+        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+        style="--bs-scroll-height: 100px"
+      >
         <li class="nav-item">
-          <a class="nav-link active" routerLink="userhome" routerLinkActive="active"
-            ariaCurrentwhenActive="page">Home</a>
+          <a
+            class="nav-link active"
+            routerLink="userhome"
+            routerLinkActive="active"
+            ariaCurrentwhenActive="page"
+            >Home</a
+          >
         </li>
 
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="information" routerLinkActive="active"
-            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Informations</a>
+          <a
+            class="nav-link"
+            routerLink="information"
+            routerLinkActive="active"
+            style="text-decoration: none; color: black"
+            ariaCurrentwhenActive="page"
+            >Informations</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="volunteerbooking" routerLinkActive="active"
-            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Volunteer Booking</a>
+          <a
+            class="nav-link"
+            routerLink="volunteerbooking"
+            routerLinkActive="active"
+            style="text-decoration: none; color: black"
+            ariaCurrentwhenActive="page"
+            >Volunteer Booking</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="feedback" routerLinkActive="active"
-            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Feedback</a>
+          <a
+            class="nav-link"
+            routerLink="feedback"
+            routerLinkActive="active"
+            style="text-decoration: none; color: black"
+            ariaCurrentwhenActive="page"
+            >Feedback</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="complaint" routerLinkActive="active"
-            style="text-decoration: none;color: black;" ariaCurrentwhenActive="page">Complaint</a>
+          <a
+            class="nav-link"
+            routerLink="complaint"
+            routerLinkActive="active"
+            style="text-decoration: none; color: black"
+            ariaCurrentwhenActive="page"
+            >Complaint</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Profile
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="myprofile"
+                routerLinkActive="active"
+                ariaCurrentwhenActive="page"
+                >My Profile</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="editprofile"
+                routerLinkActive="active"
+                ariaCurrentwhenActive="page"
+                >Edit Profile</a
+              >
+            </li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="changepassword"
+                routerLinkActive="active"
+                ariaCurrentwhenActive="page"
+                >Change Password</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
 
-      <ul class="navbar-nav  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;margin-right: 40px;">
+      <!-- <ul class="navbar-nav  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;margin-right: 40px;">
         <div class="btn-group dropstart">
           <a routerLinkActive="active" ariaCurrentwhenActive="page" style="text-decoration: none;color: black;"
             class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,32 +116,65 @@
                 ariaCurrentwhenActive="page">Change Password</a></li>
           </ul>
         </div>
-      </ul>
+      </ul> -->
+       <div style="display: flex;gap: 20px;">
       <div class="btn-group dropstart">
-
-        <span class="material-symbols-outlined " data-bs-toggle="dropdown" aria-expanded="false">
+        <span
+          class="material-symbols-outlined"
+          data-bs-toggle="dropdown"
+          style="cursor: pointer"
+          aria-expanded="false"
+        >
           notifications_active
         </span>
 
-        <ul class="dropdown-menu" style=" height: 40rem;width: 15rem;">
+        <ul class="dropdown-menu" style="height: 40rem; width: 15rem">
           <div *ngFor="let item of notification">
+            <div *ngIf="item.req_status === 1">
+              {{ item.volunteer_name }} has accepted your request
+            </div>
+            <div *ngIf="item.req_status === 2">
+              {{ item.volunteer_name }} has rejected your request
+            </div>
 
-            <div *ngIf="item.req_status === 1">{{item.volunteer_name}}  has accepted your request</div>
-            <div *ngIf="item.req_status === 2">{{item.volunteer_name}}  has rejected your request</div>
-
-            <button *ngIf="item.req_status >0" style="width: 14rem;border: 0;margin-left: 8px;" (click)="clear(item.req_id)"> clear </button>
+            <button
+              *ngIf="item.req_status > 0"
+              style="width: 14rem; border: 0; margin-left: 8px"
+              (click)="clear(item.req_id)"
+            >
+              clear
+            </button>
           </div>
 
           <div *ngFor="let item of notitificationofinfo">
+            <div *ngIf="item.apply_status === 1">
+              Admin has accepted your request
+            </div>
+            <div *ngIf="item.apply_status === 2">
+              Admin has rejected your request
+            </div>
 
-            <div *ngIf="item.apply_status === 1">Admin has accepted your request</div>
-            <div *ngIf="item.apply_status === 2">Admin has rejected your request</div>
-
-            <button *ngIf="item.apply_status >0" style="width: 14rem;border: 0;margin-left: 8px;" (click)="clearinfo(item.apply_id)"> clear </button>
+            <button
+              *ngIf="item.apply_status > 0"
+              style="width: 14rem; border: 0; margin-left: 8px"
+              (click)="clearinfo(item.apply_id)"
+            >
+              clear
+            </button>
           </div>
         </ul>
       </div>
+      <div >
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          ariaCurrentwhenActive="page"
+          style="cursor: pointer"
+          (click)="userlogout()"
+          >Logout</a
+        >
+      </div>
+    </div>
     </div>
   </div>
-
 </nav>

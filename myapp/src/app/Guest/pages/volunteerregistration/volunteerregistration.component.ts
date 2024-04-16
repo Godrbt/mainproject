@@ -66,6 +66,62 @@ export class VolunteerregistrationComponent {
   }
 
   onSubmit() {
+
+    if (!this.volunteerForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
+    const letter =this.volunteerForm.value.volunteer_name;
+    if(!letter){
+      alert('name is required');
+      return
+    }
+    const alphabetRegex= /^[A-Za-z\s]+$/;
+
+    const isletterValid = alphabetRegex.test(letter);
+
+    if (!isletterValid) {
+      alert('Name must contain only letters');
+      return;
+    }
+      
+
+
+    const contactNUM = this.volunteerForm.value.volunteer_contact;
+
+    if (!contactNUM) {
+      alert('contact is required.');
+      return;
+    }
+
+    const contactRegex = /^[0-9]{10}$/;
+    const isContactValid = contactRegex.test(contactNUM);
+    if (!isContactValid) {
+      alert('Contact must contain only 10 digits');
+      return;
+    }
+
+    const password = this.volunteerForm.value.volunteer_password;
+    if (!password) {
+      alert('Password is required.');
+      return;
+    }
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isPasswordValid = passwordRegex.test(password);
+
+    if (!isPasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+   
+
+
     const volunteerData: VolunteerInterface = {
       loc_id: this.volunteerForm.value.loc_id,
       volunteer_name: this.volunteerForm.value.volunteer_name,
@@ -100,6 +156,9 @@ export class VolunteerregistrationComponent {
       volunteerData.volunteer_address
     );
     volunteerformdata.append('loc_id', volunteerData.loc_id);
+
+   
+
 
     axios
       .post('http://localhost:5000/volunteerregistration/', volunteerformdata)

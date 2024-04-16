@@ -32,6 +32,67 @@ export class VolchangepassComponent {
   
 
   onSubmit() {
+   
+    if (!this.volchangeForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
+
+    const password = this.volchangeForm.value.curvol_password;
+    if (!password) {
+      alert('Password is required.');
+      return;
+    }
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isPasswordValid = passwordRegex.test(password);
+
+    if (!isPasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+
+
+    const newpassword = this.volchangeForm.value.newvol_password;
+    if (!newpassword) {
+      alert('Password is required.');
+      return;
+    }
+    const newpasswordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isnewPasswordValid = newpasswordRegex.test(password);
+
+    if (!isnewPasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+
+
+    const repassword = this.volchangeForm.value.revol_password;
+    if (!repassword) {
+      alert('Password is required.');
+      return;
+    }
+    const repasswordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isrePasswordValid = repasswordRegex.test(password);
+
+    if (!isrePasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+
 
 
 

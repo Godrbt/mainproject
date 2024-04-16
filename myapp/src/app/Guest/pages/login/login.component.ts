@@ -21,6 +21,7 @@ interface loginInterface {
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+   
   constructor(private router: Router) {}
 
   loginForm = new FormGroup({
@@ -30,6 +31,12 @@ export class LoginComponent {
 
   var: any = '';
   onSubmit() {
+
+    if (!this.loginForm.valid) {
+      alert('Please enter E-mail and Password')
+      return
+    }
+
     const logindata: loginInterface = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
@@ -50,9 +57,16 @@ export class LoginComponent {
       if (login === 'admin') {
         sessionStorage.setItem('aid', id);
         this.router.navigate(['/Admin']);
-      } else console.log(message);
+      } 
+      if (login === 'Error') {
+       alert('Not valid password or Email')
+      } 
+      else
+      {
+      console.log(message);
       console.log(id);
       console.log(login);
+      }
     });
   }
 }

@@ -44,6 +44,47 @@ export class VoleditprofileComponent {
    })
  }
  onSubmit() {
+
+   
+  if (!this.voleditForm.valid) {
+
+    alert('Fill all the input fields');
+    return;
+  }
+
+
+  const letter =this.voleditForm.value.volunteer_name;
+  if(!letter){
+    alert('name is required');
+    return
+  }
+  const alphabetRegex= /^[A-Za-z\s]+$/;
+
+
+  const isletterValid = alphabetRegex.test(letter);
+
+  if (!isletterValid) {
+    alert('Name must contain only letters');
+    return;
+  }
+    
+
+
+  const contactNUM = this.voleditForm.value.volunteer_contact;
+
+  if (!contactNUM) {
+    alert('contact is required.');
+    return;
+  }
+
+  const contactRegex = /^[0-9]{10}$/;
+  const isContactValid = contactRegex.test(contactNUM);
+  if (!isContactValid) {
+    alert('Contact must contain only 10 digits');
+    return;
+  }
+
+
    const voleditdata: voledit = {
     volunteer_name: this.voleditForm.value.volunteer_name,
     volunteer_contact: this.voleditForm.value.volunteer_contact,

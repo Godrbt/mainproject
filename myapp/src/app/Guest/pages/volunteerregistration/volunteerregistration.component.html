@@ -30,7 +30,7 @@
         <div class="input-group">
           <span class="input-group-text">Volunteer Name</span>
           <input
-            type="text"
+            type="text" required
             aria-label="First name"
             formControlName="volunteer_name"
             class="form-control"
@@ -40,7 +40,7 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 131px">Contact </span>
           <input
-            type="text"
+            type="text" required
             aria-label="First name"
             formControlName="volunteer_contact"
             class="form-control"
@@ -51,14 +51,14 @@
       <div class="input-group">
         <span class="input-group-text" style="width: 131px">Address</span>
         <textarea
-          class="form-control"
+          class="form-control" required
           formControlName="volunteer_address"
           aria-label="With textarea"
         ></textarea>
       </div>
       <div class="input-group">
         <input
-          type="text"
+          type="text" required
           class="form-control"
           formControlName="volunteer_email"
           placeholder="Email"
@@ -74,7 +74,7 @@
           <span class="input-group-text">Photo</span>
           <input
             type="file"
-            aria-label="First name"
+            aria-label="First name" required
             formControlName="volunteer_photo"
             (change)="handleFile($event, 'volunteer_photo')"
             class="form-control"
@@ -84,7 +84,7 @@
           <span class="input-group-text">Proof</span>
           <input
             type="file"
-            aria-label="First name"
+            aria-label="First name" required 
             formControlName="volunteer_proof"
             (change)="handleFile($event, 'volunteer_proof')"
             class="form-control"
@@ -96,7 +96,7 @@
         <div class="form-control d-flex">
           <div class="form-check mr-2">
             <input
-              class="form-check-input"
+              class="form-check-input" required
               formControlName="volunteer_gender"
               aria-label="Male"
               type="radio"
@@ -107,7 +107,7 @@
           </div>
           <div class="form-check ml-2">
             <input
-              class="form-check-input"
+              class="form-check-input" required
               formControlName="volunteer_gender"
               aria-label="Female"
               type="radio"
@@ -123,7 +123,7 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 131px">District </span>
           <select
-            class="form-select"
+            class="form-select" required
             formControlName="district_id"
             id="inputGroupSelect01"
             (change)="locFetch($event)"
@@ -137,7 +137,7 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 131px">Location </span>
           <select
-            class="form-select"
+            class="form-select" required
             formControlName="loc_id"
             id="inputGroupSelect01"
           >
@@ -151,7 +151,7 @@
       <div class="input-group">
         <span class="input-group-text" style="width: 131px">Password</span>
         <input
-          type="password"
+          type="password" required
           aria-label="First name"
           formControlName="volunteer_password"
           class="form-control"

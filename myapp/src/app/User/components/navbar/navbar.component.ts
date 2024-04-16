@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import axios from 'axios';
 
 interface notificationfetch {
@@ -33,9 +33,16 @@ export class NavbarComponent {
   req_id: any
   apply_id:any
 
-  constructor() { }
+  // constructor() { }
   menu_icon_variable: boolean = false;
   menuVariable: boolean = false;
+
+  constructor(private router: Router) {}
+
+  userlogout(){
+    sessionStorage.removeItem('uid');
+    this.router.navigate(['/Login']);
+  }
 
   ngOnInit() {
 
@@ -47,6 +54,8 @@ export class NavbarComponent {
     this.notifications();
     this.infonotificationd();
   }
+
+  
 
   notifications() {
     axios.get(`http://localhost:5000/notificationfromVol/${this.uid}`).then((response) => {

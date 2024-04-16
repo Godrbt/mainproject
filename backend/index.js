@@ -844,12 +844,9 @@ app.delete("/volunteerfeedback/:id", (req, res) => {
 
 app.post("/login", (req, res) => {
   let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
-  let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "'";
-  let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "'";
+  let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "' and userreq_status = 1";
+  let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "' and volreq_status = 1 " ;
 
-  console.log(selAdmin);
-  console.log(selUser);
-  console.log(selvolunteer);
 
   db.query(selAdmin, (err, result) => {
     if (err) {
@@ -890,6 +887,11 @@ app.post("/login", (req, res) => {
         message: "Login Successful",
         id: result[0].volunteer_id,
         login: "volunteer"
+      })
+    }
+    else{
+      res.send({
+        login: "Error"
       })
     }
   })

@@ -38,6 +38,12 @@ export class VolfeedbackComponent {
   var: any = ''
   onSubmit() {
 
+    if (!this.volfeedform.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
   
     const voldata: volfeedback = {
 

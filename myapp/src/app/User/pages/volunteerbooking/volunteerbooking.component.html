@@ -1,86 +1,135 @@
-<br><br>
+<br /><br />
 
-<div style="position: fixed;width: 100%;margin-left: -7rem;">
-    <img src="../../../.././assets/mainvolimg.jpg" style=" width: 110rem;
-        height: 125vh;margin-top: -45px;" alt="">
-    <div class="dark-overlay"></div>
-
+<div style="position: fixed; width: 100%; margin-left: -7rem">
+  <img
+    src="../../../.././assets/mainvolimg.jpg"
+    style="width: 110rem; height: 125vh; margin-top: -45px"
+    alt=""
+  />
+  <div class="dark-overlay"></div>
 </div>
-
 
 <div class="container">
-    <div class="card-body d-flex justify-content-between">
-        <div class="input-group district">
-            <div class="label" style="margin-left:16rem ;  color: rgb(247, 238, 238);font-size:60px;font-weight: bold;  padding-top:200px ;padding-bottom:200px;height:100rem;">SELECT YOUR VOLUNTEER</div>
-
-        </div>
-
+  <div class="card-body d-flex justify-content-between">
+    <div class="input-group district">
+      <div
+        class="label"
+        style="
+          margin-left: 16rem;
+          color: rgb(247, 238, 238);
+          font-size: 60px;
+          font-weight: bold;
+          padding-top: 200px;
+          padding-bottom: 200px;
+          height: 100rem;
+        "
+      >
+        SELECT YOUR VOLUNTEER
+      </div>
     </div>
+  </div>
 
-    <div class="card-body ">
-        <div class="input-group card1">
-            <div class="label">District</div>
-            <select class="form-select" id="inputGroupSelect01" (change)="locFetch($event)">
-                <option selected>..district..</option>
-                <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
-            </select>
-        </div>
-        <div class="input-group card2">
-            <div class="label">Location</div>
-            <select class="form-select" id="inputGroupSelect02" (change)="volFetchdatabyId($event)">
-                <option selected>..location..</option>
-                <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
-            </select>
-        </div>
+  <div class="card-body">
+    <div class="input-group card1">
+      <div class="label">District</div>
+      <select
+        class="form-select"
+        id="inputGroupSelect01"
+        (change)="locFetch($event)"
+      >
+        <option selected>..district..</option>
+        <option [value]="item.district_id" *ngFor="let item of data">
+          {{ item.district_name }}
+        </option>
+      </select>
     </div>
-
+    <div class="input-group card2">
+      <div class="label">Location</div>
+      <select
+        class="form-select"
+        id="inputGroupSelect02"
+        (change)="volFetchdatabyId($event)"
+      >
+        <option selected>..location..</option>
+        <option [value]="item.loc_id" *ngFor="let item of locdata">
+          {{ item.loc_name }}
+        </option>
+      </select>
+    </div>
+  </div>
 </div>
 
+<br /><br />
 
-<br><br>
-
-
-<div class="row" style="display: flex;flex-wrap: wrap; padding: 10px; gap: 20px;justify-content: center;">
-    <div class="card" *ngFor="let item of voldata">
-        <div class="image">
-            <img src="{{item.volunteer_photo}}" class="image">
-        </div>
-        <div style="height: 8rem;display: flex;flex-direction: column;">
-            <span class="title">{{item.volunteer_name}} </span>
-            <span class="price">Contact : {{item.volunteer_contact}}</span>
-            <span class="price">Address : {{item.volunteer_address}} </span>
-        </div>
-        <div style="height: 40px; width: 100%;">
-            <button type="button" class="btn btn-primary w-100 "  data-toggle="modal" data-target="#exampleModal"
-                (click)="vol(item.volunteer_id)">
-             
-                Request
-            </button>
-        </div>
-
+<div
+  class="row"
+  style="
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 20px;
+    justify-content: center;
+  "
+>
+  <div class="card" *ngFor="let item of voldata">
+    <div class="image">
+      <img src="{{ item.volunteer_photo }}" class="image" />
     </div>
+    <div style="height: 8rem; display: flex; flex-direction: column">
+      <span class="title">{{ item.volunteer_name }} </span>
+      <span class="price">Contact : {{ item.volunteer_contact }}</span>
+      <span class="price">Address : {{ item.volunteer_address }} </span>
+    </div>
+    <div style="height: 40px; width: 100%">
+      <button
+        type="button"
+        class="btn btn-primary w-100"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        (click)="vol(item.volunteer_id)"
+      >
+        Request
+      </button>
+    </div>
+  </div>
 </div>
-
 
 <!-- Modal -->
 
-<div [formGroup]="reqForm" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enter request details</h5>
-
-                <!-- <input type="text" aria-label="First name" formControlName="req_date" class="form-control w-90" hidden> -->
-
-            </div>
-            <div class="modal-body">
-                <textarea name="" id="" formControlName="req_Details" style="width: 29rem;"></textarea>
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn1 btn-primary" data-dismiss="modal" (click)="req()">Save </button>
-            </div>
-        </div>
+<div
+  [formGroup]="reqForm"
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Enter request details
+        </h5>
+      </div>
+      <div class="modal-body">
+        <textarea
+          name=""
+          id=""
+          formControlName="req_Details"
+          style="width: 29rem"
+        ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn1 btn-primary"
+          data-dismiss="modal"
+          (click)="req()"
+        >
+          Save
+        </button>
+      </div>
     </div>
+  </div>
 </div>

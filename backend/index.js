@@ -1079,16 +1079,12 @@ app.get("/volfetchbyId/:id", (req, res) => {
 // volunteer booking by user //
 
 app.post("/requestForvol", (req, res) => {
-  console.log(req.body);
-
   const { volunteer_id, user_id, req_Details } = req.body
-  //  console.log(volunteer_id);
   let qry =
     "insert into tbl_request(req_date,volunteer_id,user_id,req_Details) values(curdate(),'" +
     volunteer_id + "','" +
     user_id + "','" +
     req_Details + "')";
-  console.log(qry)
   db.query(qry, (err, result) => {
     if (err) {
       console.log("Error");
@@ -1153,10 +1149,8 @@ app.get("/rejectedrequest/:id", (req, res) => {
 
 
 
-
 app.patch("/reqaccept/:Id", (req, res) => {
   const id = req.params.Id
-  // const { districtName } = req.body
   let qry = "update tbl_request set req_status = 1 where req_id = " + id;
   db.query(qry, (err, result) => {
     if (err) {
@@ -1501,7 +1495,6 @@ app.patch("/clearnotificationofinfo/:Id", (req, res) => {
 
 app.delete("/deletevfeed/:id", (req, res) => {
   const Id = req.params.id
-
   let qry = "delete from tbl_volunteerfeedback where vfeedback_id = " + Id;
   db.query(qry, (err, result) => {
     if (err) {

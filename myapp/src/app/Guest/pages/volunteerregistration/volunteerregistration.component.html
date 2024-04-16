@@ -1,111 +1,173 @@
-<form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()"
-    style="display: flex;align-items: center;justify-content: center;margin-top: 30px; ">
-
-    <div class="card" style="width: 60rem;height: auto;box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px; ">
-
-        <div class="card-body" style="display:flex;gap: 10px;flex-direction: column ;">
-            <div class="head" style="display: flex;justify-content: center;color: green;">
-                <p class="h3">VOLUNTEER REGISTRATION</p>
-            </div>
-            <div style="display: flex;">
-                <div class="input-group">
-                    <span class="input-group-text">Volunteer Name</span>
-                    <input type="text" aria-label="First name" formControlName="volunteer_name" class="form-control  "
-                        placeholder="Volunteer Name">
-
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text" style="width: 131px;">Contact </span>
-                    <input type="text" aria-label="First name" formControlName="volunteer_contact"
-                        class="form-control  " placeholder="Contact">
-
-                </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text" style="width: 131px;">Address</span>
-                <textarea class="form-control" formControlName="volunteer_address"
-                    aria-label="With textarea"></textarea>
-            </div>
-            <div class="input-group ">
-                <input type="text" class="form-control" formControlName="volunteer_email" placeholder="Email" id="demo"
-                    name="email">
-                <div class="input-group-append">
-                    <span class="input-group-text">E-Mail</span>
-                </div>
-            </div>
-            <div style="display: flex;">
-                <div class="input-group">
-                    <span class="input-group-text">Photo</span>
-                    <input type="file" aria-label="First name" formControlName="volunteer_photo"
-                        (change)="handleFile($event, 'volunteer_photo')" class="form-control  ">
-
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text">Proof</span>
-                    <input type="file" aria-label="First name" formControlName="volunteer_proof"
-                        (change)="handleFile($event, 'volunteer_proof')" class="form-control  ">
-
-                </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text">
-                    Gender
-                </span>
-                <div class="form-control d-flex">
-                    <div class="form-check mr-2">
-                        <input class="form-check-input" formControlName="volunteer_gender" aria-label="Male"
-                            type="radio" value="male" id="maleRadio">
-                        <label class="form-check-label" for="maleRadio">
-                            Male
-                        </label>
-                    </div>
-                    <div class="form-check ml-2">
-                        <input class="form-check-input" formControlName="volunteer_gender" aria-label="Female"
-                            type="radio" value="female" id="femaleRadio">
-                        <label class="form-check-label" for="femaleRadio">
-                            Female
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-
-            <div style="display: flex;">
-                <div class="input-group ">
-
-                    <span class="input-group-text" style="width: 131px;">District </span>
-                    <select class="form-select" formControlName="district_id" id="inputGroupSelect01"
-                        (change)="locFetch($event)">
-                        <option selected>..district..</option>
-                        <option [value]="item.district_id" *ngFor="let item of data">{{ item.district_name }}</option>
-
-                    </select>
-                </div>
-                <div class="input-group ">
-
-                    <span class="input-group-text" style="width: 131px;">Location </span>
-                    <select class="form-select" formControlName="loc_id" id="inputGroupSelect01">
-                        <option selected>..location..</option>
-                        <option [value]="item.loc_id" *ngFor="let item of locdata">{{ item.loc_name }}</option>
-
-
-                    </select>
-                </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text" style="width: 131px;">Password</span>
-                <input type="password" aria-label="First name" formControlName="volunteer_password"
-                    class="form-control  " placeholder="password">
-
-            </div>
-
-
-
-
-            <div class="child3" style="display: flex;justify-content: center;" >
-                <button type="submit" class="btn btn-outline-success" style="width: 20rem;">Save</button>
-            </div>
-
+<form
+  [formGroup]="volunteerForm"
+  (ngSubmit)="onSubmit()"
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+  "
+>
+  <div
+    class="card"
+    style="
+      width: 60rem;
+      height: auto;
+      box-shadow: rgba(223, 52, 52, 0.35) 0px 5px 15px;
+    "
+  >
+    <div
+      class="card-body"
+      style="display: flex; gap: 10px; flex-direction: column"
+    >
+      <div
+        class="head"
+        style="display: flex; justify-content: center; color: green"
+      >
+        <p class="h3">VOLUNTEER REGISTRATION</p>
+      </div>
+      <div style="display: flex">
+        <div class="input-group">
+          <span class="input-group-text">Volunteer Name</span>
+          <input
+            type="text"
+            aria-label="First name"
+            formControlName="volunteer_name"
+            class="form-control"
+            placeholder="Volunteer Name"
+          />
         </div>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 131px">Contact </span>
+          <input
+            type="text"
+            aria-label="First name"
+            formControlName="volunteer_contact"
+            class="form-control"
+            placeholder="Contact"
+          />
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 131px">Address</span>
+        <textarea
+          class="form-control"
+          formControlName="volunteer_address"
+          aria-label="With textarea"
+        ></textarea>
+      </div>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="volunteer_email"
+          placeholder="Email"
+          id="demo"
+          name="email"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">E-Mail</span>
+        </div>
+      </div>
+      <div style="display: flex">
+        <div class="input-group">
+          <span class="input-group-text">Photo</span>
+          <input
+            type="file"
+            aria-label="First name"
+            formControlName="volunteer_photo"
+            (change)="handleFile($event, 'volunteer_photo')"
+            class="form-control"
+          />
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Proof</span>
+          <input
+            type="file"
+            aria-label="First name"
+            formControlName="volunteer_proof"
+            (change)="handleFile($event, 'volunteer_proof')"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"> Gender </span>
+        <div class="form-control d-flex">
+          <div class="form-check mr-2">
+            <input
+              class="form-check-input"
+              formControlName="volunteer_gender"
+              aria-label="Male"
+              type="radio"
+              value="male"
+              id="maleRadio"
+            />
+            <label class="form-check-label" for="maleRadio"> Male </label>
+          </div>
+          <div class="form-check ml-2">
+            <input
+              class="form-check-input"
+              formControlName="volunteer_gender"
+              aria-label="Female"
+              type="radio"
+              value="female"
+              id="femaleRadio"
+            />
+            <label class="form-check-label" for="femaleRadio"> Female </label>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 131px">District </span>
+          <select
+            class="form-select"
+            formControlName="district_id"
+            id="inputGroupSelect01"
+            (change)="locFetch($event)"
+          >
+            <option selected>..district..</option>
+            <option [value]="item.district_id" *ngFor="let item of data">
+              {{ item.district_name }}
+            </option>
+          </select>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 131px">Location </span>
+          <select
+            class="form-select"
+            formControlName="loc_id"
+            id="inputGroupSelect01"
+          >
+            <option selected>..location..</option>
+            <option [value]="item.loc_id" *ngFor="let item of locdata">
+              {{ item.loc_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 131px">Password</span>
+        <input
+          type="password"
+          aria-label="First name"
+          formControlName="volunteer_password"
+          class="form-control"
+          placeholder="password"
+        />
+      </div>
+
+      <div class="child3" style="display: flex; justify-content: center">
+        <button
+          type="submit"
+          class="btn btn-outline-success"
+          style="width: 20rem"
+        >
+          Save
+        </button>
+      </div>
     </div>
+  </div>
 </form>

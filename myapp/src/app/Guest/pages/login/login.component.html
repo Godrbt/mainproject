@@ -1,50 +1,32 @@
-<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form1">
-<div class="container">
-		<div class="form-group">
-			<input type="email" name="email" placeholder="Email" required formControlName="email" >
-		</div>
-		<div class="form-group">
-			<input type="password" name="password" placeholder="Password" required  formControlName="password">
-		</div>
-		<div class="form-group">
-			<button type="submit">Submit</button>
-		</div>
-	<div class="action-buttons">
-		<a href="#" [routerLink]="['/Guest/volunteerregistration']" class="register-button">Register as Volunteer</a>
-		<a href="#" [routerLink]="['/Guest/userregistration']" class="register-button">Register as User</a>
-	</div>
-</div>
-</form>  -->
 <div class="body">
-	<div class="wrapper">
-		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-			<h2>Login</h2>
-			<div class="input-field">
-				<input type="email" required formControlName="email">
-				<label>Enter your email</label>
-
-			</div>
-			<div class="input-field">
-				<input type="password" required formControlName="password">
-				<label>Enter your password</label>
-
-			</div>
-
-			<!-- <div class="forget">
-				<label for="remember">
-					<input type="checkbox" id="remember">
-					<p>Remember me</p>
-				</label>
-				<a href="#">Forgot password?</a>
-			</div> -->
-			<button type="submit">Log In</button>
-			<div class="register">
-				<div style="display: flex;gap: 40px;justify-content: center;"><a href="#"
-						[routerLink]="['/Guest/volunteerregistration']" class="register-button">Register as
-						Volunteer</a>
-					<a href="#" [routerLink]="['/Guest/userregistration']" class="register-button">Register as User</a>
-				</div>
-			</div>
-		</form>
-	</div>
+  <div class="wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="email" required formControlName="email" />
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" required formControlName="password" />
+        <label>Enter your password</label>
+      </div>
+      <button type="submit">Log In</button>
+      <div class="register">
+        <div style="display: flex; gap: 40px; justify-content: center">
+          <a
+            href="#"
+            [routerLink]="['/Guest/volunteerregistration']"
+            class="register-button"
+            >Register as Volunteer</a
+          >
+          <a
+            href="#"
+            [routerLink]="['/Guest/userregistration']"
+            class="register-button"
+            >Register as User</a
+          >
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

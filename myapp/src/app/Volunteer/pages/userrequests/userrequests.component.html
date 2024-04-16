@@ -1,22 +1,30 @@
-<br><br><br><br>
+<br /><br /><br /><br />
 
-<div style="font-size: 30px;font-weight: bold;color: green; width: 80rem ;display: flex;justify-content: center;">
-    USER REQUESTS
+<div
+  style="
+    font-size: 30px;
+    font-weight: bold;
+    color: green;
+    width: 80rem;
+    display: flex;
+    justify-content: center;
+  "
+>
+  USER REQUESTS
 </div>
-<br><br><br><br>
+<br /><br /><br /><br />
 <div class="req">
-
-   
-
-    <div class="cookieCard card" *ngFor="let item of requestdata">
-        <p class="cookieHeading">Request From {{item.user_name}}</p>
-        <p class="cookieDescription"> {{item.req_Details}} </p>
-        <p class="cookieDescription"> {{item.user_contact}} </p>
-        <div class="btn">
-            <button class="btn btn-success" (click)="userstat(item.req_id)">Accept</button> <button class="btn btn-danger "
-                (click)="userrejct(item.req_id)">Reject</button>
-        </div>
+  <div class="cookieCard card" *ngFor="let item of requestdata">
+    <p class="cookieHeading">Request From {{ item.user_name }}</p>
+    <p class="cookieDescription">{{ item.req_Details }}</p>
+    <p class="cookieDescription">{{ item.user_contact }}</p>
+    <div class="btn">
+      <button class="btn btn-success" (click)="userstat(item.req_id)">
+        Accept
+      </button>
+      <button class="btn btn-danger" (click)="userrejct(item.req_id)">
+        Reject
+      </button>
     </div>
-
-
+  </div>
 </div>

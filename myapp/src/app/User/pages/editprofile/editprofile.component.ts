@@ -56,6 +56,60 @@ export class EditprofileComponent {
   onSubmit() {
     
 
+    if (!this.editForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+  
+  
+    const email = this.editForm.value.user_email;
+  if (!email) {
+    alert('Email is required');
+    return;
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  const isEmailValid = emailRegex.test(email);
+  
+  if (!isEmailValid) {
+    alert('Invalid email format');
+    return;
+  }
+  
+  
+    const letter =this.editForm.value.user_name;
+    if(!letter){
+      alert('Full name is required');
+      return
+    }
+    const alphabetRegex = /^[A-Z][a-z]*\s[A-Z][a-z]*$/;
+  
+    const isletterValid = alphabetRegex.test(letter);
+  
+    if (!isletterValid) {
+      alert('Name must contain only letters and whitespaces');
+      return;
+    }
+      
+  
+  
+    const contactNUM = this.editForm.value.user_contact;
+  
+    if (!contactNUM) {
+      alert('contact is required.');
+      return;
+    }
+  
+    const contactRegex = /^[0-9]{10}$/;
+    const isContactValid = contactRegex.test(contactNUM);
+    if (!isContactValid) {
+      alert('Contact must contain only 10 digits');
+      return;
+    }
+
+
     const editdata: edit = {
       user_name: this.editForm.value.user_name,
       user_contact: this.editForm.value.user_contact,

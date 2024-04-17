@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 @Component({
@@ -12,5 +12,11 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class SidebarComponent {
 
+
+  constructor(private router: Router) {}
+  adminlogout(){
+    sessionStorage.removeItem('aid');
+    this.router.navigate(['/Login']);
+  }
   
 }

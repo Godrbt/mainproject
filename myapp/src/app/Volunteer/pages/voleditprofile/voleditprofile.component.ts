@@ -53,18 +53,33 @@ export class VoleditprofileComponent {
   }
 
 
+  const email = this.voleditForm.value.volunteer_email;
+if (!email) {
+  alert('Email is required');
+  return;
+}
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const isEmailValid = emailRegex.test(email);
+
+if (!isEmailValid) {
+  alert('Invalid email format');
+  return;
+}
+
+
   const letter =this.voleditForm.value.volunteer_name;
   if(!letter){
-    alert('name is required');
+    alert('Full name is required');
     return
   }
-  const alphabetRegex= /^[A-Za-z\s]+$/;
-
+  const alphabetRegex = /^[A-Z][a-z]*\s[A-Z][a-z]*$/;
 
   const isletterValid = alphabetRegex.test(letter);
 
   if (!isletterValid) {
-    alert('Name must contain only letters');
+    alert('Name must contain only letters and whitespaces');
     return;
   }
     

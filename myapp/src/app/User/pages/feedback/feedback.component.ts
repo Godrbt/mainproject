@@ -38,6 +38,12 @@ export class FeedbackComponent {
   var: any = ''
   onSubmit() {
 
+    if (!this.userfeedform.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
   
     const userdata: userfeedback = {
 

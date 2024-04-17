@@ -1093,6 +1093,21 @@ app.get("/volcount", (req, res) => {
 });
 
 
+app.get("/Infocount", (req, res) => {
+
+  let qry = " SELECT COUNT(*) AS InfoCount FROM tbl_informatiion";
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        count: result,
+      });
+    }
+  });
+});
+
 
 
 // admin dashboard end//
@@ -1795,5 +1810,20 @@ app.get("/testimonial", (req, res) => {
 });
 
 
+app.get("/vtestimonial", (req, res) => {
+
+  let qry = "select * from  tbl_volunteerfeedback f inner join tbl_volunteer v where v.volunteer_id = f.volunteer_id ";
+  
+  console.log(qry);
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log("Error");
+    } else {
+      res.send({
+        volFeedback: result,
+      });
+    }
+  });
+});
 
 //testimonial //

@@ -40,6 +40,12 @@ export class ComplaintComponent {
 
   onSubmit() {
 
+    if (!this.complaintForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
   
     const complaintdata: Complaint = {
 

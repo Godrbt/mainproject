@@ -35,6 +35,33 @@ export class ChangepasswordComponent {
 
   onSubmit() {
 
+
+    if (!this.changeForm.valid) {
+      alert('Fill all the input fields');
+      return;
+    }
+
+
+    const newpassword = this.changeForm.value.newuser_password;
+    if (!newpassword) {
+      alert('Password is required.');
+      return;
+    }
+    const newpasswordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isnewPasswordValid = newpasswordRegex.test(newpassword);
+
+    if (!isnewPasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+
+  
+
+
     const formData: ChangeUserPass = {
       newuser_password: this.changeForm.value.newuser_password,
     };
@@ -57,11 +84,15 @@ export class ChangepasswordComponent {
       }
       else {
         console.log("error");
+        alert('error in matching newpass')
+        return
 
       }
     }
     else {
       console.log("error");
+      alert('not current password ')
+      return
 
     }
 

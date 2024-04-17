@@ -1,9 +1,22 @@
-<div class="card" style="width: 18rem;" *ngFor="let item of userfeedbackdisplay">
-    <div class="card-body">
 
-        <h5> user name :{{item.user_name}} </h5>
-        <h5> user details :{{item.feedback_details}} </h5>
-       
-       
-    </div>
+<div style="display: flex;gap: 30px;flex-direction: row;flex-wrap: wrap;margin-left: 50px;">
+<div
+  class="card"
+  style="
+    width: 35rem;
+    height: 8rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+  
+    padding: 10px 10px 10px 10px;
+
+    
+  "
+  *ngFor="let item of userfeedbackdisplay"
+>
+  <div class="card-body">
+    <h3>user name :{{ item.user_name }}</h3>
+    <h5>user details :{{ item.feedback_details }}</h5>
+  </div>
+</div>
 </div>

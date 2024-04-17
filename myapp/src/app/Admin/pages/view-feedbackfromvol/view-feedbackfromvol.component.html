@@ -1,9 +1,20 @@
-<div class="card" style="width: 18rem;" *ngFor="let item of volfeedbackdisplay">
-    <div class="card-body">
+<div style="display: flex;gap: 30px;flex-direction: row;flex-wrap: wrap;margin-left: 50px;height: 100vh;">
+<div
+  class="card"
+  style="
+    width: 35rem;
+    height: 8rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
 
-        <h5> volunteer name :{{item.volunteer_name}} </h5>
-        <h5> volunteer details :{{item.vfeedback_details}} </h5>
-       
-       
-    </div>
+   
+    padding: 10px 10px 10px 10px;
+  "
+  *ngFor="let item of volfeedbackdisplay"
+>
+  <div class="card-body">
+    <h3>volunteer name :{{ item.volunteer_name }}</h3>
+    <h5>volunteer details :{{ item.vfeedback_details }}</h5>
+  </div>
+</div>
 </div>

@@ -49,6 +49,15 @@ export class InformationaddingComponent {
 
   var: any = '';
   onSubmit() {
+    if (
+      !this.infoaddingForm.get('info_details')?.valid ||
+      !this.infoaddingForm.get('info_name')?.valid ||
+      !this.infoaddingForm.get('cat_id')?.valid
+    ) {
+      alert('Fill all the required input fields');
+      return;
+    }
+
     const infodata: infoInterface = {
       info_name: this.infoaddingForm.value.info_name,
       info_photo: this.filedata,

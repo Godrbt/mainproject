@@ -1,6 +1,6 @@
 .carousel-item {
     position: relative;
-    width: 97rem;
+    width: 99rem;
     height: 125vh;
     
 }
@@ -30,6 +30,7 @@
     /* gap: 100px; */
     align-items: center;
     padding-bottom: 8rem;
+    margin-left: 4rem;
 }
 .feedback{
     width: 85vh;
@@ -135,7 +136,7 @@
     flex: 0 0 auto;
     width: 100%; /* Adjust the card width as needed */
     height: 8rem;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     margin-top: 30px;
     /* opacity: 0.8;  */
     /* Add opacity */

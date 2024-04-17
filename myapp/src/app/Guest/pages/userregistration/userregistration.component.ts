@@ -86,10 +86,6 @@ export class UserregistrationComponent {
   );
   var: any = ''
 
-  // handleFile(event: any) {
-  //   this.filedata = event.target.files[0]
-
-  // }
   handleFile(event: any, field: string) {
     if (field === 'user_photo') {
       this.filedata = event.target.files[0];
@@ -98,7 +94,77 @@ export class UserregistrationComponent {
     }
   }
   onSubmit() {
-    // console.log(this.userForm.value.loc_name);
+    
+      
+   
+    if (!this.userForm.valid) {
+      alert('Fill all the input fields');
+      return;
+    }
+
+    const letter = this.userForm.value.user_name;
+    if (!letter) {
+      alert('name is required');
+      return;
+    }
+    const alphabetRegex = /^[A-Z][a-z]*\s[A-Z][a-z]*$/;
+
+    const isletterValid = alphabetRegex.test(letter);
+
+    if (!isletterValid) {
+      alert('Name must contain only letters also the first letter for both first and last must be capital');
+      return;
+    }
+
+    const email = this.userForm.value.user_email;
+    if (!email) {
+      alert('Email is required');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const isEmailValid = emailRegex.test(email);
+
+    if (!isEmailValid) {
+      alert('Invalid email format');
+      return;
+    }
+
+    const contactNUM = this.userForm.value.user_contact;
+
+    if (!contactNUM) {
+      alert('contact is required.');
+      return;
+    }
+
+    const contactRegex = /^[0-9]{10}$/;
+    const isContactValid = contactRegex.test(contactNUM);
+    if (!isContactValid) {
+      alert('Contact must contain only 10 digits');
+      return;
+    }
+
+    const password = this.userForm.value.user_password;
+    if (!password) {
+      alert('Password is required.');
+      return;
+    }
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    const isPasswordValid = passwordRegex.test(password);
+
+    if (!isPasswordValid) {
+      alert(
+        'Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+      );
+      return;
+    }
+
+
+
+
     const UserData: UserInterface = {
       loc_id: this.userForm.value.loc_id,
       user_name:  this.userForm.value.user_name,

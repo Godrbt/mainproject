@@ -1,6 +1,6 @@
 .carousel-item {
     position: relative;
-    width: 97rem;
+    width: 99rem;
     height: 125vh;
     /* margin-top: -40px; */
 }
@@ -22,13 +22,14 @@
     animation: bounceInOut 4s ease-in-out infinite;
 }
 .submain{
-    width: 98rem;
+    width: 96rem;
     min-height: 190vh ;
     display: flex;
     flex-direction: column;
     /* justify-content: ; */
     /* gap: 100px; */
     align-items: center;
+    margin-left: 5rem;
     
     padding-bottom: 8rem;
 }
@@ -136,7 +137,7 @@
     flex: 0 0 auto;
     width: 100%; /* Adjust the card width as needed */
     height: 8rem;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     margin-top: 30px;
     /* opacity: 0.8;  */
     /* Add opacity */

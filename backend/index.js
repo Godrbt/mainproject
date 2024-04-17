@@ -842,60 +842,130 @@ app.delete("/volunteerfeedback/:id", (req, res) => {
 // login start //
 
 
+// app.post("/login", (req, res) => {
+//   let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
+//   let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "' and userreq_status = 1";
+//   let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "' and volreq_status = 1 " ;
+
+
+//   db.query(selAdmin, (err, result) => {
+//     if (err) {
+//       console.log("Error");
+//     }
+//     else if (result.length > 0) {
+//       res.send({
+//         message: "Login Successful",
+//         id: result[0].admin_id,
+//         login: "admin"
+//       })
+//     }
+//   })
+
+
+//   db.query(selUser, (err, result) => {
+//     if (err) {
+//       console.log("Error");
+//     }
+//     else if (result.length > 0) {
+
+//       res.send({
+//         message: "Login Successful",
+//         id: result[0].user_id,
+//         login: "user"
+//       })
+//     }
+//   })
+
+
+
+//   db.query(selvolunteer, (err, result) => {
+//     if (err) {
+//       console.log("Error");
+//     }
+//     else if (result.length > 0) {
+//       res.send({
+//         message: "Login Successful",
+//         id: result[0].volunteer_id,
+//         login: "volunteer"
+//       })
+//     }
+
+
+//     else{
+//       res.send({
+//         login: "Error"
+//       })
+//       }
+  
+//     })
+// })
+
+
+
+
+
 app.post("/login", (req, res) => {
   let selAdmin = "select * from tbl_admin where admin_email='" + req.body.email + "' and admin_password='" + req.body.password + "'";
   let selUser = "select * from tbl_user where user_email='" + req.body.email + "' and user_password='" + req.body.password + "' and userreq_status = 1";
-  let selvolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "' and volreq_status = 1 " ;
+  let selVolunteer = "select * from tbl_volunteer where volunteer_email='" + req.body.email + "' and volunteer_password='" + req.body.password + "' and volreq_status = 1";
 
-
-  db.query(selAdmin, (err, result) => {
+  db.query(selAdmin, (err, adminResult) => {
     if (err) {
-      console.log("Error");
+      console.log("Error in admin query:", err);
+      res.status(500).send({ error: "Internal server error" });
+      return; // Exit the function to avoid sending multiple responses
     }
-    else if (result.length > 0) {
+
+    if (adminResult.length > 0) {
       res.send({
         message: "Login Successful",
-        id: result[0].admin_id,
+        id: adminResult[0].admin_id,
         login: "admin"
-      })
+      });
+      return; // Exit the function after sending the response
     }
-  })
 
+    // If admin login failed, check for user login
+    db.query(selUser, (err, userResult) => {
+      if (err) {
+        console.log("Error in user query:", err);
+        res.status(500).send({ error: "Internal server error" });
+        return; // Exit the function to avoid sending multiple responses
+      }
 
-  db.query(selUser, (err, result) => {
-    if (err) {
-      console.log("Error");
-    }
-    else if (result.length > 0) {
+      if (userResult.length > 0) {
+        res.send({
+          message: "Login Successful",
+          id: userResult[0].user_id,
+          login: "user"
+        });
+        return; // Exit the function after sending the response
+      }
 
-      res.send({
-        message: "Login Successful",
-        id: result[0].user_id,
-        login: "user"
-      })
-    }
-  })
+      // If user login failed, check for volunteer login
+      db.query(selVolunteer, (err, volunteerResult) => {
+        if (err) {
+          console.log("Error in volunteer query:", err);
+          res.status(500).send({ error: "Internal server error" });
+          return; // Exit the function to avoid sending multiple responses
+        }
 
+        if (volunteerResult.length > 0) {
+          res.send({
+            message: "Login Successful",
+            id: volunteerResult[0].volunteer_id,
+            login: "volunteer"
+          });
+          return; // Exit the function after sending the response
+        }
 
+        // If none of the logins succeed, send an error response
+        res.send({ login: "Error" });
+      });
+    });
+  });
+});
 
-  db.query(selvolunteer, (err, result) => {
-    if (err) {
-      console.log("Error");
-    }
-    else if (result.length > 0) {
-      res.send({
-        message: "Login Successful",
-        id: result[0].volunteer_id,
-        login: "volunteer"
-      })
-    }
-    else{
-      res.send({
-        login: "Error"
-      })
-    }
-  })
-})
 
 // login end //
 

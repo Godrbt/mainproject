@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import axios from 'axios';
 
-
 interface ChangevolPass {
-  newvol_password: any
-
+  newvol_password: any;
 }
 
 @Component({
@@ -13,10 +11,9 @@ interface ChangevolPass {
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './volchangepass.component.html',
-  styleUrl: './volchangepass.component.css'
+  styleUrl: './volchangepass.component.css',
 })
 export class VolchangepassComponent {
-
   newvol_password: any;
   volpassword: any;
   revol_password: any;
@@ -27,18 +24,13 @@ export class VolchangepassComponent {
     curvol_password: new FormControl(''),
     newvol_password: new FormControl(''),
     revol_password: new FormControl(''),
-
   });
-  
 
   onSubmit() {
-   
     if (!this.volchangeForm.valid) {
-
       alert('Fill all the input fields');
       return;
     }
-
 
     const password = this.volchangeForm.value.curvol_password;
     if (!password) {
@@ -57,7 +49,6 @@ export class VolchangepassComponent {
       return;
     }
 
-
     const newpassword = this.volchangeForm.value.newvol_password;
     if (!newpassword) {
       alert('Password is required.');
@@ -66,7 +57,7 @@ export class VolchangepassComponent {
     const newpasswordRegex =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
 
-    const isnewPasswordValid = newpasswordRegex.test(password);
+    const isnewPasswordValid = newpasswordRegex.test(newpassword);
 
     if (!isnewPasswordValid) {
       alert(
@@ -74,7 +65,6 @@ export class VolchangepassComponent {
       );
       return;
     }
-
 
     const repassword = this.volchangeForm.value.revol_password;
     if (!repassword) {
@@ -84,7 +74,7 @@ export class VolchangepassComponent {
     const repasswordRegex =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
 
-    const isrePasswordValid = repasswordRegex.test(password);
+    const isrePasswordValid = repasswordRegex.test(repassword);
 
     if (!isrePasswordValid) {
       alert(
@@ -93,62 +83,49 @@ export class VolchangepassComponent {
       return;
     }
 
-
-
-
     const formData: ChangevolPass = {
       newvol_password: this.volchangeForm.value.newvol_password,
     };
-   
-
-
-
-
 
     if (this.volchangeForm.value.curvol_password == this.volpassword) {
-
-      if (this.volchangeForm.value.revol_password == this.volchangeForm.value.newvol_password) {
-
-
-        axios.patch(`http://localhost:5000/volchangepass/${this.vid}`, formData)
+      if (
+        this.volchangeForm.value.revol_password ==
+        this.volchangeForm.value.newvol_password
+      ) {
+        axios
+          .patch(`http://localhost:5000/volchangepass/${this.vid}`, formData)
           .then((response) => {
             this.volchangeForm.reset();
             alert(response.data.message);
           })
           .catch((error) => {
             console.error('Error occurred while changing password:', error);
-           
           });
+      } else {
+        console.log('error in matching newpass');
+        alert('error in matching newpass')
+        return
       }
-      else{
-        console.log("error in matching newpass");
-        
-      }
+    } else {
+      console.log('error not curpass');
+      alert('not current password ')
+      return
     }
-    else{
-      console.log("error not curpass");
-      
-    }
-   
-    
   }
-
 
   ngOnInit() {
     this.Getvolpassword();
   }
 
   Getvolpassword() {
-
-
     if (typeof sessionStorage !== 'undefined') {
       this.vid = sessionStorage.getItem('vid');
     }
 
-    axios.get(`http://localhost:5000/Vounteerprofile/${this.vid}`).then((response) => {
-    
-      this.volpassword = response.data.volunteer[0].volunteer_password;
-    })
-
+    axios
+      .get(`http://localhost:5000/Vounteerprofile/${this.vid}`)
+      .then((response) => {
+        this.volpassword = response.data.volunteer[0].volunteer_password;
+      });
   }
 }

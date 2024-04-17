@@ -195,7 +195,7 @@ export const routes: Routes = [
   },  
 
   {
-    path: 'Guest',
+    path: '',
     component:GuestmainComponent,
     children:[
         {

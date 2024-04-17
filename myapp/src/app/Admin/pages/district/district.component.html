@@ -2,48 +2,59 @@
 
 </form> -->
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="dis">
-  <div class="card p-5" style="width: 30rem;height: 14rem;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; ">
+  <div
+    class="card p-5"
+    style="
+      width: 30rem;
+      height: 14rem;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    "
+  >
     <div class="card-body">
-
       <div class="parent">
-
         <div class="input-group">
           <span class="input-group-text">District</span>
-          <input type="text" aria-label="First name" formControlName="district" class="form-control  w-90">
-
+          <input
+            type="text" required
+            aria-label="First name"
+            formControlName="district"
+            class="form-control w-90"
+          />
         </div>
 
         <div class="child3">
-          <button type="submit" class="btn btn-outline-success">ADD District</button>
+          <button type="submit" class="btn btn-outline-success">
+            ADD District
+          </button>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
 
-  <div style="width: 900px;">
-    <table class="table table-hover  w-100 tablecontainer">
+  <div style="width: 900px">
+    <table class="table table-hover w-100 tablecontainer">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">District</th>
           <th scope="col">Action</th>
-
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of data;let i = index">
+        <tr *ngFor="let item of data; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ item.district_name }}</td>
-          <td>   <a href="javascript:void(0);" (click)="deleteRow(item.district_id)">Delete</a> 
-            <a href="javascript:void(0);" (click)="getOneDistrict(item.district_id)">Update</a> 
+          <td>
+            <a href="javascript:void(0);" (click)="deleteRow(item.district_id)"
+              >Delete</a
+            >
+            <a
+              href="javascript:void(0);"
+              (click)="getOneDistrict(item.district_id)"
+              >Update</a
+            >
           </td>
-      </tr>
-     
+        </tr>
       </tbody>
     </table>
   </div>

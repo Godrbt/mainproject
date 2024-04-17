@@ -35,6 +35,13 @@ export class DistrictComponent {
   );
   var: any = ''
   onSubmit() {
+
+    if (!this.profileForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
     
     const districtdata: DistrictInterface = {
       districtName: this.profileForm.value.district,

@@ -66,6 +66,13 @@ export class CategoryComponent implements OnInit {
   var: any = ''
   onSubmit() {
    
+    if (!this.catform.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+  
+
     const catdata: CategoryInterface = {
       categoryName: this.catform.value.catname,
       categoryDesc: this.catform.value.catdesc

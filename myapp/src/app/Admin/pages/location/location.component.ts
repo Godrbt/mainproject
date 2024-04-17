@@ -45,6 +45,13 @@ export class LocationComponent implements OnInit {
   );
   var: any = ''
   onSubmit() {
+
+    if (!this.locForm.valid) {
+
+      alert('Fill all the input fields');
+      return;
+    }
+
     console.log(this.locForm.value.loc_name);
     const locationData: LocationInterface = {
       loc_name: this.locForm.value.loc_name,

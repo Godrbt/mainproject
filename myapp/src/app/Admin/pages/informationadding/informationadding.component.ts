@@ -49,6 +49,8 @@ export class InformationaddingComponent {
 
   var: any = '';
   onSubmit() {
+
+    
     if (
       !this.infoaddingForm.get('info_details')?.valid ||
       !this.infoaddingForm.get('info_name')?.valid ||
